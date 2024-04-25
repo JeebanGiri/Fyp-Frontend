@@ -17,12 +17,6 @@ const HomeNavigation = () => {
   const handleClick = () => {
     setClick(!click);
   };
-  // const [tooltipVisible, setTooltipVisible] = useState(false);
-
-  // const handleTooltipVisibleChange = (visible) => {
-  //   setTooltipVisible(visible);
-  // };
-
   return (
     <>
       <nav className={style.homeNavigation}>
@@ -41,13 +35,7 @@ const HomeNavigation = () => {
               {navItems.map((item, index) => (
                 <li key={index} className={style.navigationItem}>
                   {item.isListProperty ? (
-                    <Tooltip
-                      title="List Your Property"
-                      placement="top"
-                      overlayStyle={{ backgroundColor: "white" }}
-                      // visible={tooltipVisible}
-                      // onVisibleChange={handleTooltipVisibleChange}
-                    >
+                    <Tooltip title="List Your Property" placement="top">
                       <NavLink
                         to={item.path}
                         exact="true"

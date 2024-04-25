@@ -57,17 +57,21 @@
   list-style-type: none;
   line-height: 20px;
   margin-top: 4px;
+  text-align: left;
 }
 
-li .icons {
+li img {
   color: green;
-  font-size: 20px;
-  line-height: 30px;
   font-weight: normal;
+  height: 20px;
 }
 
 .line {
   color: #818080;
+}
+
+.icons {
+  color: green;
 }
 
 .get-start button {

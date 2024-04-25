@@ -1,7 +1,7 @@
 import styles from "./ListProperty.module.css";
 import { LuMoveRight } from "react-icons/lu";
-import { LiaHandPointRightSolid } from "react-icons/lia";
 import { useNavigate } from "react-router-dom";
+import TickImage from "../../../assets/Listing/tick.png";
 
 const ListPropertyPage = () => {
   const navigateTo = useNavigate();
@@ -33,20 +33,36 @@ const ListPropertyPage = () => {
             </div>
             <ul className={styles.policy}>
               <li>
-                <LiaHandPointRightSolid className={styles.icons} /> 45% of
-                partners get their first booking within a week
+                <img
+                  src={TickImage}
+                  alt="Right Image"
+                  className={styles.icons}
+                />{" "}
+                45% of partners get their first booking within a week
               </li>
               <li>
-                <LiaHandPointRightSolid className={styles.icons} /> More than
-                1,1 billion holiday rental guests since 2010
+                <img
+                  src={TickImage}
+                  alt="Right Image"
+                  className={styles.icons}
+                />{" "}
+                More than 1,1 billion holiday rental guests since 2010
               </li>
               <li>
-                <LiaHandPointRightSolid className={styles.icons} /> Full control
-                over your property and finances
+                <img
+                  src={TickImage}
+                  alt="Right Image"
+                  className={styles.icons}
+                />{" "}
+                Full control over your property and finances
               </li>
               <li>
-                <LiaHandPointRightSolid className={styles.icons} /> Registration
-                is free and takes 15 minutes
+                <img
+                  src={TickImage}
+                  alt="Right Image"
+                  className={styles.icons}
+                />
+                Registration is free and takes 15 minutes
               </li>
             </ul>
             <div className={styles.line}>

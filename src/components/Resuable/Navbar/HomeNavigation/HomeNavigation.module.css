@@ -52,7 +52,8 @@
   color: whitesmoke;
   justify-content: center;
 }
-.listPropertyNavLink {
+
+/* .listPropertyNavLink {
   color: white;
   width: 200px;
   padding: 5px;
@@ -61,11 +62,11 @@
 .listPropertyNavLink:hover {
   background-color: #1a4fa0;
   padding: 10px;
-}
+} */
 
 .navLink:hover,
 .navLink.active {
-  /* color: #cf7676; */
+  color: #cf7676;
 }
 
 .active {
