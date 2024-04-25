@@ -1,0 +1,232 @@
+.container {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #20274d;
+  height: 100px;
+  width: 100%;
+  padding-top: 20px;
+  z-index: 1000;
+  padding-left: 100px;
+}
+
+.icon {
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.place-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  width: 340px;
+  background: white;
+  border-radius: 5px;
+}
+
+.date-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  width: 310px;
+  border-radius: 5px;
+  background: white;
+}
+.datepicker {
+  width: 260px;
+}
+
+.guest-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  width: 230px;
+  border-radius: 5px;
+  background: white;
+}
+
+.input-guest label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.guest {
+  display: flex;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  width: 250px;
+  margin-left: var(--bui_spacing_1x);
+}
+
+.guest-filed {
+  align-self: center;
+  box-sizing: border-box;
+  padding: var(--bui_spacing_2x);
+  width: 100;
+}
+
+.guest-container {
+  display: flex;
+  width: 250px;
+  height: 50px;
+  right: 5px;
+  border-radius: 5px;
+  top: 11px;
+  border: none;
+  outline: none;
+  background: white;
+}
+
+.span-container {
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selectoption {
+  font-size: 25px;
+  color: gray;
+  margin-left: 30px;
+}
+
+.class1 {
+  height: calc(8px * 5);
+  font-size: 25px;
+  padding: 0px 15px 0px 10px;
+}
+
+.spaninput {
+  font-family: "poppins";
+  font-weight: 500;
+}
+
+.btn-label button {
+  background-color: #5392f9;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 18px;
+  padding: 10px 0;
+  border-radius: 5px;
+  height: 50px;
+  width: 150px;
+}
+
+.dropdown {
+  position: absolute;
+  left: 750px;
+  z-index: 999;
+  top: 175px;
+}
+
+.dropdown-container {
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  color: #333;
+  display: block;
+  width: 290px;
+  padding: 30px;
+  position: absolute;
+  z-index: 2;
+}
+
+.action-btn button {
+  color: #006ce4;
+  background-color: #fff;
+  font-size: 15px;
+  text-align: center;
+  width: 80%;
+  border-radius: 5px;
+  margin: 30px 20px 0px 20px;
+  padding: 8px;
+  font-weight: 600;
+}
+.action-btn button:hover {
+  background-color: #5392f9;
+  color: white;
+}
+
+.item1 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.label1,
+.label2 label {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.item2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ranger {
+  display: flex;
+  width: 150px;
+  cursor: pointer;
+  height: 50px;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid #333;
+  border-radius: 4px;
+}
+
+.sub {
+  background: rgb(237, 240, 249);
+  border-radius: 50%;
+  border: 0.5px solid #3170e7;
+  color: #3170e7;
+}
+
+.add {
+  background: rgb(237, 240, 249);
+  border-radius: 50%;
+  border: 0.5px solid #3170e7;
+  color: #3170e7;
+}
+
+.sub:hover {
+  border: 0.5px solid #3170e7;
+  color: #3170e7;
+  background-color: #eff4fd;
+}
+
+.add:hover {
+  background-color: #eff4fd;
+  border: 0.5px solid #3170e7;
+  color: #3170e7;
+}
+
+.ranger svg {
+  font-size: 25px;
+}
+
+.ranger span {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.inputs-text input {
+  outline: none;
+  border: none;
+}
+
+.place-label input {
+  outline: none;
+  border: none;
+}

@@ -1,0 +1,377 @@
+.registerform {
+  display: flex;
+  justify-content: center;
+}
+
+.registercontainer {
+  margin-top: -60px;
+  width: 600px;
+  height: 80vh;
+  background: white;
+  border: 1px solid rgb(224, 200, 154);
+  border-radius: 10px;
+  backdrop-filter: blur(18px) saturate(186%);
+  -webkit-backdrop-filter: blur(18px) saturate(186%);
+  background-color: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+.header {
+  text-align: center;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.header h4 {
+  font-size: 25px;
+  margin-top: 1rem;
+}
+
+.header p {
+  padding: 3px 10px 15px 0px;
+  font-size: 17px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.inputitem {
+  margin-left: 40px;
+}
+
+.inputitem label {
+  font-size: 16px;
+  font-family: "poppins";
+}
+
+.inputitem input {
+  margin-bottom: 10px;
+  padding-left: 20px;
+}
+.inputitem input[type="text"],
+.inputitem input[type="tel"],
+.inputitem input[type="email"],
+.inputitem input[type="password"] {
+  font-size: 15px;
+}
+
+.btn {
+  margin-bottom: 5px;
+}
+
+.btn button {
+  height: 45px;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 562px;
+  background-color: #006ce4;
+  color: #faf5f5;
+}
+.btn button:hover {
+  background-color: #0057b8;
+  transition: 0.3s ease-out;
+}
+.input-label1 input {
+  height: 45px;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-top: 5px;
+  width: 270px;
+}
+
+.input-label2 input {
+  height: 45px;
+  border-radius: 5px;
+  font-size: 18px;
+  width: 400px;
+  margin-top: 5px;
+}
+
+.inputitem input::placeholder {
+  font-size: 14px;
+}
+.input-label1 {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.input-label2 {
+  display: grid;
+}
+
+.footer {
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  margin-top: -20px;
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+.forget-pass {
+  margin: 10px 0px 0px 30px;
+}
+
+/* @media screen and (max-width: 1800px) {
+  .registerform {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+  }
+
+
+  .register-container {
+    width: 650px;
+    height: 70vh;
+    background: white;
+    border: 1px solid rgb(224, 200, 154);
+    border-radius: 10px;
+  }
+
+
+  .inputitem {
+    margin-left: 40px;
+  }
+
+  .footer {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+} */
+
+/* @media screen and (min-width: 1400px) and (max-width: 1600px) {
+  .registerform {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+  }
+
+  .register-container {
+    width: 550px;
+    height: 70vh;
+    justify-content: center;
+    background: white;
+    border: 1px solid rgb(224, 200, 154);
+    border-radius: 10px;
+  }
+
+  .input-label1 {
+    display: flex;
+  }
+
+  .input-label1 input {
+    width: 250px;
+  }
+
+  .input-label2 input {
+    width: 520px;
+  }
+
+  .input-label2 {
+    display: grid;
+  }
+
+  .btn button {
+    width: 520px;
+  }
+
+  .footer {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+} */
+
+@media screen and (min-width: 1330px) and (max-width: 1399px) {
+  .registerform {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+  }
+
+  .register-container {
+    width: 450px;
+    height: 70vh;
+    justify-content: center;
+    background: white;
+    border: 1px solid rgb(224, 200, 154);
+    border-radius: 10px;
+  }
+
+  .input-label1 {
+    display: flex;
+    width: 100%;
+  }
+
+  .input-label1 input {
+    width: 250px;
+  }
+
+  .input-label2 input {
+    width: 520px;
+  }
+
+  .input-label2 {
+    display: grid;
+  }
+
+  .btn button {
+    width: 520px;
+  }
+
+  .footer {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 1080px) and (max-width: 1329px) {
+  .registerform {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+  }
+
+  .register-container {
+    width: 450px;
+    height: 70vh;
+    justify-content: center;
+    background: white;
+    border: 1px solid rgb(224, 200, 154);
+    border-radius: 10px;
+  }
+
+  .inputitem {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 729px) and (max-width: 1079px) {
+  .registerform {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+  }
+
+  .register-container {
+    width: 450px;
+    height: 70vh;
+    justify-content: center;
+    background: white;
+    border: 1px solid rgb(224, 200, 154);
+    border-radius: 10px;
+  }
+
+  .input-label1 {
+    display: flex;
+  }
+
+  .input-label1 input {
+    width: 220px;
+  }
+
+  .input-label2 input {
+    width: 460px;
+  }
+
+  .input-label2 {
+    display: grid;
+  }
+
+  .btn button {
+    width: 460px;
+  }
+
+  .footer {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 616px) and (max-width: 728px) {
+  .registerform {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+  }
+
+  .register-container {
+    width: 400px;
+    height: 70vh;
+    justify-content: center;
+    background: white;
+    border: 1px solid rgb(224, 200, 154);
+    border-radius: 10px;
+  }
+
+  .input-label1 {
+    display: flex;
+  }
+
+  .input-label1 input {
+    width: 200px;
+  }
+
+  .input-label2 input {
+    width: 420px;
+  }
+
+  .input-label2 {
+    display: grid;
+  }
+
+  .btn button {
+    width: 420px;
+  }
+
+  .footer {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 615px) {
+  .registerform {
+    display: flex;
+    gap: 0px;
+    justify-content: center;
+    margin-top: 100px;
+  }
+
+  .register-container {
+    width: 500px;
+    height: 80vh;
+    justify-content: center;
+    background: white;
+    border: 1px solid rgb(224, 200, 154);
+    border-radius: 10px;
+  }
+
+  .input-label1 {
+    display: grid;
+    gap: 0px;
+  }
+
+  .input-label1 input {
+    width: 400px;
+  }
+
+  .input-label2 input {
+    width: 400px;
+  }
+
+  .btn button {
+    width: 400px;
+  }
+}

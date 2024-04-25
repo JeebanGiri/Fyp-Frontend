@@ -1,0 +1,17 @@
+.titles {
+  display: flex;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+.view-tables {
+  min-width: 1010px;
+  max-width: 1250px;
+  margin: 100px 0px 0px 50px;
+  margin-top: 10px;
+}
+
+.roomlinfo {
+  display: flex;
+  width: 150%;
+  flex-direction: column;
+}

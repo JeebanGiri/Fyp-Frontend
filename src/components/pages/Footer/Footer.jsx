@@ -1,0 +1,71 @@
+import { FaFacebookF } from "react-icons/fa";
+import styles from "./Footer.module.css";
+import { FiTwitter } from "react-icons/fi";
+import { LiaGoogle } from "react-icons/lia";
+import { BsYoutube } from "react-icons/bs";
+
+const Footer = () => {
+  return (
+    <>
+      <footer>
+        <div className={styles["footerpage"]}>
+          <div className={styles["footer-top"]}>
+            <span>
+              <p>Help</p>
+              <li>
+                <a href="tel://980709974" id="phone">
+                  +977-9807099754
+                </a>
+              </li>
+              <li>
+                <a href="mailto:help@hotelnew.com" id="email-footer">
+                  help@hotelnew.com
+                </a>
+              </li>
+            </span>
+            <span>
+              <p>About</p>
+              <li>About us</li>
+              <li>FAQ</li>
+              <li>Login</li>
+              <li>Register</li>
+              <li className={styles.condt}>Terms and condition</li>
+            </span>
+            <span>
+              <p>Destination</p>
+              <li>Countries/Territories</li>
+              <li>Cities</li>
+            </span>
+            <span>
+              <p>Partner with us</p>
+              <li>Join us today</li>
+            </span>
+            <hr />
+          </div>
+          <div className={styles["below-footer"]}>
+            <p>
+              All material here in 2024 On Horizon Residence. All Rights
+              Reserved. Horizon Residence is part of Booking Holdings Inc., the
+              world leader in online reservation & related services.
+            </p>
+            <div className={styles.icons}>
+              <span>
+                <FaFacebookF />
+              </span>
+              <span>
+                <FiTwitter />
+              </span>
+              <span>
+                <BsYoutube />
+              </span>
+              <span>
+                <LiaGoogle />
+              </span>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+};
+export default Footer;

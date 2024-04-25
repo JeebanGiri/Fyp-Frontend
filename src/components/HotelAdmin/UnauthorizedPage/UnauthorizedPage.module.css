@@ -1,0 +1,19 @@
+.images img{
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+}
+.homes{
+   position: absolute;
+   bottom: 10px;
+   top: 93%;
+   color: white;
+   text-transform: uppercase;
+   font-weight: 500;
+   left: 45%;
+   cursor: pointer;
+   z-index: 1;
+
+}

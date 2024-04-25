@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.hotelinfo {
+  width: 1090px;
+  margin: 150px 10px 0px 0px;
+}
+.titles {
+  margin-left: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.titles h4 {
+  color: skyblue;
+}
+.add-room button {
+  height: 40px;
+  width: 120px;
+  background-color: deepskyblue;
+  border-radius: 5px;
+  color: white;
+  margin-right: 10px;
+}
+.add-room button:hover {
+  background-color: dodgerblue;
+  color: azure;
+}
+.view-tables {
+  margin: 20px 0px 0px 20px;
+}
+
+.roomlinfo {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+.modal {
+  position: absolute;
+  z-index: 200;
+  left: 0px;
+  top: 100px;
+}

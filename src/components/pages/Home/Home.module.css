@@ -1,0 +1,508 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+.homeContent {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  top: -25px;
+  text-align: center;
+}
+
+.imgcontainer img {
+  height: 300px;
+  width: 100%;
+}
+
+.imgcontainer {
+  height: 100%;
+  width: 100%;
+}
+
+.imgcontainer h2 {
+  color: white;
+  font-size: 40px;
+  margin-top: -100px;
+}
+
+.headercontent {
+  position: absolute;
+  top: 120px;
+  left: 150px;
+  color: white;
+}
+
+.headercontent h1 {
+  font-size: 2.5rem;
+}
+
+.headercontent p {
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+#titleBox {
+  display: flex;
+  flex-direction: row;
+  width: 45%;
+  background-color: #ffffff;
+  height: 45px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 0px 0px 10px;
+  gap: 30px;
+  font-size: 12x;
+  border-radius: 5px;
+  background: #e0e0e0;
+}
+
+#titleBox a {
+  list-style-type: none;
+  text-decoration: none;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-out;
+}
+
+.hotelHomes {
+  display: flex;
+  flex-direction: row;
+  margin: 0px 0px 0px 20px;
+  gap: 10px;
+}
+
+.longStay {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.apartment {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.icon {
+  font-size: 22px;
+}
+
+.content p {
+  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  cursor: pointer;
+  margin-top: 15px;
+  font-weight: 500;
+  transition: 0.3s ease-in-out;
+}
+
+.content a {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.hotelHomes .content p:hover,
+.hotelHomes .content p.active,
+.longStay .content p:hover,
+.apartment .content p:hover {
+  color: #da1e28;
+}
+
+/* .hotelHomes .content p:hover::after,
+.hotelHomes .content p.active::after,
+.longStay .content p:hover::after,
+.longStay .content p.active::after,
+.apartment .content p:hover::after,
+.apartment .content p.active::after {
+    content: "";
+    width: 20%;
+    height: 3px;
+    background: #17cf97;
+    position: absolute;
+    bottom: -3px;
+    margin-right: 100px;
+} */
+
+/* @media screen and (max-width: 1800px) {
+    .homeContent {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #titleBox {
+        display: flex;
+        flex-direction: row;
+        width: 30%;
+        background: rgb(192, 192, 192);
+        height: 60px;
+    }
+
+    .hotelHomes {
+        align-items: center;
+        display: flex;
+    }
+
+    .longStay {
+        align-items: center;
+    }
+} */
+
+/* @media screen and (min-width: 1200px) and (max-width: 1400px) {
+    .homeContent {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #titleBox {
+        display: flex;
+        flex-direction: row;
+        width: 37%;
+        background: rgb(192, 192, 192);
+        height: 60px;
+        border-radius: 10px;
+        align-items: center;
+        padding: 10px 0px 0px 10px;
+        gap: 30px;
+        position: relative;
+        top: 200px;
+    }
+
+    .hotelHomes {
+        align-items: center;
+    }
+
+    .longStay {
+        align-items: center;
+    }
+} */
+
+@media screen and (min-width: 1090px) and (max-width: 1199px) {
+  .homeContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #titleBox {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    background: rgb(192, 192, 192);
+    height: 60px;
+  }
+
+  .hotelHomes {
+    align-items: center;
+  }
+
+  .longStay {
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 729px) and (max-width: 1089px) {
+  .homeContent {
+    display: flex;
+    margin-left: 20px;
+  }
+
+  #titleBox {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    background: rgb(192, 192, 192);
+    height: 60px;
+  }
+
+  .hotelHomes {
+    align-items: center;
+  }
+
+  .longStay {
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 616px) and (max-width: 728px) {
+  .homeContent {
+    display: flex;
+    margin-left: 20px;
+  }
+
+  #titleBox {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    background: rgb(192, 192, 192);
+    height: 60px;
+    right: 30px;
+  }
+
+  .icon {
+    font-size: 20px;
+  }
+
+  .content p {
+    font-size: 16px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+  }
+
+  .hotelHomes {
+    gap: 5px;
+    align-items: center;
+  }
+
+  .longStay {
+    gap: 5px;
+    align-items: center;
+  }
+
+  .apartment {
+    gap: 5px;
+    margin-right: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 615px) {
+  #titleBox {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    background: rgb(192, 192, 192);
+    height: 60px;
+    border-radius: 10px;
+    align-items: center;
+    padding: 10px 0px 0px 10px;
+    gap: 10px;
+    position: relative;
+    top: 200px;
+  }
+
+  .icon {
+    font-size: 16px;
+  }
+
+  .hotelHomes {
+    display: grid;
+  }
+
+  .longStay {
+    display: grid;
+  }
+
+  .apartment {
+    display: grid;
+  }
+
+  .apartment .icon {
+    margin-top: -5px;
+    font-size: 22px;
+  }
+}
+
+.articlecontent {
+  margin-top: 500px;
+  position: relative;
+  text-align: center;
+}
+
+.explore {
+  position: relative;
+  border: none;
+  user-select: none;
+  padding: 12px;
+  border-radius: 5px;
+  background-color: rgb(206, 213, 223);
+  box-shadow: rgba(158, 156, 156, 0.2) 0px 1px 3px 1px;
+  color: rgb(14, 206, 240);
+  transition: all 0.15s ease-in-out 0s;
+  text-transform: uppercase;
+  cursor: pointer;
+  top: -50px;
+  left: 300px;
+}
+
+.main {
+  margin-top: 100px;
+}
+
+.top {
+  margin: 50px 50px;
+}
+
+.top p {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.firstcontent {
+  height: 350px;
+  width: 270px;
+  display: grid;
+}
+
+.secondcontent {
+  height: 340px;
+  width: 260px;
+  display: grid;
+  gap: 10px;
+}
+
+.thirdcontent {
+  height: 350px;
+  width: 270px;
+  display: grid;
+}
+
+.fourcontent {
+  height: 350px;
+  width: 270px;
+}
+
+.content img {
+  height: 325px;
+  width: 270px;
+  border-radius: 10px;
+}
+
+.img1 img {
+  height: 155px;
+  width: 265px;
+  border-radius: 10px;
+}
+
+.img2 img {
+  height: 155px;
+  width: 265px;
+  border-radius: 10px;
+}
+
+.fourcontent {
+  height: 330px;
+  width: 270px;
+  display: grid;
+  gap: 10px;
+}
+
+.firstimg img {
+  height: 155px;
+  width: 270px;
+  border-radius: 10px;
+}
+
+.secondimg img {
+  height: 155px;
+  width: 270px;
+  border-radius: 10px;
+}
+
+.content button {
+  border-radius: 10px;
+  height: 30px;
+  width: 100px;
+  font-weight: 600;
+  font-family: cursive;
+  backdrop-filter: blur(1px) saturate(134%);
+  -webkit-backdrop-filter: blur(1px) saturate(134%);
+  background-color: rgba(255, 255, 255, 0.59);
+  border: 1px solid rgba(209, 213, 219, 0.3);
+  box-shadow: rgba(255, 255, 255, 0.59);
+  position: sticky;
+  margin-top: -50px;
+}
+
+/* Css for recommend hotel  page */
+
+.imageside {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-left: 130px;
+}
+
+.imageside .box1 {
+  height: 400px;
+  width: 300px;
+  border-radius: 10px;
+  border: 1px solid sandybrown;
+}
+
+.imageside .box2 {
+  height: 400px;
+  width: 300px;
+  border-radius: 10px;
+  border: 1px solid sandybrown;
+}
+
+.image1 img {
+  height: 200px;
+  width: 298px;
+  border-radius: 10px 10px 0 0;
+}
+
+.image2 img {
+  height: 200px;
+  width: 298px;
+  border-radius: 10px 10px 0 0;
+}
+
+.articles {
+  margin-left: 20px;
+}
+
+.hotelnames {
+  font-family: kite-mallory, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.hotelplace {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  margin-top: -15px;
+  margin-bottom: 0px;
+  margin: -15px 0px 0px 0px;
+}
+
+.discPrice {
+  display: grid;
+  margin-right: 20px;
+  float: right;
+}
+
+.offer {
+  padding: 4px 8px;
+  border-radius: 2px;
+  background-color: rgb(225, 45, 45);
+  color: rgb(255, 255, 255);
+}
+
+.price {
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 500;
+  color: rgb(225, 45, 45);
+  margin: 0px;
+}

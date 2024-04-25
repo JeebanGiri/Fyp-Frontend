@@ -1,0 +1,53 @@
+.notification-container {
+    display: grid;
+    height: 400px;
+    width: 330px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: absolute;
+    z-index: 999;
+    border-radius: 10px;
+    border: 1px solid darkgray;
+    left: 67%;
+    top: 70px;
+    background-color: white;
+    border-top: 4px solid blue;
+}
+
+.header {
+    height: 50px;
+    align-items: center;
+    padding-top: 20px;
+    padding-left: 20px;
+    gap: 10px;
+    display: flex;
+}
+.header p:nth-child(2){
+    font-size: 22px;
+}
+
+.titles {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.messagecontent {
+    width: 300px;
+    margin: 5px 30px 0px 30px;
+}
+.messagecontent p{
+    width: 280px;
+    font-size: 14px;
+}
+
+.messagecontent :first-child {
+    color: #4f5253;
+}
+
+.line {
+    width: 90%;
+    margin-left: 20px;
+    color: #b0b3b4;
+}

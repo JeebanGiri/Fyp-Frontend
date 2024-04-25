@@ -1,0 +1,62 @@
+.registerhotel {
+    height: 75vh;
+    border-radius: 10px;
+    width: 900px;
+    background-color: #ffffff;
+
+    border: 1px solid rgb(223, 222, 222);
+    margin: 50px 0px 10px 500px;
+}
+
+.input-items {
+    display: flex;
+    flex-direction: row;
+}
+
+.input-items .panel1 {
+    height: 55vh;
+    width: 450px;
+    margin-left: 20px;
+}
+
+.panel1 p {
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    margin: 10px 0px 5px 10px;
+}
+
+.panel2 p {
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    margin: 10px 0px 5px 10px;
+}
+
+.input-items .panel2 {
+    height: 55vh;
+    width: 400px;
+    margin-left: 20px;
+}
+
+.panel1, .panel2, .inputlabel {
+    margin: 10px 0px 20px 0px;
+}
+
+.header h2 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 600;
+    padding: 10px;
+    text-align: center;
+}
+
+.add-btn button {
+    height: 50px;
+    width: 150px;
+    border-radius: 5px;
+    background-color: #2f60c3;
+    border: #2f60c3;
+    text-transform: uppercase;
+    color: white;
+    margin: 0px 0px 0px 350px;
+}

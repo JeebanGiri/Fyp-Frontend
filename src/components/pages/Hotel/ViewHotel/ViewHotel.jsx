@@ -1,0 +1,180 @@
+import { deleteHotel, getHotel } from "../../../../constants/Api";
+import styles from "./ViewHotel.module.css";
+import { useQuery, useQueryClient } from "react-query";
+import { Space, Table } from "antd";
+import { BACKEND_URL } from "../../../../constants/constant";
+import { QuestionCircleOutlined } from "@ant-design/icons";
+import { Button, Popconfirm } from "antd";
+import { useState } from "react";
+import AddRoomsPopup from "../../Room/AddRoomsForms/AddRoomsPopup";
+import HotelLocationMap from "../../Map/HotelLocationMap";
+
+const ViewHotel = () => {
+  const [isAddRoomsOpen, setIsAddRoomsOpen] = useState(false);
+  const [openMap, setOpenMap] = useState(false);
+  const queryClient = useQueryClient();
+
+  // const [selectedHotelId, setSelectedHotelId] = useState(null);
+  // const toggleAddRooms = () => {
+  //   setIsAddRoomsOpen(!isAddRoomsOpen);
+  // };
+
+  const token = localStorage.getItem("token");
+  const { data } = useQuery("hoteldetails", () => getHotel(token));
+
+  // useEffect(() => {
+  //   if (data) {
+  //     const dataArray = Object.values(data);
+  //     setHotelData(dataArray);
+  //   }
+  // }, [data]);
+
+  const tableData = data?.data;
+  console.log(tableData, "Tables");
+
+  const hotelId = tableData ? tableData.filter((hotel) => hotel.id) : [];
+  console.log(hotelId, "hotelId");
+
+  const toggleAddRooms = () => {
+    setIsAddRoomsOpen(!isAddRoomsOpen);
+  };
+  const handleMapClick = () => {
+    setOpenMap(!openMap);
+  };
+
+  const handleDeleteHotel = async (hotel_Id) => {
+    console.log(hotel_Id, "hotel");
+    try {
+      await deleteHotel(hotel_Id, token);
+      queryClient.invalidateQueries("hoteldetails");
+
+      // Optimistically update the frontend state by removing the deleted room
+      queryClient.setQueryData("hoteldetails", (oldData) =>
+        oldData.filter((hotel) => hotel.id !== hotel_Id)
+      );
+
+      // Optionally, you can refetch the data to ensure consistency with the backend
+      await queryClient.refetchQueries("hoteldetails");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const columns = [
+    {
+      title: "Hotel Name",
+      dataIndex: "name",
+      key: "hotel_name",
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
+    },
+    {
+      title: "Phone Number",
+      dataIndex: "phone_number",
+      key: "phone_number",
+    },
+    {
+      title: "Check-In",
+      dataIndex: "checkin_checkout",
+      key: "checkin",
+      render: (checkin_checkout) => checkin_checkout?.check_in_time,
+    },
+    {
+      title: "Check-Out",
+      dataIndex: "checkin_checkout",
+      key: "checkout",
+      render: (checkin_checkout) => checkin_checkout?.check_out_time,
+    },
+    {
+      title: "Hotel Status",
+      dataIndex: "status",
+      key: "rating_value",
+    },
+    {
+      title: "Rating",
+      dataIndex: "rating_value",
+      key: "rating_value",
+    },
+    {
+      title: "Avatar",
+      key: "avatar",
+      dataIndex: "avatar",
+      render: (avatar) => (
+        <>
+          <img
+            src={`${BACKEND_URL}/static/hotel_admin/register-hotel/${avatar}`}
+            alt="Images"
+            style={{ width: "50px", height: "50px" }}
+          />
+        </>
+      ),
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (record) => (
+        <Space size="middle">
+          {console.log(record.id, "id of hotel")}
+          <Button primary>Edit</Button>
+          <Popconfirm
+            title="Delete the hotel"
+            description="Are you sure to delete this hotel?"
+            onConfirm={() => handleDeleteHotel(record.id)}
+            onOpenChange={() => console.log("open change")}
+            icon={
+              <QuestionCircleOutlined
+                style={{
+                  color: "red",
+                }}
+              />
+            }
+          >
+            <Button danger>Delete</Button>
+          </Popconfirm>
+        </Space>
+      ),
+    },
+  ];
+  return (
+    <>
+      <div className={styles.hotelinfo}>
+        <div className={styles.titles}>
+          <span>
+            <h4>Hotel Information</h4>
+          </span>
+          <span>
+            <span className={styles["add-room"]}>
+              <button onClick={handleMapClick}>Set Location</button>
+            </span>
+            <span className={styles.modal}>
+              {openMap && (
+                <HotelLocationMap
+                  hotelId={hotelId}
+                  handleMapClick={handleMapClick}
+                />
+              )}
+            </span>
+            <span className={styles["add-room"]}>
+              <button onClick={() => toggleAddRooms()}>Add Rooms</button>
+              {isAddRoomsOpen ? (
+                <AddRoomsPopup
+                  toggle={() => toggleAddRooms()}
+                  hotelId={hotelId}
+                />
+              ) : null}
+            </span>
+          </span>
+        </div>
+
+        <div className={styles["view-tables"]}>
+          <Table columns={columns} rowKey={"id"} dataSource={tableData} />
+        </div>
+      </div>
+    </>
+  );
+};
+export default ViewHotel;

@@ -1,0 +1,35 @@
+.booking {
+  display: flex;
+  gap: 100px;
+}
+.booking p:first-child {
+  font-size: 25px;
+  color: blue;
+}
+.booking p:nth-child(2) {
+  font-size: 25px;
+}
+
+.building {
+  display: flex;
+  gap: 100px;
+}
+.building p:first-child {
+  font-size: 25px;
+  color: blue;
+}
+.building p:nth-child(2) {
+  font-size: 25px;
+}
+
+.bed {
+  display: flex;
+  gap: 100px;
+}
+.bed p:first-child {
+  font-size: 25px;
+  color: blue;
+}
+.bed p:nth-child(2) {
+  font-size: 25px;
+}

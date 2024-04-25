@@ -1,0 +1,79 @@
+.footerpage {
+  margin-top: 300px;
+}
+
+.footer-top {
+  background: #e9ebee;
+  justify-content: center;
+  display: flex;
+  gap: 100px;
+  padding-top: 50px;
+  width: 100%;
+  height: 40vh;
+}
+
+.footer-top span li {
+  list-style-type: none;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: kite-mallory, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.condt {
+  width: 180px;
+}
+
+.footer-top span p:nth-child(1) {
+  font-weight: 500;
+  font-size: 15px;
+  margin: 12px 0;
+}
+
+.footer-top span li a {
+  text-decoration: none;
+  font-family: kite-mallory, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  /* color: #fdf7ac; */
+  color: black;
+}
+
+/* .footer-top span li a:hover {
+    color: white;
+} */
+
+.below-footer {
+  background-color: #2a2a2e;
+  min-height: 400px;
+  max-height: 600px;
+  width: 100%;
+}
+
+.below-footer p {
+  color: white;
+  font-weight: 200;
+  text-align: center;
+  justify-content: center;
+  margin: 0px 0px 0px 400px;
+  padding-top: 100px;
+  width: 600px;
+}
+
+.icons {
+  justify-content: center;
+  text-align: center;
+  margin-top: 100px;
+  display: flex;
+  gap: 30px;
+}
+
+.icons svg:hover {
+  border-radius: 50%;
+
+  background: white;
+  text-align: center;
+  color: black;
+}
+
+.icons svg {
+  color: whitesmoke;
+  font-size: 25px;
+}
