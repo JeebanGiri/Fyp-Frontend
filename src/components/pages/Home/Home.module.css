@@ -74,7 +74,7 @@
 .hotelHomes {
   display: flex;
   flex-direction: row;
-  margin: 0px 0px 0px 20px;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -96,7 +96,6 @@
 
 .content p {
   font-size: 16px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   cursor: pointer;
   margin-top: 15px;
   font-weight: 500;
