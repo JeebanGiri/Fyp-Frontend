@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import style from "./HomeNavigation.module.css";
 import Logo from "../Logo";
@@ -17,59 +17,59 @@ const HomeNavigation = () => {
   const handleClick = () => {
     setClick(!click);
   };
+
+  const location = useLocation();
+
   return (
-    <>
-      <nav className={style.homeNavigation}>
-        <div className={style.navbarWrapper}>
-          <span className={style.logos}>
-            <li to="/" className={style.logobox}>
-              <Logo />
-            </li>
-          </span>
-          <span className={style.navItemsWrapper}>
-            <ol
-              className={
-                click ? `${style.navMenu} ${style.active}` : style.navMenu
-              }
-            >
-              {navItems.map((item, index) => (
-                <li key={index} className={style.navigationItem}>
-                  {item.isListProperty ? (
-                    <Tooltip title="List Your Property" placement="top">
-                      <NavLink
-                        to={item.path}
-                        exact="true"
-                        className={`
-                          ${style.navLink}
-                          ${style.listPropertyNavLink}
-                        `}
-                        activeClassName={style.active}
-                        onClick={handleClick}
-                      >
-                        {item.name}
-                      </NavLink>
-                    </Tooltip>
-                  ) : (
+    <nav className={style.homeNavigation}>
+      <div className={style.navbarWrapper}>
+        <span className={style.logos}>
+          <li to="/" className={style.logobox}>
+            <Logo />
+          </li>
+        </span>
+        <span className={style.navItemsWrapper}>
+          <ol
+            className={
+              click ? `${style.navMenu} ${style.active}` : style.navMenu
+            }
+          >
+            {navItems.map((item, index) => (
+              <li key={index} className={style.navigationItem}>
+                {item.isListProperty ? (
+                  <Tooltip title="List Your Property" placement="top">
                     <NavLink
                       to={item.path}
-                      exact="true"
-                      className={style.navLink}
-                      activeClassName={style.active}
+                      exact={true}
+                      className={`${style.navLink} ${
+                        item.path === location.pathname ? style.active : ""
+                      }`}
                       onClick={handleClick}
                     >
                       {item.name}
                     </NavLink>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </span>
-          <div className={style.menuIconWrapper} onClick={handleClick}>
-            {click ? <FaTimes /> : <FaBars />}
-          </div>
+                  </Tooltip>
+                ) : (
+                  <NavLink
+                    to={item.path}
+                    exact={true}
+                    className={`${style.navLink} ${
+                      item.path === location.pathname ? style.active : ""
+                    }`}
+                    onClick={handleClick}
+                  >
+                    {item.name}
+                  </NavLink>
+                )}
+              </li>
+            ))}
+          </ol>
+        </span>
+        <div className={style.menuIconWrapper} onClick={handleClick}>
+          {click ? <FaTimes /> : <FaBars />}
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 };
 

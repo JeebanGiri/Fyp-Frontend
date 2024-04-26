@@ -24,7 +24,6 @@
   text-align: center;
   text-decoration: none;
   list-style-type: none;
-  /* color: #1A4FA0; */
   color: white;
   margin-left: 100px;
 }
@@ -45,9 +44,8 @@
 
 .navLink {
   text-decoration: none;
-  font-size: 1rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   transition: 0.3s ease-out;
   color: whitesmoke;
   justify-content: center;
@@ -66,7 +64,9 @@
 
 .navLink:hover,
 .navLink.active {
-  color: #cf7676;
+  color: red;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
 }
 
 .active {
