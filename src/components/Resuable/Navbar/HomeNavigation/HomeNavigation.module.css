@@ -51,17 +51,6 @@
   justify-content: center;
 }
 
-/* .listPropertyNavLink {
-  color: white;
-  width: 200px;
-  padding: 5px;
-  border-radius: 3px;
-}
-.listPropertyNavLink:hover {
-  background-color: #1a4fa0;
-  padding: 10px;
-} */
-
 .navLink:hover,
 .navLink.active {
   color: red;

@@ -45,7 +45,7 @@
   letter-spacing: 2px;
 }
 
-#titleBox {
+.titleBox {
   display: flex;
   flex-direction: row;
   width: 45%;
@@ -61,7 +61,7 @@
   background: #e0e0e0;
 }
 
-#titleBox a {
+.titleBox a {
   list-style-type: none;
   text-decoration: none;
   display: flex;
@@ -107,10 +107,13 @@
   list-style-type: none;
 }
 
+
 .hotelHomes .content p:hover,
 .hotelHomes .content p.active,
 .longStay .content p:hover,
-.apartment .content p:hover {
+.longStay .content p.active,
+.apartment .content p:hover,
+.apartment .content p.active {
   color: #da1e28;
 }
 
@@ -191,7 +194,7 @@
     justify-content: center;
   }
 
-  #titleBox {
+  .titleBox {
     display: flex;
     flex-direction: row;
     width: 50%;
@@ -214,7 +217,7 @@
     margin-left: 20px;
   }
 
-  #titleBox {
+  .titleBox {
     display: flex;
     flex-direction: row;
     width: 60%;
@@ -237,7 +240,7 @@
     margin-left: 20px;
   }
 
-  #titleBox {
+  .titleBox {
     display: flex;
     flex-direction: row;
     width: 70%;
@@ -276,7 +279,7 @@
 }
 
 @media screen and (max-width: 615px) {
-  #titleBox {
+  .titleBox {
     display: flex;
     flex-direction: row;
     width: 90%;

@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Home.module.css";
 import { FaHotel } from "react-icons/fa";
 import { BsCalendar2Date } from "react-icons/bs";
@@ -10,6 +10,7 @@ import img4 from "../../../assets/img4.jpg";
 import img5 from "../../../assets/img5.png";
 import img6 from "../../../assets/img6.png";
 import homeimg from "../../../assets/Homebg.jpeg";
+import { useState } from "react";
 
 const Home = () => {
   const navigateTo = useNavigate();
@@ -18,6 +19,12 @@ const Home = () => {
     navigateTo("/");
   };
 
+  const [click, setClick] = useState(false);
+  const handleClick = () => {
+    setClick(!click);
+  };
+
+  const location = useLocation();
   return (
     <>
       <div className={styles.imgcontainer}>
@@ -33,9 +40,19 @@ const Home = () => {
       </div>
 
       <div className={styles.homeContent}>
-        <div id={styles.titleBox}>
+        <div
+          className={
+            click ? `${styles.titleBox} ${styles.active}` : styles.titleBox
+          }
+        >
           <div className={styles.hotelHomes}>
-            <NavLink to="/">
+            {/* <NavLink to="/" exact={true} onClick={handleClick} > */}
+            <NavLink
+              to="/"
+              exact
+              onClick={handleClick}
+              className={location.pathname === "/" ? styles.active : ""}
+            >
               <div className={styles.icon}>
                 <FaHotel />
               </div>
@@ -45,7 +62,12 @@ const Home = () => {
             </NavLink>
           </div>
           <div className={styles.longStay}>
-            <NavLink to="stay">
+            {/* <NavLink to="stay" onClick={handleClick}> */}
+            <NavLink
+              to="stay"
+              onClick={handleClick}
+              className={location.pathname === "/stay" ? styles.active : ""}
+            >
               <div className={styles.icon}>
                 <BsCalendar2Date />
               </div>
@@ -55,7 +77,11 @@ const Home = () => {
             </NavLink>
           </div>
           <div className={styles.apartment}>
-            <NavLink to="apartment">
+            <NavLink
+              to="apartment"
+              onClick={handleClick}
+              className={location.pathname === "/stay" ? styles.active : ""}
+            >
               <div className={styles.icon}>
                 <LiaHomeSolid />
               </div>
