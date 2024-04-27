@@ -107,30 +107,9 @@
   list-style-type: none;
 }
 
-
-.hotelHomes .content p:hover,
-.hotelHomes .content p.active,
-.longStay .content p:hover,
-.longStay .content p.active,
-.apartment .content p:hover,
-.apartment .content p.active {
-  color: #da1e28;
+.active {
+  color: red;
 }
-
-/* .hotelHomes .content p:hover::after,
-.hotelHomes .content p.active::after,
-.longStay .content p:hover::after,
-.longStay .content p.active::after,
-.apartment .content p:hover::after,
-.apartment .content p.active::after {
-    content: "";
-    width: 20%;
-    height: 3px;
-    background: #17cf97;
-    position: absolute;
-    bottom: -3px;
-    margin-right: 100px;
-} */
 
 /* @media screen and (max-width: 1800px) {
     .homeContent {

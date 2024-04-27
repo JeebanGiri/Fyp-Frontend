@@ -46,10 +46,8 @@ const Home = () => {
           }
         >
           <div className={styles.hotelHomes}>
-            {/* <NavLink to="/" exact={true} onClick={handleClick} > */}
             <NavLink
               to="/"
-              exact
               onClick={handleClick}
               className={location.pathname === "/" ? styles.active : ""}
             >
@@ -57,12 +55,11 @@ const Home = () => {
                 <FaHotel />
               </div>
               <div className={styles.content}>
-                <p className={styles.active}>Hotels & Homes</p>
+                <p>Hotels & Homes</p>
               </div>
             </NavLink>
           </div>
           <div className={styles.longStay}>
-            {/* <NavLink to="stay" onClick={handleClick}> */}
             <NavLink
               to="stay"
               onClick={handleClick}
@@ -80,7 +77,9 @@ const Home = () => {
             <NavLink
               to="apartment"
               onClick={handleClick}
-              className={location.pathname === "/stay" ? styles.active : ""}
+              className={
+                location.pathname === "/apartment" ? styles.active : ""
+              }
             >
               <div className={styles.icon}>
                 <LiaHomeSolid />
