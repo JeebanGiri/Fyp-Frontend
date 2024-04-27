@@ -3,22 +3,20 @@ body html {
   padding: 0;
 }
 
-/* .panel {
-  display: flex;
-  flex-wrap: wrap;
-} */
-
 .topic {
   color: #636464;
   font-size: 14px;
   font-weight: 500;
   margin-left: 50px;
 }
+.panel1 {
+  position: sticky;
+}
 
 .filtering1 {
   width: 300px;
-  height: 200px;
-  padding: 36px 32px;
+  height: 140px;
+  padding: 0px 20px;
   background: #fff;
   border-radius: 10px;
   cursor: pointer;
@@ -26,7 +24,8 @@ body html {
 
 .mapsimg img {
   height: 110px;
-  width: 250px;
+  width: 270px;
+  border: 1px solid #f3f4f4;
 }
 .contents {
   text-transform: uppercase;

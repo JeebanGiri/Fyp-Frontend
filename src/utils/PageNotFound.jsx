@@ -1,4 +1,4 @@
-import ErrorPage from "../assets/pagenotfound.png";
+import ErrorPage from "../assets/PageNotFound/pagenotfound.png";
 import styles from "./PageNotFound.module.css";
 
 const PageNotFound = () => {

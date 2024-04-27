@@ -3,13 +3,13 @@ import styles from "./Home.module.css";
 import { FaHotel } from "react-icons/fa";
 import { BsCalendar2Date } from "react-icons/bs";
 import { LiaHomeSolid } from "react-icons/lia";
-import img1 from "../../../assets/img1.jpg";
-import img2 from "../../../assets/img2.jpg";
-import img3 from "../../../assets/img3.jpg";
-import img4 from "../../../assets/img4.jpg";
-import img5 from "../../../assets/img5.png";
-import img6 from "../../../assets/img6.png";
-import homeimg from "../../../assets/Homebg.jpeg";
+import img1 from "../../../assets/Hotel/img1.jpg";
+import img2 from "../../../assets/Hotel/img2.jpg";
+import img3 from "../../../assets/Hotel/img3.jpg";
+import img4 from "../../../assets/Hotel/img4.jpg";
+import img5 from "../../../assets/Hotel/img5.png";
+import img6 from "../../../assets/Hotel/img6.png";
+import homeimg from "../../../assets/Hotel/Homebg.jpeg";
 import { useState } from "react";
 
 const Home = () => {

@@ -19,7 +19,7 @@ import PageNotFound from "./utils/PageNotFound";
 import Reservation from "./components/pages/Reservation/Reservation";
 import Stay from "./components/Resuable/Searchbar/Home-Searchbar/Stay";
 import Apartment from "./components/Resuable/Searchbar/Home-Searchbar/Apartment";
-import ListPropertyLayout from "./components/Layouts/ListProperty/ListPropertyLayout";
+import ListPropertyLayout from "./components/Layouts/ListPropertyLayout";
 import RegisterHotelAdmin from "./components/HotelAdmin/RegisterHotelAdmin/RegisterHotelAdmin";
 import ListPropertyPage from "./components/HotelAdmin/ListProperty/ListProperty";
 import HotelAdminDashboard from "./components/Dashboard/HotelAdmin/HotelAdminDashboard";

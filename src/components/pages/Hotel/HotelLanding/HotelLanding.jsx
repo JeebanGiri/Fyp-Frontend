@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./HotelLanding.module.css";
-import "./HotelLanding.css";
+import "./HotelFilter.css";
 import { CiLocationOn } from "react-icons/ci";
 import { Rate } from "antd";
 import Slider from "react-slider";
@@ -17,6 +17,7 @@ import {
   searchHotelByAddress,
 } from "../../../../constants/Api";
 import LoginedSearchbar from "../../../Resuable/Searchbar/Logined-Searchbar/LoginedSearchBar";
+import HotelFiltering from "./HotelFilter";
 
 var desc = ["terrible", "bad", "normal", "good", "wonderful"];
 
@@ -34,8 +35,6 @@ const HotelLanding = () => {
   const getRooms = searchParams.get("rooms");
   const getCheckIn = searchParams.get("checkInDate");
   const getCheckOut = searchParams.get("checkOutDate");
-
-
   const [checkInDate, setCheckInDate] = useState(
     getCheckIn ? new Date(getCheckIn) : new Date()
   );
@@ -45,6 +44,7 @@ const HotelLanding = () => {
   const [guests, setGuests] = useState(getGuests ? getGuests : 1);
   const [rooms, setRooms] = useState(getRooms ? getRooms : 1);
   const [address, setAddress] = useState(getAddress || "");
+  const [click, setClick] = useState(false);
 
   useEffect(() => {
     // Use the retrieved values to set the state
@@ -64,7 +64,8 @@ const HotelLanding = () => {
   const { data, refetch } = useQuery("filter-hotel", fetchHotelData);
 
   const handleViewMap = () => {
-    navigateTo("/view-location", { state: { data } });
+    // navigateTo("/view-location", { state: { data } });
+    setClick(!click);
   };
 
   //----------- Extract hotel IDs -----------------
@@ -124,13 +125,13 @@ const HotelLanding = () => {
       </div>
       <div className={styles["landing-page"]}>
         <div className="panel1">
-          <div className="filtering1">
+          <div className="filtering1" onClick={handleViewMap}>
             <div className="mapsimg">
               <img src={Maps} alt="" />
             </div>
             <div className="contents">
               <img src={Marker} alt="" />
-              <p onClick={handleViewMap}>Search On Map</p>
+              <p>Search On Map</p>
             </div>
           </div>
           <div className="filtering2">
@@ -147,7 +148,6 @@ const HotelLanding = () => {
               </small>
               <Slider
                 className={"slider"}
-                // onChange={setValues}
                 onChange={(newValue) => setValues(newValue)}
                 value={values}
                 min={MIN}
