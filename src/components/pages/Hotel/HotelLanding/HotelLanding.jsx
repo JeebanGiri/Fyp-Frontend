@@ -17,7 +17,6 @@ import {
   searchHotelByAddress,
 } from "../../../../constants/Api";
 import LoginedSearchbar from "../../../Resuable/Searchbar/Logined-Searchbar/LoginedSearchBar";
-import HotelFiltering from "./HotelFilter";
 
 var desc = ["terrible", "bad", "normal", "good", "wonderful"];
 
