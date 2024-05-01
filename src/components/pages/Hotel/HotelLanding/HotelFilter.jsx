@@ -12,7 +12,6 @@ const MIN = 100;
 const MAX = 10000;
 const HotelFiltering = () => {
   const [values, setValues] = useState([MIN, MAX]);
-  const navigateTo = useNavigate();
   //   const [searchParams, setSearchParam] = useSearchParams();
   //   const getAddress = searchParams.get("address");
 
@@ -45,7 +44,6 @@ const HotelFiltering = () => {
             </small>
             <Slider
               className={"slider"}
-              // onChange={setValues}
               onChange={(newValue) => setValues(newValue)}
               value={values}
               min={MIN}
