@@ -1,12 +1,7 @@
 import "./HotelFilter.css";
 import Slider from "react-slider";
 import "react-toastify/dist/ReactToastify.css";
-import Marker from "../../../../assets/Hotel/marker.png";
-import Maps from "../../../../assets/Hotel/maps.png";
-import { useQuery } from "react-query";
 import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { searchHotelByAddress } from "../../../../constants/Api";
 
 const MIN = 100;
 const MAX = 10000;
