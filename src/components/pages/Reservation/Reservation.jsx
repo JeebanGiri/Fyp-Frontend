@@ -11,12 +11,14 @@ import { IoIosBed } from "react-icons/io";
 import { format } from "date-fns";
 import { LuBedDouble } from "react-icons/lu";
 import { useQuery } from "react-query";
-
+import { Modal } from "antd";
 import { getHotelInfo, reserveHotel } from "../../../constants/Api";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BACKEND_URL } from "../../../constants/constant";
+import RegisterPopUp from "./RegisterPopUp/RegisterPopUp";
+import LoginPopUp from "./LoginPopUp/LoginPopUp";
 
 var desc = ["terrible", "bad", "normal", "good", "wonderful"];
 
@@ -40,7 +42,6 @@ const Reservation = () => {
   const [isBed, setIsBed] = useState("");
   const navigateTo = useNavigate();
   const [previousPage, setPreviousPage] = useState("");
-
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const hotelId = searchParams.get("hotelId");
@@ -169,6 +170,8 @@ const Reservation = () => {
           error.response.data.message || error.response.data.error.message;
         if (Array.isArray(errorMsg)) {
           errorMsg.forEach((err) => toast.error(err));
+        } else if (errorMsg === "Unauthorized") {
+          toast.warn("Please login first");
         } else if (
           errorMsg === "Please login first to find best accommodation?"
         ) {
@@ -178,6 +181,33 @@ const Reservation = () => {
           toast.error(errorMsg);
         }
       });
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const showRegisterModal = () => {
+    setIsRegisterOpen(true);
+  };
+
+  const handleRegisterOk = () => {
+    setIsRegisterOpen(false);
+  };
+
+  const handleRegisterCancel = () => {
+    setIsRegisterOpen(false);
   };
 
   return (
@@ -260,17 +290,33 @@ const Reservation = () => {
                   <IoPersonOutline />
                 </span>
                 <span className={styles.loginsignin}>
-                  <span className={styles.login} onClick={toogleLogin}>
+                  <span className={styles.login} onClick={showModal}>
                     Sign in <span></span>
                   </span>
                   to book with your saved details or {""}
-                  <span className={styles.register} onClick={toogleregister}>
+                  <span className={styles.register} onClick={showRegisterModal}>
                     register {""}
                   </span>
                   to manage your bookings on the go!
                 </span>
               </div>
             )}
+            <Modal
+              title="Login from here"
+              open={isModalOpen}
+              onOk={handleOk}
+              onCancel={handleCancel}
+            >
+              <LoginPopUp />
+            </Modal>
+            <Modal
+              title="Register from here"
+              open={isRegisterOpen}
+              onOk={handleRegisterOk}
+              onCancel={handleRegisterCancel}
+            >
+              <RegisterPopUp />
+            </Modal>
             <form action="bookhotel" onSubmit={handleBokingSubmit}>
               <div className={styles["booking-details"]}>
                 <h5>Let's us know who you are</h5>
@@ -291,7 +337,7 @@ const Reservation = () => {
                     Email <span className={styles.labelstar}>*</span>
                   </label>
                   <span className={styles["input-container"]}>
-                    <input  
+                    <input
                       type="text"
                       name="email"
                       placeholder="Email"

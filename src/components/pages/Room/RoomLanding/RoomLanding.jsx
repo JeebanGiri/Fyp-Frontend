@@ -108,6 +108,12 @@ const RoomLanding = () => {
   const room_Quantity = rooms;
 
   const goToBook = () => {
+    // const token = localStorage.getItem("token");
+    // if (!token) {
+    //   toast.warn("Please login first!");
+    //   return;
+    // }
+
     navigateTo(
       `/booking/?hotelId=${hotelId}&roomId=${roomId}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&total_Amount=${total_Amount}&room_Type=${room_Type}&room_Quantity=${room_Quantity}`
     );
