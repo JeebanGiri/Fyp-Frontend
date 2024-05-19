@@ -39,8 +39,10 @@ export const approveHotel = (hotelId, token) =>
 export const getHotelInfo = (hotelId) => api.get(`/hotel/find/${hotelId}`);
 
 //-----------SEARCH HOTEL--------------
-export const searchHotelByAddress = (hotelAddress) =>
-  api.get(`/hotel/search/address/?address=${hotelAddress}`);
+export const searchHotelByAddress = (hotelAddress, minPrice, maxPrice) =>
+  api.get(
+    `/hotel/search/address/?address=${hotelAddress}&minPrice=${minPrice}&maxPrice=${maxPrice}`
+  );
 
 // export const searchHotelByAddress = (hotelAddress, hotelRooms) =>
 // api.get(`/hotel/search/address/?address=${hotelAddress}/rooms=${hotelRooms}`);

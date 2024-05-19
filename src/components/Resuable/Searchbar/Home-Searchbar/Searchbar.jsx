@@ -265,11 +265,7 @@ const SearchBar = () => {
 
           <div className={styles["btn-label"]}>
             <label htmlFor="search" className={styles["search-btn"]}>
-              <button
-                type="submit"
-                name="search"
-                id="search"
-              >
+              <button type="submit" name="search" id="search">
                 Search
               </button>
             </label>

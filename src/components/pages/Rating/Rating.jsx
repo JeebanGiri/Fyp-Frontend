@@ -4,7 +4,6 @@ import { Rate } from "antd";
 const desc = ["terrible", "bad", "normal", "good", "wonderful"];
 import { RxCross2 } from "react-icons/rx";
 
-
 const Rating = () => {
   const [rate, setRate] = useState(0);
   return (

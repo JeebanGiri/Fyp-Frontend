@@ -38,6 +38,7 @@ import ChangePhone from "./components/Profile/ChangePhone";
 import ChangePersonaldetails from "./components/Profile/ChangePersonalDetails";
 import Login from "./components/Authentication/Login/Login";
 import { setupNotifications } from "./utils/Firebase";
+
 function App() {
   setupNotifications();
 

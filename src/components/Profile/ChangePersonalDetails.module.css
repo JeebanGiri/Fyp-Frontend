@@ -121,11 +121,12 @@
   width: 100%;
 }
 
-.psw-change button {
+.change-details button {
   width: 30%;
   height: 40px;
   border-radius: 5px;
   color: white;
+  /* background: #6576ff; */
   background: #6576ff;
   cursor: pointer;
   margin: 20px 0px 20px 0px;

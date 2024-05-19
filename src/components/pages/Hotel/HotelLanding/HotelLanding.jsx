@@ -28,6 +28,8 @@ const HotelLanding = () => {
   const [values, setValues] = useState([MIN, MAX]);
   const [searchParams, setSearchParam] = useSearchParams();
 
+  console.log(values);
+
   // Fetch the details of user input for searching hotel by their preference
   const getAddress = searchParams.get("address");
   const getGuests = searchParams.get("guests");
@@ -56,14 +58,18 @@ const HotelLanding = () => {
 
   const fetchHotelData = async () => {
     if (!getAddress) return [];
-    const response = await searchHotelByAddress(getAddress);
+    const response = await searchHotelByAddress(
+      getAddress,
+      values[0],
+      values[1]
+    );
     return response.data;
   };
 
   const { data, refetch } = useQuery("filter-hotel", fetchHotelData);
 
   const handleViewMap = () => {
-    // navigateTo("/view-location", { state: { data } });
+    navigateTo("/view-location", { state: { data } });
     setClick(!click);
   };
 
@@ -98,7 +104,7 @@ const HotelLanding = () => {
   // Filter hotels based on the converted NPR values
   useEffect(() => {
     refetch();
-  }, [getGuests, refetch]);
+  }, [getGuests, refetch, values]);
 
   const gotoRooms = (hotel_id) => {
     const info = fetchRoomStatus(hotel_id);

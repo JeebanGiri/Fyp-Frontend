@@ -136,7 +136,7 @@ const ChangePersonaldetails = () => {
               <hr />
             </span>
           </div>
-          <span className={styles["psw-change"]}>
+          <span className={styles["change-details"]}>
             <button onClick={handleSubmit}>Change Details</button>
           </span>
         </div>

@@ -2,11 +2,7 @@ import { useQuery, useQueryClient } from "react-query";
 import { BACKEND_URL } from "../../../../constants/constant";
 import styles from "./ViewRoom.module.css";
 import { Space, Table } from "antd";
-import {
-  deleteRoom,
-  findAllRooms,
-  getHotel,
-} from "../../../../constants/Api";
+import { deleteRoom, findAllRooms, getHotel } from "../../../../constants/Api";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { Button, Popconfirm } from "antd";
 import AddRoomsPopup from "../AddRoomsForms/AddRoomsPopup";
@@ -90,7 +86,7 @@ const ViewRoom = () => {
           ))}
         </>
       ),
-    },
+    },  
     {
       title: "Action",
       key: "action",

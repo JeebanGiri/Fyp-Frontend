@@ -6,7 +6,7 @@ import { FaArrowLeft } from "react-icons/fa";
 const UnauthorizedPage = () => {
   const navigateTo = useNavigate();
   const handlePrevious = () => {
-    navigateTo('/')
+    navigateTo("/");
     console.log("prev");
   };
   return (

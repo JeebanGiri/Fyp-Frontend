@@ -12,6 +12,7 @@ const AddRoomsPopup = (props) => {
   const handleClose = () => {
     props.toggle();
   };
+
   const options = [
     { value: "Standard Room", label: "Standard" },
     { value: "Deluxe Room", label: "Deluxe" },

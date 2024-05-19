@@ -18,6 +18,7 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 const messaging = getMessaging(firebaseApp);
+
 const setupNotifications = async (message) => {
   try {
     const permission = await Notification.requestPermission();
