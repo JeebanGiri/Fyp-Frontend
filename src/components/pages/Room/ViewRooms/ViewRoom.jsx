@@ -3,29 +3,57 @@ import { BACKEND_URL } from "../../../../constants/constant";
 import styles from "./ViewRoom.module.css";
 import { Space, Table } from "antd";
 import { deleteRoom, findAllRooms, getHotel } from "../../../../constants/Api";
-import { QuestionCircleOutlined } from "@ant-design/icons";
-import { Button, Popconfirm } from "antd";
+import {
+  QuestionCircleOutlined,
+  EditOutlined,
+  DeleteOutlined,
+} from "@ant-design/icons";
+import { Button, Popconfirm, Modal } from "antd";
 import AddRoomsPopup from "../AddRoomsForms/AddRoomsPopup";
 import { useState } from "react";
+import UpdateRooms from "../UpdateRooms/UpdateRooms";
 
 const ViewRoom = () => {
   const [isAddRoomsOpen, setIsAddRoomsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddRoomModalOpen, setIsAddRoomModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const showAddRoomModal = () => {
+    setIsAddRoomModalOpen(true);
+  };
+  const handleAddRoomOk = () => {
+    setIsAddRoomModalOpen(false);
+  };
+  const handleAddRoomCancel = () => {
+    setIsAddRoomModalOpen(false);
+  };
+
   const queryClient = useQueryClient();
   const token = localStorage.getItem("token");
 
   //--------FETCH HOTEL INFO-------------
   const { data: hotelInfo } = useQuery("hoteldetails", () => getHotel(token));
-  console.log(hotelInfo, "hotelinfo");
-
   const hotelId = hotelInfo?.data[0]?.id;
-  console.log(hotelId, "hotelid");
 
   // --------FETCH ROOM INFO-------------
-  const { data: roomInfo } = useQuery("roomdetails", () =>
-    findAllRooms(hotelId, token)
+  const { data: roomInfo } = useQuery(
+    "roomdetails",
+    () => findAllRooms(hotelId, token),
+    {
+      enabled: !!hotelId, // Only fetch if hotelId is available
+    }
   );
-
-  console.log(roomInfo, "infos");
+  const tableData = roomInfo?.data;
 
   const toggleAddRooms = () => {
     setIsAddRoomsOpen(!isAddRoomsOpen);
@@ -86,19 +114,29 @@ const ViewRoom = () => {
           ))}
         </>
       ),
-    },  
+    },
     {
       title: "Action",
       key: "action",
       render: (record) => (
         <Space size="middle">
-          <a>Edit</a>
-
+          <Button type="primary" icon={<EditOutlined />} onClick={showModal}>
+            Edit
+          </Button>
+          <Modal
+            title="Update Rooms"
+            open={isModalOpen}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            width={600}
+            footer={null}
+          >
+            <UpdateRooms />
+          </Modal>
           <Popconfirm
             title="Delete the room"
             description="Are you sure to delete this room?"
             onConfirm={() => handleDeleteRoom(record.id)}
-            onOpenChange={() => console.log("open change")}
             icon={
               <QuestionCircleOutlined
                 style={{
@@ -107,15 +145,14 @@ const ViewRoom = () => {
               />
             }
           >
-            <Button danger>Delete</Button>
+            <Button danger icon={<DeleteOutlined />}>
+              Delete
+            </Button>
           </Popconfirm>
         </Space>
       ),
     },
   ];
-
-  const tableData = roomInfo?.data;
-  console.log(tableData, "rrom dateil");
 
   return (
     <>
@@ -125,13 +162,17 @@ const ViewRoom = () => {
             <h3>Room Information</h3>
           </span>
           <span className={styles["add-room"]}>
-            <button onClick={() => toggleAddRooms()}>Add Rooms</button>
-            {isAddRoomsOpen ? (
-              <AddRoomsPopup
-                toggle={() => toggleAddRooms()}
-                hotelId={hotelId}
-              />
-            ) : null}
+            <button onClick={showAddRoomModal}>Add Rooms</button>
+            <Modal
+              title="Add Rooms"
+              open={isAddRoomModalOpen}
+              onOk={handleAddRoomOk}
+              onCancel={handleAddRoomCancel}
+              width={600}
+              footer={null}
+            >
+              <AddRoomsPopup toggle={handleAddRoomOk} hotelId={hotelId} />
+            </Modal>
           </span>
         </div>
         <div className={styles["view-tables"]}>

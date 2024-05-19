@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useMutation } from "react-query";
-import styles from "./AddRoomPopup.module.css";
+import styles from "./UpdateRooms.module.css";
 import Select from "react-select";
 import { createRoom } from "../../../../constants/Api";
 import { useState } from "react";
@@ -8,7 +8,7 @@ import { RxCrossCircled } from "react-icons/rx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const AddRoomsPopup = (props) => {
+const UpdateRooms = (props) => {
   const handleClose = () => {
     props.toggle();
   };
@@ -39,8 +39,7 @@ const AddRoomsPopup = (props) => {
         const message = response.data.message;
         toast.success(message);
         setTimeout(() => {
-          // handleClose();
-          props.toggle();
+          handleClose();
         }, 3000);
       })
       .catch((error) => {
@@ -186,4 +185,4 @@ const AddRoomsPopup = (props) => {
     </>
   );
 };
-export default AddRoomsPopup;
+export default UpdateRooms;

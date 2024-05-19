@@ -11,14 +11,13 @@ import "leaflet/dist/leaflet.css";
 import styles from "./HotelLocationMap.module.css";
 import { useState } from "react";
 import { Input } from "antd";
-import { RxCross1 } from "react-icons/rx";
 import { setHotelLocation } from "../../../constants/Api";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PropTypes from "prop-types";
 const { Search } = Input;
 
-export default function HotelLocationMap({ handleMapClick, hotelId }) {
+export default function HotelLocationMap({ hotelId }) {
   const [latitude, setLatitude] = useState(27.7000769);
   const [longitude, setLongitude] = useState(85.324);
 
@@ -78,9 +77,9 @@ export default function HotelLocationMap({ handleMapClick, hotelId }) {
     <>
       <ToastContainer />
       <div className={styles["container"]}>
-        <p className={styles.cross} onClick={handleMapClick}>
+        {/* <p className={styles.cross} onClick={handleMapClick}>
           <RxCross1 />
-        </p>
+        </p> */}
         <div className={styles.searchbar1}>
           <span className={styles.locsearch}>
             <p>Select the location of the property</p>
@@ -120,11 +119,11 @@ export default function HotelLocationMap({ handleMapClick, hotelId }) {
             <LocationMarker />
           </MapContainer>
         </div>
-        <div className={styles.set}>
-          <p type="submit" onClick={handleSubmit}>
-            Set
-          </p>
-        </div>
+      </div>
+      <div className={styles.set}>
+        <p type="submit" onClick={handleSubmit}>
+          Set
+        </p>
       </div>
     </>
   );

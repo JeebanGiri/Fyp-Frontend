@@ -1,7 +1,7 @@
 import { deleteHotel, getHotel } from "../../../../constants/Api";
 import styles from "./ViewHotel.module.css";
 import { useQuery, useQueryClient } from "react-query";
-import { Space, Table } from "antd";
+import { Modal, Space, Table } from "antd";
 import { BACKEND_URL } from "../../../../constants/constant";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { Button, Popconfirm } from "antd";
@@ -12,22 +12,13 @@ import HotelLocationMap from "../../Map/HotelLocationMap";
 const ViewHotel = () => {
   const [isAddRoomsOpen, setIsAddRoomsOpen] = useState(false);
   const [openMap, setOpenMap] = useState(false);
-  const queryClient = useQueryClient();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddRoomModalOpen, setIsAddRoomModalOpen] = useState(false);
 
-  // const [selectedHotelId, setSelectedHotelId] = useState(null);
-  // const toggleAddRooms = () => {
-  //   setIsAddRoomsOpen(!isAddRoomsOpen);
-  // };
+  const queryClient = useQueryClient();
 
   const token = localStorage.getItem("token");
   const { data } = useQuery("hoteldetails", () => getHotel(token));
-
-  // useEffect(() => {
-  //   if (data) {
-  //     const dataArray = Object.values(data);
-  //     setHotelData(dataArray);
-  //   }
-  // }, [data]);
 
   const tableData = data?.data;
   console.log(tableData, "Tables");
@@ -38,6 +29,27 @@ const ViewHotel = () => {
   const toggleAddRooms = () => {
     setIsAddRoomsOpen(!isAddRoomsOpen);
   };
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const showAddRoomModal = () => {
+    setIsAddRoomModalOpen(true);
+  };
+  const handleAddRoomOk = () => {
+    setIsAddRoomModalOpen(false);
+  };
+  const handleAddRoomCancel = () => {
+    setIsAddRoomModalOpen(false);
+  };
+
   const handleMapClick = () => {
     setOpenMap(!openMap);
   };
@@ -148,24 +160,41 @@ const ViewHotel = () => {
           </span>
           <span>
             <span className={styles["add-room"]}>
-              <button onClick={handleMapClick}>Set Location</button>
+              <button onClick={showModal}>Set Location</button>
             </span>
             <span className={styles.modal}>
-              {openMap && (
+              {/* {openMap && (
                 <HotelLocationMap
                   hotelId={hotelId}
                   handleMapClick={handleMapClick}
                 />
-              )}
+              )} */}
+              <Modal
+                title="Set Hotel Location"
+                open={isModalOpen}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                width={900}
+                footer={null}
+              >
+                <HotelLocationMap
+                  hotelId={hotelId}
+                  handleMapClick={handleMapClick}
+                />
+              </Modal>
             </span>
             <span className={styles["add-room"]}>
-              <button onClick={() => toggleAddRooms()}>Add Rooms</button>
-              {isAddRoomsOpen ? (
-                <AddRoomsPopup
-                  toggle={() => toggleAddRooms()}
-                  hotelId={hotelId}
-                />
-              ) : null}
+              <button onClick={showAddRoomModal}>Add Rooms</button>
+              <Modal
+                title="Add Rooms"
+                open={isAddRoomModalOpen}
+                onOk={handleAddRoomOk}
+                onCancel={handleAddRoomCancel}
+                width={600}
+                footer={null}
+              >
+                <AddRoomsPopup toggle={handleAddRoomOk} hotelId={hotelId} />
+              </Modal>
             </span>
           </span>
         </div>

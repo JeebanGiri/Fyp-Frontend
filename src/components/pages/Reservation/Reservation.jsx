@@ -306,6 +306,7 @@ const Reservation = () => {
               open={isModalOpen}
               onOk={handleOk}
               onCancel={handleCancel}
+              footer={null}
             >
               <LoginPopUp />
             </Modal>
@@ -314,6 +315,7 @@ const Reservation = () => {
               open={isRegisterOpen}
               onOk={handleRegisterOk}
               onCancel={handleRegisterCancel}
+              footer={null}
             >
               <RegisterPopUp />
             </Modal>

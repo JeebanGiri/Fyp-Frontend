@@ -156,15 +156,15 @@ const HotelAdminNavbar = () => {
             </div>
             <div
               className={`${styles.nav_option} ${styles.option5}`}
-              onClick={toggleRoomOptions}
+              onClick={toogleViewRoomPage}
               ref={roomDropdownBox}
             >
               <img src={Bed} className={styles["nav-img"]} alt="hotel" />
               <h6 className={styles.hotelmenu}>
                 <span>Room</span>
-                <span>
+                {/* <span>
                   <IoIosArrowForward className={styles["hotel-dropdown"]} />
-                </span>
+                </span> */}
               </h6>
             </div>
 
@@ -205,7 +205,7 @@ const HotelAdminNavbar = () => {
           </span>
         </div>
       )}
-      {showRoomOptions && (
+      {/* {showRoomOptions && (
         <div className={styles["roombox"]}>
           <span className={styles.actions}>
             <div className={styles["hotel-update"]}>
@@ -222,7 +222,7 @@ const HotelAdminNavbar = () => {
             </div>
           </span>
         </div>
-      )}
+      )} */}
     </>
   );
 };
