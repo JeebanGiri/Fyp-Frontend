@@ -16,15 +16,18 @@ import UpdateRooms from "../UpdateRooms/UpdateRooms";
 const ViewRoom = () => {
   const [isAddRoomsOpen, setIsAddRoomsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentRoomId, setCurrentRoomId] = useState(null);
   const [isAddRoomModalOpen, setIsAddRoomModalOpen] = useState(false);
 
-  const showModal = () => {
+  const showModal = (roomId) => {
     setIsModalOpen(true);
+    setCurrentRoomId(roomId);
   };
   const handleOk = () => {
     setIsModalOpen(false);
   };
   const handleCancel = () => {
+    setCurrentRoomId(null);
     setIsModalOpen(false);
   };
 
@@ -120,7 +123,11 @@ const ViewRoom = () => {
       key: "action",
       render: (record) => (
         <Space size="middle">
-          <Button type="primary" icon={<EditOutlined />} onClick={showModal}>
+          <Button
+            type="primary"
+            icon={<EditOutlined />}
+            onClick={() => showModal(record.id)}
+          >
             Edit
           </Button>
           <Modal
@@ -131,7 +138,7 @@ const ViewRoom = () => {
             width={600}
             footer={null}
           >
-            <UpdateRooms />
+            <UpdateRooms roomId={currentRoomId} />
           </Modal>
           <Popconfirm
             title="Delete the room"

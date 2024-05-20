@@ -98,6 +98,7 @@ const EditCustomerProfile = () => {
   //   changePMutation.mutate(changePasswordUser);
   //   changeProfileMutation.mutate(formData);
   // };
+
   const outerRef = useRef();
   UseOutsideClick(() => setIsUpdateProfileOpen(false), outerRef);
 
@@ -114,6 +115,7 @@ const EditCustomerProfile = () => {
   const goToPassword = () => {
     navigateTo("/edit-profile/change-password");
   };
+  
   const goToPhone = () => {
     navigateTo("/edit-profile/change-phone");
   };

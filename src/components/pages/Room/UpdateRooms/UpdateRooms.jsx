@@ -1,9 +1,13 @@
 /* eslint-disable react/prop-types */
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import styles from "./UpdateRooms.module.css";
 import Select from "react-select";
-import { createRoom } from "../../../../constants/Api";
-import { useState } from "react";
+import {
+  createRoom,
+  getRoomById,
+  updateRooms,
+} from "../../../../constants/Api";
+import { useEffect, useState } from "react";
 import { RxCrossCircled } from "react-icons/rx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,6 +24,7 @@ const UpdateRooms = (props) => {
     { value: "Triple Room", label: "Triple" },
     { value: "Deluxe Double Room", label: "Deluxe Double Room" },
   ];
+  const token = localStorage.getItem("token");
 
   const [formData, setFormData] = useState({
     room_name: "",
@@ -31,10 +36,37 @@ const UpdateRooms = (props) => {
   });
 
   const hotel_id = props.hotelId;
+  const room_id = props.roomId;
+  console.log(room_id, "Id fetch");
 
-  const mutation = useMutation((data) => {
-    const token = localStorage.getItem("token");
-    createRoom(data, hotel_id, token)
+  // Fetch the room data based on roomId
+  const { data: roomInfo } = useQuery(["room", room_id], () =>
+    getRoomById(room_id, token)
+  );
+
+  useEffect(() => {
+    if (roomInfo) {
+      const {
+        room_name,
+        room_number,
+        room_rate,
+        room_type,
+        room_capacity,
+        images,
+      } = roomInfo.data;
+      setFormData({
+        room_name,
+        room_number,
+        room_type,
+        room_rate,
+        room_capacity,
+        images,
+      });
+    }
+  }, [roomInfo]);
+
+  const mutation = useMutation((datas) => {
+    updateRooms(room_id, datas, token)
       .then((response) => {
         const message = response.data.message;
         toast.success(message);
@@ -104,76 +136,92 @@ const UpdateRooms = (props) => {
             </div>
             <div className={styles.label1}>
               <span className={styles.hotelname}>
-                <label htmlFor="name">
-                  <input
-                    type="text"
-                    placeholder="Room Name"
-                    name="room_name"
-                    onChange={handleChange}
-                  />
-                </label>
+                <label htmlFor="name">Room Name</label>
+                <input
+                  type="text"
+                  placeholder="Room Name"
+                  name="room_name"
+                  value={formData.room_name}
+                  onChange={handleChange}
+                />
               </span>
               <span className={styles.roomnumber}>
-                <label htmlFor="number">
-                  <input
-                    type="text"
-                    name="room_number"
-                    placeholder="Room number"
-                    id="number"
-                    onChange={handleChange}
-                  />
-                </label>
+                <label htmlFor="number">Room Number</label>
+                <input
+                  type="text"
+                  name="room_number"
+                  placeholder="Room number"
+                  id="number"
+                  value={formData.room_number}
+                  onChange={handleChange}
+                />
               </span>
             </div>
             <div className={styles.label2}>
               <span className={styles["input-rate"]}>
-                <label htmlFor="rate">
-                  <span className={styles["label2-input"]}>
-                    <input
-                      type="text"
-                      name="room_rate"
-                      id="rate"
-                      placeholder="Room Rate"
-                      onChange={handleChange}
-                    />
-                  </span>
-                </label>
+                <label htmlFor="rate">Room Rate</label>
+                <span className={styles["label2-input"]}>
+                  <input
+                    type="text"
+                    name="room_rate"
+                    id="rate"
+                    value={formData.room_rate}
+                    placeholder="Room Rate"
+                    onChange={handleChange}
+                  />
+                </span>
               </span>
               <span className={styles.selection}>
-                <label htmlFor="type">
-                  <Select
-                    options={options}
-                    className={styles.select}
-                    name="room_type"
-                    placeholder="Select Rooms"
-                    onChange={handleSelectChange}
-                  />
-                </label>
+                <label htmlFor="type">Room Type</label>
+                <Select
+                  options={options}
+                  className={styles.select}
+                  name="room_type"
+                  placeholder="Select Rooms"
+                  value={options.find(
+                    (option) => option.value === formData.room_type
+                  )}
+                  onChange={handleSelectChange}
+                />
               </span>
             </div>
             <div className={styles.label3}>
               <span className="input-capacity">
-                <label htmlFor="capicity">
-                  <input
-                    type="number"
-                    name="room_capacity"
-                    placeholder="Room Capacity"
-                    id="capacity"
-                    onChange={handleChange}
-                  />
-                </label>
+                <label htmlFor="capicity">Room Capacity</label>
+                <input
+                  type="number"
+                  name="room_capacity"
+                  placeholder="Room Capacity"
+                  id="capacity"
+                  value={formData.room_capacity}
+                  onChange={handleChange}
+                />
               </span>
               <span className={styles["input-files"]}>
                 <label htmlFor="img" className={styles["file-label"]}>
-                  <input
-                    type="file"
-                    id="img"
-                    name="images"
-                    onChange={handleChange}
-                    multiple
-                    className={styles["file-input"]}
-                  />
+                  Room Avatar
                 </label>
+                <input
+                  type="file"
+                  id="img"
+                  name="images"
+                  onChange={handleChange}
+                  multiple
+                  // value={formData.images}
+                  className={styles["file-input"]}
+                />
+                {/* {formData.images.length > 0 && (
+                  <div className={styles.imagePreview}>
+                    {formData.images.map((img, index) => (
+                      <img
+                        key={index}
+                        src={URL.createObjectURL(img)}
+                        alt={`Preview ${index}`}
+                        className={styles.previewImage}
+                      />
+                    ))}
+                  </div>
+                )} */}
               </span>
             </div>
             <span className={styles["add-roombtn"]}>

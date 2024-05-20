@@ -34,19 +34,23 @@
   border: 1px solid #dfdbdb;
   border-radius: 3px;
   padding-left: 30px;
-  margin-top: 30px;
 }
 
-.label2-input input {
+.label2 input {
   height: 45px;
   width: 250px;
   border: 1px solid #dfdbdb;
   border-radius: 3px;
   padding-left: 30px;
-  margin-top: 20px;
 }
-.label2 .select {
-  margin-top: 20px;
+
+.selection {
+  margin-right: 10px;
+}
+
+.selection input {
+  height: 15px;
+  width: 250px;
 }
 
 .label1 {
@@ -57,19 +61,18 @@
 
 .label2 {
   display: flex;
-  margin-top: 5px;
-  gap: 40px;
+  margin-top: 10px;
 }
 
 .label3 {
   display: flex;
-  gap: 40px;
+  gap: 15px;
   margin-top: 10px;
 }
 .label4 {
   display: flex;
   gap: 40px;
-  margin-top: p5x;
+  margin-top: 10px;
 }
 
 .label3 input {
@@ -78,7 +81,6 @@
   border: 1px solid #dfdbdb;
   border-radius: 3px;
   padding-left: 30px;
-  margin-top: 20px;
 }
 
 .label4 input {
@@ -87,7 +89,6 @@
   border: 1px solid #dfdbdb;
   border-radius: 3px;
   margin-top: 20px;
-  padding-left: 30px;
 }
 
 .input-files input {

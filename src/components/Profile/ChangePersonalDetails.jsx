@@ -18,11 +18,6 @@ const ChangePersonaldetails = () => {
     email: "",
     address: "",
   });
-  console.log(formData.old_phone_number, "odl");
-  console.log(formData.new_phone_number, "new");
-  console.log(formData, "formdata");
-
-  console.log(formData.address, "address");
 
   useEffect(() => {
     if (data) {
@@ -106,7 +101,6 @@ const ChangePersonaldetails = () => {
                     name="email"
                     placeholder="jeeban@gmail.com"
                     value={formData.email}
-                    // onChange={handleInputChange}
                   />
                   <span className={styles.icons}>
                     <IoIosLock />

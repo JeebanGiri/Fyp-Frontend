@@ -220,3 +220,13 @@ export const getTotalPrice = (token) =>
   api.get("/transaction/get-all", {
     headers: { Authorization: `Bearer${token}` },
   });
+
+export const updateRooms = (roomId, payload, token) =>
+  api.patch(`/rooms/${roomId}`, payload, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const getRoomById = (room_id, token) =>
+  api.get(`/rooms/find-room/${room_id}`, {
+    headers: { Authorization: `Bearer${token}` },
+  });
