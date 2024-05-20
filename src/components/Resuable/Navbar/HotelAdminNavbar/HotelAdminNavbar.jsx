@@ -18,6 +18,7 @@ import { MdAddHome } from "react-icons/md";
 import "@mui/material/styles";
 import { RiEdit2Fill } from "react-icons/ri";
 import { GrView } from "react-icons/gr";
+import { IoNotificationsOutline } from "react-icons/io5";
 import { UseOutsideClick } from "../../../../utils/useOutSideClick";
 // import ClickAwayListener from "@mui/material/ClickAwayListener";
 
@@ -104,10 +105,7 @@ const HotelAdminNavbar = () => {
 
         <div className={styles.message}>
           <span className={styles.notiimg}>
-            <img
-              src={NotifiImg}
-              className={styles.icn}
-              alt="Notification"
+            <IoNotificationsOutline
               ref={notificationBoxRef}
               onClick={handleNotificationClick}
             />

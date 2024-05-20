@@ -1,6 +1,6 @@
 .profilebox {
-  height: 330px;
-  width: 250px;
+  height: 220px;
+  width: 200px;
   border: 1px solid #d9d9d9;
   border-radius: 5px;
   background: white;
@@ -14,6 +14,7 @@
   display: grid;
   justify-content: center;
   place-items: center;
+  height: 100px;
   cursor: pointer;
 }
 
@@ -21,15 +22,19 @@
   padding-top: 5px;
   display: grid;
   font-size: 30px;
-  height: 80px;
+  height: 50px;
   background-color: #87b3fb;
   border-radius: 50px;
   align-items: center;
   text-align: center;
   align-self: center;
-  width: 80px;
+  width: 50px;
   justify-content: center;
   cursor: pointer;
+}
+.profileimage p:nth-child(3) {
+  font-size: 12px;
+  margin-top: -10px;
 }
 
 .profileimage img {
@@ -45,20 +50,15 @@
   font-size: 20px;
   cursor: pointer;
 }
-.profiles {
-  gap: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 10px 0px 0px 30px;
-  cursor: pointer;
-}
-
-.profiles:hover {
+.booking:hover,
+.profiles:hover,
+.signout:hover {
   color: cornflowerblue;
 }
 
-.booking {
+.profiles,
+.booking,
+.signout {
   gap: 10px;
   display: flex;
   align-items: center;
@@ -66,40 +66,14 @@
   padding: 0px 0px 0px 30px;
   cursor: pointer;
 }
-.booking li {
+
+.profiles,
+.booking,
+.signout li {
   list-style-type: none;
   font-size: 16px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
-.profiles li {
-  list-style-type: none;
-  font-size: 16px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.signout {
-  width: 50%;
-  height: 40px;
-  border-radius: 5px;
-  text-transform: uppercase;
-  color: blue;
-  cursor: pointer;
-  position: relative;
-  margin-top: 30px;
-  margin-left: 70px;
-}
-
-button {
-  border: 1px solid #87b3fb;
-}
-
-.signout:hover {
-  background: #87b3fb;
-  color: white;
-  cursor: pointer;
-}
-
 .profileBoxHidden {
   display: none;
 }

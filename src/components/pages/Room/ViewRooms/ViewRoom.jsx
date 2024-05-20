@@ -138,7 +138,7 @@ const ViewRoom = () => {
             width={600}
             footer={null}
           >
-            <UpdateRooms roomId={currentRoomId} />
+            <UpdateRooms roomId={currentRoomId} toggle={showModal} />
           </Modal>
           <Popconfirm
             title="Delete the room"

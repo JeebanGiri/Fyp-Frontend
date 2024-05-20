@@ -38,6 +38,7 @@ import ChangePhone from "./components/Profile/ChangePhone";
 import ChangePersonaldetails from "./components/Profile/ChangePersonalDetails";
 import Login from "./components/Authentication/Login/Login";
 import { setupNotifications } from "./utils/Firebase";
+import CustomerReport from "./components/Dashboard/Report/CustomerReport";
 
 function App() {
   setupNotifications();
@@ -102,6 +103,7 @@ function App() {
           <Route path="hotels" element={<AddHotels />} />
         </Route>
         <Route path="unauthorized" element={<UnauthorizedPage />} />
+        <Route path="cus-reports" element={<CustomerReport />} />
       </Routes>
     </div>
   );

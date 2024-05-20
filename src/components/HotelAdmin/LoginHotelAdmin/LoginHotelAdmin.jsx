@@ -111,7 +111,7 @@ const LoginHotelAdmin = () => {
         <div className={style["login-page"]}>
           <div className={style["login-container"]}>
             <div className={style.header}>
-              <h2>Welcome Back</h2>
+              <h4>Welcome Back</h4>
               <p>Enter your credentials to access your account</p>
             </div>
             <form onSubmit={handleLogin}>
@@ -149,10 +149,8 @@ const LoginHotelAdmin = () => {
                       onClick={handleForgetPassword}
                       style={{
                         cursor: "pointer",
-                        // marginLeft: "5px",
-                        marginRight: "50px",
+                        marginLeft: "5px",
                         color: "blue",
-                        float: "right",
                       }}
                     >
                       Reset Password

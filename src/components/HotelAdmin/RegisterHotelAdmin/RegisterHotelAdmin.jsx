@@ -52,7 +52,7 @@ const RegisterHotelAdmin = () => {
       <div className={styles.registerform}>
         <div className={styles.registercontainer}>
           <div className={styles.header}>
-            <h2>Register</h2>
+            <h4>Register</h4>
             <p>Enter your information to create an account</p>
           </div>
           <form onSubmit={handleRegister}>
@@ -72,7 +72,6 @@ const RegisterHotelAdmin = () => {
                 </div>
                 <div className={styles["input-phone"]}>
                   <label htmlFor="phoneNumber">Phone Number</label>
-                  <br />
                   <input
                     type="tel"
                     id="phoneNumber"
@@ -86,7 +85,6 @@ const RegisterHotelAdmin = () => {
               <div className={styles["input-label2"]}>
                 <div className={styles["input-email"]}>
                   <label htmlFor="email">Email</label>
-                  <br />
                   <input
                     type="email"
                     id="email"
@@ -99,7 +97,6 @@ const RegisterHotelAdmin = () => {
 
                 <div className={styles["input-password"]}>
                   <label htmlFor="password">Password</label>
-                  <br />
                   <input
                     type="password"
                     id="password"

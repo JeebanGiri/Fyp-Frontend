@@ -2,13 +2,8 @@
 import { useMutation, useQuery } from "react-query";
 import styles from "./UpdateRooms.module.css";
 import Select from "react-select";
-import {
-  createRoom,
-  getRoomById,
-  updateRooms,
-} from "../../../../constants/Api";
+import { getRoomById, updateRooms } from "../../../../constants/Api";
 import { useEffect, useState } from "react";
-import { RxCrossCircled } from "react-icons/rx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -56,10 +51,10 @@ const UpdateRooms = (props) => {
       } = roomInfo.data;
       setFormData({
         room_name,
-        room_number,
+        room_number: room_number.toString(),
         room_type,
-        room_rate,
-        room_capacity,
+        room_rate: room_rate.toString(),
+        room_capacity: room_capacity.toString(),
         images,
       });
     }
@@ -117,7 +112,16 @@ const UpdateRooms = (props) => {
       if (Array.isArray(value)) {
         value.forEach((file) => data.append(key, file));
       } else {
-        data.append(key, value);
+        // Convert string values to numbers for the appropriate fields
+        if (
+          key === "room_number" ||
+          key === "room_rate" ||
+          key === "room_capacity"
+        ) {
+          data.append(key, Number(value)); // Convert string to number
+        } else {
+          data.append(key, value);
+        }
       }
     });
     mutation.mutate(data);
@@ -148,7 +152,7 @@ const UpdateRooms = (props) => {
               <span className={styles.roomnumber}>
                 <label htmlFor="number">Room Number</label>
                 <input
-                  type="text"
+                  type="number"
                   name="room_number"
                   placeholder="Room number"
                   id="number"
@@ -162,7 +166,7 @@ const UpdateRooms = (props) => {
                 <label htmlFor="rate">Room Rate</label>
                 <span className={styles["label2-input"]}>
                   <input
-                    type="text"
+                    type="number"
                     name="room_rate"
                     id="rate"
                     value={formData.room_rate}
@@ -210,18 +214,6 @@ const UpdateRooms = (props) => {
                   // value={formData.images}
                   className={styles["file-input"]}
                 />
-                {/* {formData.images.length > 0 && (
-                  <div className={styles.imagePreview}>
-                    {formData.images.map((img, index) => (
-                      <img
-                        key={index}
-                        src={URL.createObjectURL(img)}
-                        alt={`Preview ${index}`}
-                        className={styles.previewImage}
-                      />
-                    ))}
-                  </div>
-                )} */}
               </span>
             </div>
             <span className={styles["add-roombtn"]}>

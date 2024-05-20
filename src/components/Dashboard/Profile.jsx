@@ -4,6 +4,7 @@ import { TbBrandBooking } from "react-icons/tb";
 import { useQuery } from "react-query";
 import { userProfile } from "../../constants/Api";
 import { useNavigate } from "react-router-dom";
+import { LuLogOut } from "react-icons/lu";
 
 const Profile = () => {
   const navigateTo = useNavigate();
@@ -51,6 +52,7 @@ const Profile = () => {
               </div>
             )}
             <p>{data?.data.full_name}</p>
+            <p>{data?.data.email}</p>
           </div>
           <hr />
           <span className={styles.booking}>
@@ -61,9 +63,10 @@ const Profile = () => {
             <CgProfile className={styles.icons} />
             <li onClick={handleEditProfile}>My Profile</li>
           </span>
-          <button className={styles.signout} onClick={handleLogout}>
-            Sign Out
-          </button>
+          <span className={styles.signout} onClick={handleLogout}>
+            <LuLogOut className={styles.icons} />
+            <li>Logout</li>
+          </span>
         </div>
       ) : null}
     </>

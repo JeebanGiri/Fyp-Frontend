@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { TbBrandBooking } from "react-icons/tb";
 import { userProfile } from "../../../constants/Api";
 import { useQuery } from "react-query";
+import { LuLogOut } from "react-icons/lu";
 
 const SuperAdminProfile = () => {
   const navigateTo = useNavigate();
@@ -53,6 +54,7 @@ const SuperAdminProfile = () => {
                 </div>
               )}
               <p>{data?.data.full_name}</p>
+              <p>{data?.data.email}</p>
             </div>
             <hr />
             <span className={styles.booking}>
@@ -63,10 +65,10 @@ const SuperAdminProfile = () => {
               <CgProfile className={styles.icons} />
               <li>My Profile</li>
             </span>
-
-            <button className={styles.signout} onClick={handleLogout}>
-              Sign Out
-            </button>
+            <span className={styles.signout} onClick={handleLogout}>
+              <LuLogOut className={styles.icons} />
+              <li>Logout</li>
+            </span>
           </div>
         ) : null}
       </div>
