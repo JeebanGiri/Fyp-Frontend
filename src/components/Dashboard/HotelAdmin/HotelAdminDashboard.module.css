@@ -207,9 +207,11 @@ body {
   flex-wrap: wrap;
   margin: 70px auto 0px 250px;
   justify-content: center;
-  border-radius: 30px;
-  box-shadow: 3px 3px 10px rgb(188, 188, 188);
+  /* border-radius: 30px; */
+  /* box-shadow: 3px 3px 10px rgb(188, 188, 188); */
   padding: 0px 20px 20px 20px;
+  background-color: white;
+  border-radius: 5px;
   width: 70%;
 }
 

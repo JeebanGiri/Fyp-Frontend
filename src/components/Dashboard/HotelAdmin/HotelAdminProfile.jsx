@@ -57,18 +57,20 @@ const HotelAdminProfile = () => {
               <p>{data?.data.email}</p>
             </div>
             <hr />
-            <span className={styles.booking}>
-              <TbBrandBooking className={styles.icons} />
-              <li onClick={handleBookingData}>My Booking</li>
-            </span>
-            <span className={styles.profiles} onClick={goToProfiles}>
-              <CgProfile className={styles.icons} />
-              <li>My Profile</li>
-            </span>
-            <span className={styles.signout} onClick={handleLogout}>
-              <LuLogOut className={styles.icons} />
-              <li>Logout</li>
-            </span>
+            <div className={styles["profile-items"]}>
+              <span className={styles.booking}>
+                <TbBrandBooking className={styles.icons} />
+                <li onClick={handleBookingData}>My Booking</li>
+              </span>
+              <span className={styles.profiles} onClick={goToProfiles}>
+                <CgProfile className={styles.icons} />
+                <li>My Profile</li>
+              </span>
+              <span className={styles.signout} onClick={handleLogout}>
+                <LuLogOut className={styles.icons} />
+                <li>Logout</li>
+              </span>
+            </div>
           </div>
         ) : null}
       </div>

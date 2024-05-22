@@ -115,7 +115,7 @@ const EditCustomerProfile = () => {
   const goToPassword = () => {
     navigateTo("/edit-profile/change-password");
   };
-  
+
   const goToPhone = () => {
     navigateTo("/edit-profile/change-phone");
   };

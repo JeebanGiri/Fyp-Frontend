@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.report-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f5f6fa;
+}
+.selection {
+  width: 200px;
+}
+
+.selection {
+  line-height: 20px;
+}
+
+.select {
+  font-weight: 500;
+  width: 150px;
+  height: 35px;
+  font-size: 13px;
+}
+.report-table {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px auto 0px 70px;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid;
+  border-radius: 5px;
+  width: 80%;
+}
+.report-table table {
+  width: 100%;
+}
+.report-titles {
+  width: 84%;
+  display: flex;
+  margin: 0 70px;
+  padding-top: 150px;
+  justify-content: space-between;
+}

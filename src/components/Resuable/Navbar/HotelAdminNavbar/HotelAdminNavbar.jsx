@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./HotelAdminNavbar.module.css";
 import HotelImg from "../../../../assets/Dashboard/hotel.png";
 import DashboardImg from "../../../../assets/Dashboard/dashboard.png";
@@ -7,7 +7,6 @@ import LogoutImg from "../../../../assets/Dashboard/logout.png";
 import ProfileImg from "../../../../assets/Dashboard/profile.png";
 import Bed from "../../../../assets/Room/bed.png";
 import SearchImg from "../../../../assets/Dashboard/searchIcon.png";
-import NotifiImg from "../../../../assets/Dashboard/notification.png";
 import Admin from "../../../../assets/Dashboard/hoteladmin.png";
 import Notification from "../../../Notification/Notification";
 import HotelAdminProfile from "../../../Dashboard/HotelAdmin/HotelAdminProfile";
@@ -76,8 +75,12 @@ const HotelAdminNavbar = () => {
     navigateTo("/hoteladmin-dashboard/add-hotel-hoteladmin");
   };
 
+  const toogleReportPage = () => {
+    navigateTo("/hoteladmin-dashboard/reports");
+  };
+
   const toogleProfilePage = () => {
-    navigateTo("/hoteladmin-dashboard/my-profiles");
+    navigateTo("/hoteladmin-dashboard/edit-profile");
   };
 
   const handleLogout = () => {
@@ -137,9 +140,8 @@ const HotelAdminNavbar = () => {
 
             <div className={`${styles.nav_option} ${styles.option3}`}>
               <img src={ReportImg} className={styles["nav-img"]} alt="report" />
-              <h6> Report</h6>
+              <h6 onClick={toogleReportPage}> Report</h6>
             </div>
-
             <div
               className={`${styles.nav_option} ${styles.option4}`}
               onClick={toggleHotelOptions}

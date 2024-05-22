@@ -39,6 +39,7 @@ import ChangePersonaldetails from "./components/Profile/ChangePersonalDetails";
 import Login from "./components/Authentication/Login/Login";
 import { setupNotifications } from "./utils/Firebase";
 import CustomerReport from "./components/Dashboard/Report/CustomerReport";
+import ReportPage from "./components/Dashboard/HotelAdmin/ReportPage";
 
 function App() {
   setupNotifications();
@@ -85,6 +86,7 @@ function App() {
           <Route path="view-rooms" element={<ViewRoom />} />
           <Route path="view-hotel" element={<ViewHotel />} />
           <Route path="add-rooms" element={<AddRoomsPopup />} />
+          <Route path="reports" element={<ReportPage />} />
           <Route
             path="/hoteladmin-dashboard/edit-profile"
             element={<EditProfileLayout />}
