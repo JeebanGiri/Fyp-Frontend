@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import styles from "./HotelAdminDashboard.module.css";
 import Select from "react-select";
-import BookingImg from "../../../assets/Dashboard/booking.png";
 import { useQuery } from "react-query";
 import {
   getAllCustomer,
