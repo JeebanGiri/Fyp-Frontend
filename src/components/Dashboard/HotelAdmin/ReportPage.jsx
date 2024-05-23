@@ -23,6 +23,10 @@ const ReportPage = () => {
       dataIndex: "address",
     },
     {
+      title: "Hotel Name",
+      dataIndex: "hotel-name",
+    },
+    {
       title: "Check-In Date",
       dataIndex: "check-in",
     },
