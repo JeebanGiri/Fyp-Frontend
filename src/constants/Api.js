@@ -19,9 +19,15 @@ export const changePassword = (updatePassword, token) =>
     headers: { Authorization: `Bearer ${token}` },
   });
 
-// create hotel
+// -------create hotel-----------
 export const createHotel = async (newHotel, token) =>
   await api.post("/hoteladmin/register-hotel", newHotel, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+// -------update hotel------------
+export const updateHotel = async (hotel_id, editHotel, token) =>
+  await api.patch(`/hoteladmin/update-hotel/${hotel_id}`, editHotel, {
     headers: { Authorization: `Bearer ${token}` },
   });
 
@@ -135,6 +141,10 @@ export const getReservation = (token) =>
   api.get("/reservation/get-reservation", {
     headers: { Authorization: `Bearer ${token}` },
   });
+export const getAllReservation = (token) =>
+  api.get("/reservation/get-all-reservation", {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 
 // ----------DELETE THE ROOMS ----------------
 export const deleteReservation = (bookId, token) =>
@@ -180,22 +190,22 @@ export const getTotalRooms = (token) =>
 
 export const getTotalReservation = (token) =>
   api.get("/hoteladmin/find/totalbooking", {
-    headers: { Authorization: `Bearer${token}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
 
 export const getTotalRating = (token) =>
   api.get("/hoteladmin/find/totalrating", {
-    headers: { Authorization: `Bearer${token}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
 
 export const getTotalIncome = (token) =>
   api.get("/hoteladmin/find/total-income", {
-    headers: { Authorization: `Bearer${token}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
 
 export const getAllCustomer = (token) =>
   api.get("/hoteladmin/find/customer", {
-    headers: { Authorization: `Bearer${token}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
 
 export const setHotelLocation = (hotelData, hotelId, token) =>
@@ -218,7 +228,7 @@ export const filterHotelByPrice = () => api.get(`/hotel/filter-hotels-price`);
 
 export const getTotalPrice = (token) =>
   api.get("/transaction/get-all", {
-    headers: { Authorization: `Bearer${token}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
 
 export const updateRooms = (roomId, payload, token) =>
@@ -228,5 +238,10 @@ export const updateRooms = (roomId, payload, token) =>
 
 export const getRoomById = (room_id, token) =>
   api.get(`/rooms/find-room/${room_id}`, {
-    headers: { Authorization: `Bearer${token}` },
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const generateCustomerReport = (token, bookId, user_id, checkInDate) =>
+  api.get(`/reservation/generate-report/${bookId}/${user_id}/${checkInDate}`, {
+    headers: { Authorization: `Bearer ${token}` },
   });

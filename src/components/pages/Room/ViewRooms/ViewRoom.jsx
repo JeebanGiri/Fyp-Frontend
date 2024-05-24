@@ -124,8 +124,8 @@ const ViewRoom = () => {
       render: (record) => (
         <Space size="middle">
           <Button
-            type="primary"
-            icon={<EditOutlined />}
+            // type="primary"
+            // icon={<EditOutlined />}
             onClick={() => showModal(record.id)}
           >
             Edit
@@ -138,7 +138,7 @@ const ViewRoom = () => {
             width={600}
             footer={null}
           >
-            <UpdateRooms roomId={currentRoomId} toggle={showModal} />
+            <UpdateRooms roomId={currentRoomId} />
           </Modal>
           <Popconfirm
             title="Delete the room"
@@ -152,7 +152,10 @@ const ViewRoom = () => {
               />
             }
           >
-            <Button danger icon={<DeleteOutlined />}>
+            <Button
+              danger
+              //  icon={<DeleteOutlined />}
+            >
               Delete
             </Button>
           </Popconfirm>

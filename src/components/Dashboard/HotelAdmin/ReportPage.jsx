@@ -1,8 +1,53 @@
 import styles from "./ReportPage.module.css";
 import Select from "react-select";
 import { useState } from "react";
-import { Divider, Radio, Table } from "antd";
+import { Button, Divider, Radio, Table } from "antd";
+import { getAllReservation } from "../../../constants/Api";
+import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 const ReportPage = () => {
+  const [selectionType, setSelectionType] = useState("radio");
+  const [selectedReservations, setSelectedReservations] = useState([]);
+  const [isButtonVisible, setIsButtonVisible] = useState(false);
+  const navigateTo = useNavigate();
+
+  const [datas, setDatas] = useState({
+    book_id: "",
+    user_id: "",
+    check_In_Date: "",
+  });
+
+  const handleChange = (selectedRows) => {
+    if (selectedRows.length > 0) {
+      const selectedRow = selectedRows[0];
+      setDatas({
+        book_id: selectedRow.id,
+        user_id: selectedRow.user_id,
+        check_In_Date: selectedRow.check_In_Date,
+      });
+      setIsButtonVisible(true); // Show the button when a row is selected
+    } else {
+      setIsButtonVisible(false); // Hide the button when no row is selected
+    }
+  };
+
+  const handleGenerateReport = async () => {
+    try {
+      // const cusInfo = await generateCustomerReport(token, datas);
+      // console.log(cusInfo);
+
+      navigateTo("/hoteladmin-dashboard/generate-report", {
+        state: { datas },
+      });
+    } catch (error) {
+      console.error("Failed to generate report:", error);
+    }
+  };
+
+  const token = localStorage.getItem("token");
+  const { data } = useQuery("reservation", () => getAllReservation(token));
+  const bookInfo = data?.data.result;
+
   const options = [
     { value: "Last 30  days", label: "Last 30 Days" },
     { value: "Last 6 Months", label: "Last 6 Months" },
@@ -10,8 +55,8 @@ const ReportPage = () => {
   ];
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
+      title: "Customer Name",
+      dataIndex: "full_name",
       render: (text) => <a>{text}</a>,
     },
     {
@@ -19,58 +64,24 @@ const ReportPage = () => {
       dataIndex: "phone_number",
     },
     {
-      title: "Address",
-      dataIndex: "address",
+      title: "Country",
+      dataIndex: "country",
     },
     {
-      title: "Hotel Name",
-      dataIndex: "hotel-name",
+      title: "Check In Date",
+      dataIndex: "check_In_Date",
     },
     {
-      title: "Check-In Date",
-      dataIndex: "check-in",
-    },
-    {
-      title: "Check-Out Date",
-      dataIndex: "check-out",
-    },
-  ];
-
-  const data = [
-    {
-      key: "1",
-      name: "John Brown",
-      age: 32,
-      address: "New York No. 1 Lake Park",
-    },
-    {
-      key: "2",
-      name: "Jim Green",
-      age: 42,
-      address: "London No. 1 Lake Park",
-    },
-    {
-      key: "3",
-      name: "Joe Black",
-      age: 32,
-      address: "Sydney No. 1 Lake Park",
-    },
-    {
-      key: "4",
-      name: "Disabled User",
-      age: 99,
-      address: "Sydney No. 1 Lake Park",
+      title: "Check Out Date",
+      dataIndex: "check_Out_Date",
     },
   ];
 
   // rowSelection object indicates the need for row selection
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
-      console.log(
-        `selectedRowKeys: ${selectedRowKeys}`,
-        "selectedRows: ",
-        selectedRows
-      );
+      setSelectedReservations(selectedRows);
+      handleChange(selectedRows);
     },
     getCheckboxProps: (record) => ({
       disabled: record.name === "Disabled User",
@@ -78,7 +89,6 @@ const ReportPage = () => {
       name: record.name,
     }),
   };
-  const [selectionType, setSelectionType] = useState("radio");
   return (
     <>
       <div className={styles["report-page"]}>
@@ -109,10 +119,18 @@ const ReportPage = () => {
               ...rowSelection,
             }}
             columns={columns}
-            dataSource={data}
+            dataSource={bookInfo}
+            rowKey={"id"}
           />
         </div>
       </div>
+      {isButtonVisible && (
+        <div className={styles["generate-report-button"]}>
+          <Button type="primary" onClick={handleGenerateReport}>
+            Generate Report
+          </Button>
+        </div>
+      )}
     </>
   );
 };

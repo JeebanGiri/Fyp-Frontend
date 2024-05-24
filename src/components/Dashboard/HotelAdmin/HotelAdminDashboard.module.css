@@ -187,6 +187,11 @@ body {
   mix-blend-mode: color-burn;
 }
 
+.image svg {
+  font-size: 40px;
+  mix-blend-mode: color-burn;
+}
+
 .text :nth-child(1) {
   font-size: 18px;
   font-family: "poppins";
@@ -248,37 +253,33 @@ body {
   padding: 20px;
 }
 
-.report-topic-heading,
-.item1 {
+.report-topic-heading {
   width: 1120px;
   display: flex;
-  justify-content: space-around;
   align-items: center;
 }
 
+.report-topic-heading h4 {
+  width: 200px;
+}
 .t-op {
   font-size: 16px;
   font-weight: 500;
 }
-.t-op01 {
-  font-size: 16px;
-  font-weight: 500;
-  margin-right: 50px;
-}
+
 .items {
   width: 1120px;
   margin-top: 15px;
 }
-
 .item1 {
-  margin-top: 20px;
-  margin-right: 100px;
+  display: flex;
 }
 
 .t-op-nextlvl {
   font-size: 14px;
   letter-spacing: 1px;
   font-weight: 400;
+  width: 200px;
 }
 
 .label-tag {

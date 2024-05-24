@@ -4,6 +4,7 @@ import { Space, Table } from "antd";
 import { deleteReservation, getReservation } from "../../../../constants/Api";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { Button, Popconfirm } from "antd";
+import { formatDate } from "../../../../utils/formatDate";
 
 const ViewBooking = () => {
   const token = localStorage.getItem("token");
@@ -51,16 +52,19 @@ const ViewBooking = () => {
       title: "Booking Date",
       dataIndex: "booking_Date",
       key: "booking_Date",
+      render: (dataIndex) => formatDate(dataIndex),
     },
     {
       title: "Check-In Date",
       dataIndex: "check_In_Date",
       key: "check_In_Date",
+      render: (dataIndex) => formatDate(dataIndex),
     },
     {
       title: "Check-Out Date",
       dataIndex: "check_Out_Date",
       key: "check_Out_Date",
+      render: (dataIndex) => formatDate(dataIndex),
     },
     {
       title: "Total Amount",

@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* Ensures that padding and border are included in the element's total width and height */
+  box-sizing: border-box;
 }
 
 .reportContainer {
@@ -10,12 +10,21 @@
   align-items: center;
   width: 100%;
   min-height: 100vh;
+  /* background: #f5f6fa; */
+}
+.dwn-btn {
+  position: absolute;
+  top: 130px;
+  right: 70px;
 }
 
 .reportpage {
-  width: 70%;
+  width: 90%;
   min-height: 60vh;
   padding: 20px;
+  margin-top: 140px;
+  /* margin-top: 100px; */
+  background-color: #fff;
   border: 2px solid #cfcbcb;
   border-radius: 5px;
 }

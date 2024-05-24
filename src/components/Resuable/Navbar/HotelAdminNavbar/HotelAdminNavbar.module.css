@@ -174,7 +174,7 @@ body {
 .slidebar {
   min-height: 91vh;
   width: 215px;
-  background-color: var(--background-color2);
+  /* background-color: var(--background-color2); */
   position: fixed;
   top: 100px;
   left: 0;
@@ -184,8 +184,7 @@ body {
   justify-content: space-between;
   overflow: hidden;
   padding: 30px 0 20px 10px;
-  /* background: #101924; */
-  /* color: white; */
+  background-color: #e5e9f2;
 }
 
 .navcontainer {
@@ -220,14 +219,17 @@ body {
   color: #7f8dff;
 }
 
+.nav_option svg {
+  font-size: 18px;
+  /* color: #fa7bb4; */
+}
 .nav-img {
   height: 23px;
-  mix-blend-mode: exclusion;
+  mix-blend-mode: color-burn;
 }
 
 .hotelmenu {
   display: flex;
-  /* gap: 40px; */
 }
 
 .nav-upper-options {

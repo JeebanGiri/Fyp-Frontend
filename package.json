@@ -30,6 +30,8 @@
     "dayjs": "^1.11.10",
     "evergreen-ui": "^7.1.9",
     "firebase": "^10.11.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "khalti-checkout-web": "^2.2.0",
     "leaflet": "^1.9.4",
     "moment": "^2.30.1",

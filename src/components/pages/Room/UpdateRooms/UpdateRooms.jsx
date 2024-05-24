@@ -8,10 +8,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const UpdateRooms = (props) => {
-  const handleClose = () => {
-    props.toggle();
-  };
-
   const options = [
     { value: "Standard Room", label: "Standard" },
     { value: "Deluxe Room", label: "Deluxe" },
@@ -32,8 +28,6 @@ const UpdateRooms = (props) => {
 
   const hotel_id = props.hotelId;
   const room_id = props.roomId;
-  console.log(room_id, "Id fetch");
-
   // Fetch the room data based on roomId
   const { data: roomInfo } = useQuery(["room", room_id], () =>
     getRoomById(room_id, token)
@@ -51,23 +45,20 @@ const UpdateRooms = (props) => {
       } = roomInfo.data;
       setFormData({
         room_name,
-        room_number: room_number.toString(),
+        room_number,
         room_type,
-        room_rate: room_rate.toString(),
-        room_capacity: room_capacity.toString(),
+        room_rate,
+        room_capacity,
         images,
       });
     }
   }, [roomInfo]);
 
-  const mutation = useMutation((datas) => {
-    updateRooms(room_id, datas, token)
+  const mutation = useMutation((formData) => {
+    updateRooms(room_id, formData, token)
       .then((response) => {
         const message = response.data.message;
         toast.success(message);
-        setTimeout(() => {
-          handleClose();
-        }, 3000);
       })
       .catch((error) => {
         console.log(error.response);
@@ -112,16 +103,7 @@ const UpdateRooms = (props) => {
       if (Array.isArray(value)) {
         value.forEach((file) => data.append(key, file));
       } else {
-        // Convert string values to numbers for the appropriate fields
-        if (
-          key === "room_number" ||
-          key === "room_rate" ||
-          key === "room_capacity"
-        ) {
-          data.append(key, Number(value)); // Convert string to number
-        } else {
-          data.append(key, value);
-        }
+        data.append(key, value);
       }
     });
     mutation.mutate(data);

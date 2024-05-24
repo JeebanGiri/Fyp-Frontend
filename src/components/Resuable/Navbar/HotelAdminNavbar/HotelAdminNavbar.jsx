@@ -1,16 +1,16 @@
 import { useRef, useState } from "react";
 import styles from "./HotelAdminNavbar.module.css";
-import HotelImg from "../../../../assets/Dashboard/hotel.png";
-import DashboardImg from "../../../../assets/Dashboard/dashboard.png";
-import ReportImg from "../../../../assets/Dashboard/report.png";
-import LogoutImg from "../../../../assets/Dashboard/logout.png";
-import ProfileImg from "../../../../assets/Dashboard/profile.png";
-import Bed from "../../../../assets/Room/bed.png";
 import SearchImg from "../../../../assets/Dashboard/searchIcon.png";
 import Admin from "../../../../assets/Dashboard/hoteladmin.png";
 import Notification from "../../../Notification/Notification";
 import HotelAdminProfile from "../../../Dashboard/HotelAdmin/HotelAdminProfile";
 import { IoIosArrowForward } from "react-icons/io";
+import { RxDashboard } from "react-icons/rx";
+import { TbFileReport } from "react-icons/tb";
+import { FaHotel } from "react-icons/fa";
+import { MdOutlineBedroomParent } from "react-icons/md";
+import { ImProfile } from "react-icons/im";
+import { FiLogOut } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import "react-dropdown-now/style.css";
 import { MdAddHome } from "react-icons/md";
@@ -19,10 +19,13 @@ import { RiEdit2Fill } from "react-icons/ri";
 import { GrView } from "react-icons/gr";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { UseOutsideClick } from "../../../../utils/useOutSideClick";
+import { getHotel } from "../../../../constants/Api";
+import { useQuery } from "react-query";
 // import ClickAwayListener from "@mui/material/ClickAwayListener";
 
 const HotelAdminNavbar = () => {
   const navigateTo = useNavigate();
+  const token = localStorage.getItem("token");
 
   const [showProfileBox, setShowProfileBox] = useState(false);
   const [showNotificationBox, setShowNotificationBox] = useState(false);
@@ -75,6 +78,10 @@ const HotelAdminNavbar = () => {
     navigateTo("/hoteladmin-dashboard/add-hotel-hoteladmin");
   };
 
+  const toogleEditHotelPage = () => {
+    navigateTo("/hoteladmin-dashboard/edit-hotel");
+  };
+
   const toogleReportPage = () => {
     navigateTo("/hoteladmin-dashboard/reports");
   };
@@ -89,12 +96,21 @@ const HotelAdminNavbar = () => {
     window.location.reload();
   };
 
+  const { data: fetchHotelInfo } = useQuery("hotel-info", () =>
+    getHotel(token)
+  );
+  const hotelInfo = fetchHotelInfo?.data;
+
   return (
     <>
       <header className={styles.header}>
-        <div className={styles.logosec}>
-          <div className={styles.logo}>Hotel Name</div>
-        </div>
+        {hotelInfo
+          ? hotelInfo.map((hotels) => (
+              <div className={styles.logosec} key={hotels.id}>
+                <div className={styles.logo}>{hotels.name}</div>
+              </div>
+            ))
+          : null}
         <div className={styles.searchbar}>
           <input type="text" placeholder="Search" />
           <div className={styles.searchbtn}>
@@ -130,23 +146,19 @@ const HotelAdminNavbar = () => {
         <div className={styles.slidebar}>
           <div className={styles["nav-upper-options"]}>
             <div className={`${styles.nav_option} ${styles.option1}`}>
-              <img
-                src={DashboardImg}
-                className={styles["nav-img"]}
-                alt="dashboard"
-              />
+              <RxDashboard />
               <h5 onClick={toggleDashboard}> Dashboard</h5>
             </div>
 
             <div className={`${styles.nav_option} ${styles.option3}`}>
-              <img src={ReportImg} className={styles["nav-img"]} alt="report" />
+              <TbFileReport />
               <h6 onClick={toogleReportPage}> Report</h6>
             </div>
             <div
               className={`${styles.nav_option} ${styles.option4}`}
               onClick={toggleHotelOptions}
             >
-              <img src={HotelImg} className={styles["nav-img"]} alt="hotel" />
+              <FaHotel />
               <h6 className={styles.hotelmenu} ref={hotelDropdownBox}>
                 <span>Hotel</span>
                 <span>
@@ -159,7 +171,7 @@ const HotelAdminNavbar = () => {
               onClick={toogleViewRoomPage}
               ref={roomDropdownBox}
             >
-              <img src={Bed} className={styles["nav-img"]} alt="hotel" />
+              <MdOutlineBedroomParent />
               <h6 className={styles.hotelmenu}>
                 <span>Room</span>
                 {/* <span>
@@ -169,11 +181,11 @@ const HotelAdminNavbar = () => {
             </div>
 
             <div className={`${styles.nav_option} ${styles.option6}`}>
-              <img src={ProfileImg} className={styles["nav-img"]} alt="blog" />
+              <ImProfile />
               <h6 onClick={toogleProfilePage}> Profile</h6>
             </div>
             <div className={`${styles.nav_option} ${styles.logout}`}>
-              <img src={LogoutImg} className={styles["nav-img"]} alt="logout" />
+              <FiLogOut />
               <h6 onClick={handleLogout}>Logout</h6>
             </div>
           </div>
@@ -190,7 +202,10 @@ const HotelAdminNavbar = () => {
               </span>
               <span className={styles.contents}>Add Hotel</span>
             </div>
-            <div className={styles["hotel-update"]}>
+            <div
+              className={styles["hotel-update"]}
+              onClick={toogleEditHotelPage}
+            >
               <span>
                 <RiEdit2Fill />
               </span>

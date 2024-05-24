@@ -5,7 +5,6 @@ import { createHotel } from "../../../../constants/Api";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import { IoArrowBackOutline } from "react-icons/io5";
 const { RangePicker } = TimePicker;
 
 const textareaStyle = {
@@ -15,6 +14,7 @@ const textareaStyle = {
 
 const AddHotel = () => {
   const navigateTo = useNavigate();
+
   // -----------store all the input data using usestate hook--------------
   const [formData, setFormData] = useState({
     hotel_name: "",
@@ -122,9 +122,7 @@ const AddHotel = () => {
         className={styles["hotel-listform"]}
       >
         <span className={styles["back-btn"]}>
-          <button onClick={handleGoBack}>
-            <IoArrowBackOutline />
-          </button>
+          <button onClick={handleGoBack}>Back</button>
         </span>
         <div className={styles["form-box"]}>
           <div className={styles.top}>

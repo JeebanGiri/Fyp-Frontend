@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./EditHotel.module.css";
-import { DatePicker } from "antd";
-import Hotels from "../../../../assets/Hotel/addhotel.png";
-import { TimePicker } from "antd";
-import { createHotel } from "../../../../constants/Api";
+import { DatePicker, TimePicker } from "antd";
+import { getHotel, updateHotel } from "../../../../constants/Api";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
 const { RangePicker } = TimePicker;
 
 const textareaStyle = {
@@ -14,28 +14,84 @@ const textareaStyle = {
 };
 
 const EditHotel = () => {
+  const navigateTo = useNavigate();
+  const token = localStorage.getItem("token");
+
+  // -----------store all the input data using usestate hook--------------
   const [formData, setFormData] = useState({
     hotel_name: "",
     address: "",
     phone_number: "",
     avatar: "",
     cover: "",
-    latitude: "",
-    longitude: "",
-    opening_hours: {
-      open_time: "",
-      close_time: "",
-    },
     documents: [],
     citizenship_no: "",
     citizenship_issued_date: "",
     citizenship_front: "",
     citizenship_back: "",
+    checkin_checkout: {
+      check_in_time: "",
+      check_out_time: "",
+    },
     account_number: "",
+    account_name: "",
     bank_name: "",
     branch_name: "",
-    descriptin: "description",
+    description: "",
   });
+
+  const { data: fetchHotelInfo } = useQuery("hotel-info", () =>
+    getHotel(token)
+  );
+  const hotelInfo = fetchHotelInfo?.data;
+  console.log(hotelInfo);
+
+  useEffect(() => {
+    if (
+      hotelInfo &&
+      Array.isArray(hotelInfo?.data) &&
+      hotelInfo?.data.length > 0
+    ) {
+      const hotel = hotelInfo?.data[0];
+      console.log(hotel, "hotel");
+      const {
+        hotel_name,
+        address,
+        phone_number,
+        avatar,
+        cover,
+        documents,
+        citizenship_no,
+        citizenship_issued_date,
+        citizenship_front,
+        citizenship_back,
+        checkin_checkout: { check_in_time, check_out_time },
+        account_number,
+        account_name,
+        bank_name,
+        branch_name,
+        description,
+      } = hotel;
+      setFormData({
+        hotel_name,
+        address,
+        phone_number,
+        avatar,
+        cover,
+        documents,
+        citizenship_no,
+        citizenship_issued_date,
+        citizenship_front,
+        citizenship_back,
+        checkin_checkout: { check_in_time, check_out_time },
+        account_number,
+        account_name,
+        bank_name,
+        branch_name,
+        description,
+      });
+    }
+  }, [hotelInfo]);
 
   const handleChange = (event) => {
     const { name, files, value } = event.target;
@@ -50,59 +106,33 @@ const EditHotel = () => {
           ...formData,
           documents: newDocuments,
         });
-      } else if (name === "opening_hours") {
-        // Handle opening_hours separately since it's not a file input
-        // Assuming value is an array [openTime, closeTime]
-        const [openTime, closeTime] = value;
-        const openingHours = {
-          open_time: openTime.format("hh:mm A"),
-          close_time: closeTime.format("hh:mm A"),
-        };
-        setFormData({
-          ...formData,
-          opening_hours: openingHours,
-        });
       } else {
-        // For other inputs, handle a single file
         setFormData({
           ...formData,
           [name]: files[0],
         });
       }
-      console.log(files, "File selected");
     } else {
-      const { value } = event.target;
       setFormData({
         ...formData,
         [name]: value,
-        opening_hours: value,
       });
     }
   };
 
+  // ----------------Handle Date data------------
   const handleDatePickerChange = (date, dateString) => {
     // Update formData with the selected date
     setFormData({ ...formData, citizenship_issued_date: dateString });
-    console.log(formData.citizenship_issued_date);
   };
 
-  const handleTimePickerChange = (value, dateString) => {
-    // Format the dateString into an object with open_time and close_time properties
-    const [openTime, closeTime] = dateString;
-    const openingHoursData = {
-      open_time: openTime,
-      close_time: closeTime,
-    };
-    // Update the formData with the formatted opening_hours data
-    setFormData({
-      ...formData,
-      opening_hours: openingHoursData,
-    });
-    console.log(formData.opening_hours, "Time");
-    console.log(openingHoursData);
+  //-----------handle date data ------------------
+  const handleCheckinCheckoutChange = (dates, dateString) => {
+    setFormData({ ...formData, checkin_checkout: dateString });
   };
 
-  const handleUpload = () => {
+  // ------------Form data-----------------
+  const handleUpdate = () => {
     const data = new FormData();
     Object.keys(formData).forEach((key) => {
       const value = formData[key];
@@ -112,13 +142,15 @@ const EditHotel = () => {
         data.append(key, value);
       }
     });
-    const token = localStorage.getItem("token");
 
-    createHotel(data, token) // Pass the FormData object here
+    updateHotel(data, token)
       .then((response) => {
         console.log(response);
         const message = response.data.message;
         toast.success(message);
+        setTimeout(() => {
+          navigateTo("/hoteladmin-dashboard/view-hotel");
+        }, 2000);
       })
       .catch((error) => {
         console.log(error.response);
@@ -131,6 +163,7 @@ const EditHotel = () => {
         }
       });
   };
+
   const handleGoBack = () => {
     window.history.back();
   };
@@ -149,10 +182,7 @@ const EditHotel = () => {
         <div className={styles["form-box"]}>
           <div className={styles.top}>
             <span>
-              <h2>Edit your hotel </h2>
-            </span>
-            <span className={styles.hotelimg}>
-              <img src={Hotels} alt="Hotel Icon" />
+              <h5>Update Hotel</h5>
             </span>
           </div>
           <div className={styles["input-form"]}>
@@ -167,6 +197,7 @@ const EditHotel = () => {
                     name="hotel_name"
                     placeholder="Hotel Name"
                     className={styles["input-field"]}
+                    value={formData.hotel_name}
                     onChange={handleChange}
                   />
                 </div>
@@ -181,6 +212,7 @@ const EditHotel = () => {
                     name="address"
                     placeholder="Hotel Address"
                     className={styles["input-field"]}
+                    value={formData.address}
                     onChange={handleChange}
                   />
                 </div>
@@ -194,6 +226,7 @@ const EditHotel = () => {
                     type="text"
                     name="phone_number"
                     placeholder="Phone Number"
+                    value={formData.phone_number}
                     className={styles["input-field"]}
                     onChange={handleChange}
                   />
@@ -252,6 +285,7 @@ const EditHotel = () => {
                   <input
                     type="text"
                     name="citizenship_no"
+                    value={formData.citizenship_no}
                     placeholder="Citizen-ship Number"
                     className={styles["input-field"]}
                     onChange={handleChange}
@@ -268,6 +302,7 @@ const EditHotel = () => {
                     placeholder="select date"
                     name="citizenship_issued_date"
                     className={styles["input-field"]}
+                    // value={formData.citizenship_issued_date}
                     onChange={handleDatePickerChange}
                     needConfirm
                   />
@@ -301,18 +336,19 @@ const EditHotel = () => {
                   />
                 </div>
               </div>
-              <div className={styles.inputs}>
+
+              <div className="inputs">
                 <label htmlFor="inputname" className={styles["input-label"]}>
-                  Hotel-Opening Time
+                  Check-In Check-Out
                 </label>
                 <div className={styles["input-container"]}>
                   <RangePicker
-                    use12Hours
-                    format="h:mm a"
+                    name="checkin_checkout"
+                    // value={formData.checkin_checkout}
+                    format="h:mm A"
+                    placeholder={["Check-In", "Check-Out"]}
+                    onChange={handleCheckinCheckoutChange}
                     className={styles["input-field"]}
-                    placeholder={["Open Time", "Close Time"]}
-                    name="opening_hours"
-                    onChange={handleTimePickerChange}
                   />
                 </div>
               </div>
@@ -321,7 +357,7 @@ const EditHotel = () => {
           <div className={styles.article}>
             <hr className={styles.left} />
             <p className={styles.text}>
-              Also you can update your hotel location and financial details.
+              Also Provide your hotel location and financial details.{" "}
             </p>
             <hr className={styles.right} />
           </div>
@@ -335,6 +371,7 @@ const EditHotel = () => {
                   <input
                     type="text"
                     name="account_number"
+                    value={formData.account_number}
                     placeholder="Account Number"
                     className={styles["input-field"]}
                     onChange={handleChange}
@@ -350,13 +387,13 @@ const EditHotel = () => {
                   <input
                     type="text"
                     name="bank_name"
+                    value={formData.bank_name}
                     placeholder="Bank Name"
                     className={styles["input-field"]}
                     onChange={handleChange}
                   />
                 </div>
               </div>
-
               <div className={styles.inputs}>
                 <label htmlFor="inputname" className={styles["input-label"]}>
                   Account Name
@@ -365,6 +402,7 @@ const EditHotel = () => {
                   <input
                     type="text"
                     name="account_name"
+                    value={formData.account_name}
                     placeholder="Account Name"
                     className={styles["input-field"]}
                     onChange={handleChange}
@@ -382,35 +420,8 @@ const EditHotel = () => {
                   <input
                     type="text"
                     name="branch_name"
+                    value={formData.branch_name}
                     placeholder="Bank Branch"
-                    className={styles["input-field"]}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              <div className={styles.inputs}>
-                <label htmlFor="inputname" className={styles["input-label"]}>
-                  Latitude
-                </label>
-                <div className={styles["input-container"]}>
-                  <input
-                    type="text"
-                    name="latitude"
-                    placeholder="Latitude"
-                    className={styles["input-field"]}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              <div className={styles.inputs}>
-                <label htmlFor="inputname" className={styles["input-label"]}>
-                  Longitude
-                </label>
-                <div className={styles["input-container"]}>
-                  <input
-                    type="text"
-                    name="longitude"
-                    placeholder="Longitude"
                     className={styles["input-field"]}
                     onChange={handleChange}
                   />
@@ -426,6 +437,7 @@ const EditHotel = () => {
                   <textarea
                     type="text"
                     name="description"
+                    value={formData.description}
                     placeholder="Enter your hotel description"
                     style={textareaStyle}
                     className={styles["input-field"]}
@@ -436,7 +448,7 @@ const EditHotel = () => {
             </div>
           </div>
           <div className={styles.btn}>
-            <button onClick={handleUpload}>Add Details</button>
+            <button onClick={handleUpdate}>Update</button>
           </div>
         </div>
       </form>

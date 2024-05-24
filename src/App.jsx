@@ -87,6 +87,7 @@ function App() {
           <Route path="view-hotel" element={<ViewHotel />} />
           <Route path="add-rooms" element={<AddRoomsPopup />} />
           <Route path="reports" element={<ReportPage />} />
+          <Route path="generate-report" element={<CustomerReport />} />
           <Route
             path="/hoteladmin-dashboard/edit-profile"
             element={<EditProfileLayout />}

@@ -26,14 +26,15 @@
   display: flex;
   flex-wrap: wrap;
   margin: 30px auto 0px 70px;
-  justify-content: center;
-  background-color: white;
+  /* justify-content: center; */
+  padding: 0px 20px;
   border: 1px solid;
   border-radius: 5px;
   width: 80%;
 }
 .report-table table {
-  width: 100%;
+  /* width: 120%; */
+  width: 875px;
 }
 .report-titles {
   width: 84%;
@@ -41,4 +42,12 @@
   margin: 0 70px;
   padding-top: 150px;
   justify-content: space-between;
+}
+
+.generate-report-button {
+  position: absolute;
+  top: 135px;
+  left: 500px;
+  padding: 10px;
+  z-index: 1;
 }

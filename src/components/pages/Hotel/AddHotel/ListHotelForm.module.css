@@ -26,8 +26,10 @@
   position: absolute;
   top: 110px;
   left: 340px;
+  height: 30px;
+  width: 70px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 14px;
   border-radius: 5px;
 }
 

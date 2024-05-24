@@ -160,6 +160,7 @@ const Reservation = () => {
         console.log(response.data);
         const redirectUrl = response.data.redirect;
         console.log(redirectUrl, "redirect");
+        navigateTo("/my-reservation");
         if (redirectUrl) {
           window.location.href = redirectUrl;
         }
