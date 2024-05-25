@@ -11,7 +11,6 @@ import { IoIosBed } from "react-icons/io";
 import { format } from "date-fns";
 import { LuBedDouble } from "react-icons/lu";
 import { useQuery } from "react-query";
-import { Modal } from "antd";
 import { getHotelInfo, reserveHotel } from "../../../constants/Api";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
@@ -19,6 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { BACKEND_URL } from "../../../constants/constant";
 import RegisterPopUp from "./RegisterPopUp/RegisterPopUp";
 import LoginPopUp from "./LoginPopUp/LoginPopUp";
+import { Button, Popconfirm, Modal } from "antd";
 
 var desc = ["terrible", "bad", "normal", "good", "wonderful"];
 
@@ -43,6 +43,10 @@ const Reservation = () => {
   const navigateTo = useNavigate();
   const [previousPage, setPreviousPage] = useState("");
   const location = useLocation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [isRatingOpen, setIsRatingOpen] = useState(false);
+
   const searchParams = new URLSearchParams(location.search);
   const hotelId = searchParams.get("hotelId");
   const roomId = searchParams.get("roomId");
@@ -56,10 +60,7 @@ const Reservation = () => {
     getHotelInfo(hotelId)
   );
 
-  console.log(hotelInfo, "hotel Data in object");
-
   const hotelData = hotelInfo?.data;
-  console.log(hotelData, "hotel Data in array");
 
   useEffect(() => {
     // Store the URL of the previous page before navigating to the email verification page
@@ -70,6 +71,42 @@ const Reservation = () => {
     const storedPreviousPage = localStorage.getItem("previousPage");
     setPreviousPage(storedPreviousPage);
   }, []);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const showRegisterModal = () => {
+    setIsRegisterOpen(true);
+  };
+
+  const handleRegisterOk = () => {
+    setIsRegisterOpen(false);
+  };
+
+  const handleRegisterCancel = () => {
+    setIsRegisterOpen(false);
+  };
+
+  const showRatingModal = () => {
+    setIsRatingOpen(true);
+  };
+
+  const handleRatingOk = () => {
+    setIsRatingOpen(false);
+  };
+
+  const handleRatingCancel = () => {
+    setIsRatingOpen(false);
+  };
 
   const [bookData, setBookData] = useState({
     full_name: "",
@@ -156,8 +193,7 @@ const Reservation = () => {
       .then((response) => {
         const message = response.data.message;
         toast.success(message);
-        console.log(message);
-        console.log(response.data);
+
         const redirectUrl = response.data.redirect;
         console.log(redirectUrl, "redirect");
         navigateTo("/my-reservation");
@@ -182,33 +218,6 @@ const Reservation = () => {
           toast.error(errorMsg);
         }
       });
-  };
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
-  const showRegisterModal = () => {
-    setIsRegisterOpen(true);
-  };
-
-  const handleRegisterOk = () => {
-    setIsRegisterOpen(false);
-  };
-
-  const handleRegisterCancel = () => {
-    setIsRegisterOpen(false);
   };
 
   return (

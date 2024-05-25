@@ -3,11 +3,7 @@ import { BACKEND_URL } from "../../../../constants/constant";
 import styles from "./ViewRoom.module.css";
 import { Space, Table } from "antd";
 import { deleteRoom, findAllRooms, getHotel } from "../../../../constants/Api";
-import {
-  QuestionCircleOutlined,
-  EditOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 import { Button, Popconfirm, Modal } from "antd";
 import AddRoomsPopup from "../AddRoomsForms/AddRoomsPopup";
 import { useState } from "react";

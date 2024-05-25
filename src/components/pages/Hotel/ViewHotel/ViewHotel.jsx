@@ -35,6 +35,7 @@ const ViewHotel = () => {
   const toggleAddRooms = () => {
     setIsAddRoomsOpen(!isAddRoomsOpen);
   };
+
   const toogleEditHotelPage = () => {
     navigateTo("/hoteladmin-dashboard/edit-hotel");
   };

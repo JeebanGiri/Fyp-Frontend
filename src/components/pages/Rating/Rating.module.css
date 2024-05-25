@@ -1,54 +1,58 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .rating-box {
-    height: 230px;
-    width: 430px;
-    margin-top: 200px;
-    margin-left: 600px;
-    background-color: #2F2B64;
-    border-radius: 5px;
-    display: grid;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
+  /* background-color: #2f2b64; */
+  border-radius: 5px;
+  padding: 20px;
+  display: grid;
+  justify-content: center;
+  place-items: center;
 }
 
-
 .header {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    align-items: center;
+  display: grid;
+  place-items: center;
 }
 
 .header h3 {
-    font-size: 20px;
-    color: white;
+  font-size: 20px;
+  /* color: white;   */
 }
 
 .header p {
-    font-size: 14px;
-    color: white;
+  font-size: 14px;
+  /* color: white; */
 }
 
 .crossicons svg {
-    color: white;
-    margin: -10px 0px 0px 370px;
-    cursor: pointer;
-    font-size: 25px;
-    font-weight: 600;
+  /* color: white; */
+  margin: -10px 0px 0px 370px;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: 600;
 }
 
 .rate-icons {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .rate-icons svg {
-    font-size: 40px;
-    color: white;
+  font-size: 40px;
+  /* color: white; */
+}
+.btns {
+  padding-top: 30px;
+}
+.btns button {
+  width: 100px;
+  height: 35px;
+  border-radius: 4px;
+  color: whitesmoke;
+  border: 1px solid #2f2b64;
+  background-color: #2f2b64;
 }

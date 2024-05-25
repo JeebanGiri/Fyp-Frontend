@@ -245,3 +245,8 @@ export const generateCustomerReport = (token, bookId, user_id, checkInDate) =>
   api.get(`/reservation/generate-report/${bookId}/${user_id}/${checkInDate}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
+
+export const rateHotel = (rateInfo, token) =>
+  api.post("/rating/rate-hotel", rateInfo, {
+    headers: { Authorization: `Bearer ${token}` },
+  });

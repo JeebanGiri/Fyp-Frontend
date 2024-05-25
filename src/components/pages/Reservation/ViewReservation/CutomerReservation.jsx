@@ -3,12 +3,29 @@ import styles from "./CustomerReservation.module.css";
 import { Space, Table } from "antd";
 import { deleteReservation, getReservation } from "../../../../constants/Api";
 import { QuestionCircleOutlined } from "@ant-design/icons";
-import { Button, Popconfirm } from "antd";
+import { Button, Popconfirm, Modal } from "antd";
 import { formatDate } from "../../../../utils/formatDate";
+import { useState } from "react";
+import { BACKEND_URL } from "../../../../constants/constant";
+import Rating from "../../Rating/Rating";
 
 const ViewBooking = () => {
   const token = localStorage.getItem("token");
+  const [isRatingOpen, setIsRatingOpen] = useState(false);
+  const [currentHotelId, setCurrentHotelId] = useState(null);
 
+  const showRatingModal = (hotelId) => {
+    setIsRatingOpen(true);
+    setCurrentHotelId(hotelId);
+  };
+
+  const handleRatingOk = () => {
+    setIsRatingOpen(false);
+  };
+
+  const handleRatingCancel = () => {
+    setIsRatingOpen(false);
+  };
   const { data } = useQuery("reservation", () => getReservation(token));
   console.log(data, "My booking");
 
@@ -71,20 +88,20 @@ const ViewBooking = () => {
       dataIndex: "total_amount",
       key: "total_amount",
     },
-    // {
-    //   title: "Booking Date",
-    //   key: "images",
-    //   dataIndex: "images",
-    //   render: (images) => (
-    //     <>
-    //       <img
-    //         src={`${BACKEND_URL}` + images}
-    //         alt="Service"
-    //         style={{ width: "50px", height: "50px" }}
-    //       />
-    //     </>
-    //   ),
-    // },
+    {
+      title: "Hotel Image",
+      key: "hotel",
+      dataIndex: "hotel",
+      render: (hotel) => (
+        <>
+          <img
+            src={`${BACKEND_URL}/static/hotel_admin/register-hotel/${hotel.cover}`}
+            alt="Service"
+            style={{ width: "50px", height: "50px" }}
+          />
+        </>
+      ),
+    },
     {
       title: "Action",
       key: "action",
@@ -105,6 +122,19 @@ const ViewBooking = () => {
           >
             <Button danger>Delete</Button>
           </Popconfirm>
+          <Button onClick={() => showRatingModal(record.hotel.id)}>Rate</Button>
+          {isRatingOpen && (
+            <Modal
+              title="Rate Hotel"
+              open={showRatingModal}
+              onOk={handleRatingOk}
+              onCancel={handleRatingCancel}
+              width={500}
+              footer={null}
+            >
+              <Rating hotelId={currentHotelId} />
+            </Modal>
+          )}
         </Space>
       ),
     },
