@@ -8,26 +8,35 @@ import { Button, Popconfirm } from "antd";
 import { useState } from "react";
 import AddRoomsPopup from "../../Room/AddRoomsForms/AddRoomsPopup";
 import HotelLocationMap from "../../Map/HotelLocationMap";
+import { useNavigate } from "react-router-dom";
 
 const ViewHotel = () => {
   const [isAddRoomsOpen, setIsAddRoomsOpen] = useState(false);
   const [openMap, setOpenMap] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddRoomModalOpen, setIsAddRoomModalOpen] = useState(false);
-
   const queryClient = useQueryClient();
-
   const token = localStorage.getItem("token");
-  const { data } = useQuery("hoteldetails", () => getHotel(token));
+  const navigateTo = useNavigate();
 
-  const tableData = data?.data;
-  console.log(tableData, "Tables");
+  const { data: hotelInfoResponse } = useQuery("hoteldetails", () =>
+    getHotel(token)
+  );
 
-  const hotelId = tableData ? tableData.filter((hotel) => hotel.id) : [];
-  console.log(hotelId, "hotelId");
+  // Extract the actual hotel data from the response
+  const hotelInfo = hotelInfoResponse?.data;
+
+  // Ensure hotelInfo is wrapped in an array
+  const tableData = hotelInfo ? [hotelInfo] : [];
+
+  console.log(tableData);
+  const hotelId = hotelInfo?.id || "";
 
   const toggleAddRooms = () => {
     setIsAddRoomsOpen(!isAddRoomsOpen);
+  };
+  const toogleEditHotelPage = () => {
+    navigateTo("/hoteladmin-dashboard/edit-hotel");
   };
 
   const showModal = () => {
@@ -131,7 +140,9 @@ const ViewHotel = () => {
       render: (record) => (
         <Space size="middle">
           {console.log(record.id, "id of hotel")}
-          <Button primary>Edit</Button>
+          <Button primary onClick={toogleEditHotelPage}>
+            Edit
+          </Button>
           <Popconfirm
             title="Delete the hotel"
             description="Are you sure to delete this hotel?"

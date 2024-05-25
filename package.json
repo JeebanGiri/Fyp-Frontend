@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.0",
+    "@emotion/styled": "^11.11.0",  
     "@firebase/app": "^0.10.1",
     "@firebase/messaging": "^0.12.8",
     "@fontsource/roboto": "^5.0.12",

@@ -105,11 +105,11 @@ const HotelAdminNavbar = () => {
     <>
       <header className={styles.header}>
         {hotelInfo
-          ? hotelInfo.map((hotels) => (
-              <div className={styles.logosec} key={hotels.id}>
-                <div className={styles.logo}>{hotels.name}</div>
+          ? hotelInfo && (
+              <div className={styles.logosec}>
+                <div className={styles.logo}>{hotelInfo.name}</div>
               </div>
-            ))
+            )
           : null}
         <div className={styles.searchbar}>
           <input type="text" placeholder="Search" />

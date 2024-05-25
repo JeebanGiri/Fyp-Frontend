@@ -6,6 +6,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
+import moment from "moment/moment";
+import { formatDate } from "../../../../utils/formatDate";
 const { RangePicker } = TimePicker;
 
 const textareaStyle = {
@@ -17,7 +19,6 @@ const EditHotel = () => {
   const navigateTo = useNavigate();
   const token = localStorage.getItem("token");
 
-  // -----------store all the input data using usestate hook--------------
   const [formData, setFormData] = useState({
     hotel_name: "",
     address: "",
@@ -26,7 +27,7 @@ const EditHotel = () => {
     cover: "",
     documents: [],
     citizenship_no: "",
-    citizenship_issued_date: "",
+    citizenship_issued_date: null,
     citizenship_front: "",
     citizenship_back: "",
     checkin_checkout: {
@@ -44,18 +45,12 @@ const EditHotel = () => {
     getHotel(token)
   );
   const hotelInfo = fetchHotelInfo?.data;
-  console.log(hotelInfo);
+  const hotelId = hotelInfo?.id;
 
   useEffect(() => {
-    if (
-      hotelInfo &&
-      Array.isArray(hotelInfo?.data) &&
-      hotelInfo?.data.length > 0
-    ) {
-      const hotel = hotelInfo?.data[0];
-      console.log(hotel, "hotel");
+    if (hotelInfo) {
       const {
-        hotel_name,
+        name,
         address,
         phone_number,
         avatar,
@@ -71,16 +66,19 @@ const EditHotel = () => {
         bank_name,
         branch_name,
         description,
-      } = hotel;
+      } = hotelInfo;
+
       setFormData({
-        hotel_name,
+        hotel_name: name,
         address,
         phone_number,
         avatar,
         cover,
         documents,
         citizenship_no,
-        citizenship_issued_date,
+        citizenship_issued_date: citizenship_issued_date
+          ? citizenship_issued_date
+          : null,
         citizenship_front,
         citizenship_back,
         checkin_checkout: { check_in_time, check_out_time },
@@ -95,7 +93,6 @@ const EditHotel = () => {
 
   const handleChange = (event) => {
     const { name, files, value } = event.target;
-    //For handling the multiple files send in document input
     if (files) {
       if (name === "documents") {
         const newDocuments = [...formData.documents];
@@ -120,30 +117,46 @@ const EditHotel = () => {
     }
   };
 
-  // ----------------Handle Date data------------
   const handleDatePickerChange = (date, dateString) => {
-    // Update formData with the selected date
-    setFormData({ ...formData, citizenship_issued_date: dateString });
+    setFormData({ ...formData, citizenship_issued_date: date });
   };
 
-  //-----------handle date data ------------------
   const handleCheckinCheckoutChange = (dates, dateString) => {
-    setFormData({ ...formData, checkin_checkout: dateString });
+    const [check_in_time, check_out_time] = dateString;
+    setFormData({
+      ...formData,
+      checkin_checkout: {
+        check_in_time,
+        check_out_time,
+      },
+    });
   };
 
-  // ------------Form data-----------------
   const handleUpdate = () => {
     const data = new FormData();
     Object.keys(formData).forEach((key) => {
       const value = formData[key];
       if (Array.isArray(value)) {
-        value.forEach((file) => data.append(key, file));
+        if (key === "documents") {
+          value.forEach((file) => data.append(key, file));
+        } else {
+          value.forEach((item, index) => data.append(`${key}[${index}]`, item));
+        }
+      } else if (typeof value === "object" && value !== null) {
+        if (key === "checkin_checkout") {
+          data.append(`${key}[check_in_time]`, value.check_in_time);
+          data.append(`${key}[check_out_time]`, value.check_out_time);
+        } else {
+          Object.keys(value).forEach((subKey) => {
+            data.append(`${key}[${subKey}]`, value[subKey]);
+          });
+        }
       } else {
         data.append(key, value);
       }
     });
 
-    updateHotel(data, token)
+    updateHotel(hotelId, data, token)
       .then((response) => {
         console.log(response);
         const message = response.data.message;
@@ -302,9 +315,9 @@ const EditHotel = () => {
                     placeholder="select date"
                     name="citizenship_issued_date"
                     className={styles["input-field"]}
-                    // value={formData.citizenship_issued_date}
+                    value={formData.citizenship_issued_date}
+                    format={formatDate}
                     onChange={handleDatePickerChange}
-                    needConfirm
                   />
                 </div>
               </div>
@@ -344,8 +357,12 @@ const EditHotel = () => {
                 <div className={styles["input-container"]}>
                   <RangePicker
                     name="checkin_checkout"
-                    // value={formData.checkin_checkout}
-                    format="h:mm A"
+                    value={
+                      formData.citizenship_issued_date
+                        ? formData.check_in_time
+                        : formData.check_out_time
+                    }
+                    format="HH:mm A"
                     placeholder={["Check-In", "Check-Out"]}
                     onChange={handleCheckinCheckoutChange}
                     className={styles["input-field"]}
@@ -357,7 +374,7 @@ const EditHotel = () => {
           <div className={styles.article}>
             <hr className={styles.left} />
             <p className={styles.text}>
-              Also Provide your hotel location and financial details.{" "}
+              Also you can update your hotel location and financial details.
             </p>
             <hr className={styles.right} />
           </div>
