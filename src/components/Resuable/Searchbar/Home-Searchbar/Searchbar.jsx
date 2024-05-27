@@ -13,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { UseOutsideClick } from "../../../../utils/useOutSideClick";
+import { toast } from "react-toastify";
 
 const customStyles = {
   control: (base) => ({
@@ -85,6 +86,10 @@ const SearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!address) {
+      toast.warn("Please select a destination.");
+      return;
+    }
     navigateTo(
       `/hotel-landing?address=${address}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&guests=${guests}&rooms=${rooms}`
     );

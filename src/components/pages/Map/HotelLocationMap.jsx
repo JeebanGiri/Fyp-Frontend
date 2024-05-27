@@ -77,9 +77,6 @@ export default function HotelLocationMap({ hotelId }) {
     <>
       <ToastContainer />
       <div className={styles["container"]}>
-        {/* <p className={styles.cross} onClick={handleMapClick}>
-          <RxCross1 />
-        </p> */}
         <div className={styles.searchbar1}>
           <span className={styles.locsearch}>
             <p>Select the location of the property</p>

@@ -40,12 +40,22 @@ import Login from "./components/Authentication/Login/Login";
 import { setupNotifications } from "./utils/Firebase";
 import CustomerReport from "./components/Dashboard/Report/CustomerReport";
 import ReportPage from "./components/Dashboard/HotelAdmin/ReportPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   setupNotifications();
 
   return (
     <div className="App">
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        closeOnClick
+        draggable
+        pauseOnHover
+        style={{ fontSize: "14px" }}
+      />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomeLayout />}>

@@ -177,6 +177,16 @@ export const getTotalRoom = (token) =>
     headers: { Authorization: `Bearer ${token}` },
   });
 
+export const getTotalBookingHotelAdmin = (token) =>
+  api.get("hoteladmin/find/totalbooking", {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const getTotalRoomHotelAdmin = (token) =>
+  api.get("hoteladmin/find/totalrooms", {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
 // export const getAll = (token) =>
 // api.get("superadmin/rooms/total", {
 //   headers: { Authorization: `Bearer ${token}` },
@@ -198,7 +208,7 @@ export const getTotalRating = (token) =>
     headers: { Authorization: `Bearer ${token}` },
   });
 
-export const getTotalIncome = (token) =>
+export const getTotalIncomeHotelAdmin = (token) =>
   api.get("/hoteladmin/find/total-income", {
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -248,5 +258,10 @@ export const generateCustomerReport = (token, bookId, user_id, checkInDate) =>
 
 export const rateHotel = (rateInfo, token) =>
   api.post("/rating/rate-hotel", rateInfo, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const updateProfilePhoto = (formData, token) =>
+  api.patch("/users/update-profile", formData, {
     headers: { Authorization: `Bearer ${token}` },
   });

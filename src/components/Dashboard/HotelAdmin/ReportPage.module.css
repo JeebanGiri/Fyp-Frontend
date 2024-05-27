@@ -26,15 +26,13 @@
   display: flex;
   flex-wrap: wrap;
   margin: 30px auto 0px 70px;
-  /* justify-content: center; */
   padding: 0px 20px;
   border: 1px solid;
   border-radius: 5px;
   width: 80%;
 }
 .report-table table {
-  /* width: 120%; */
-  width: 875px;
+  width: 845px;
 }
 .report-titles {
   width: 84%;

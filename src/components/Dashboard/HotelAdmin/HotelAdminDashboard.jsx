@@ -7,9 +7,9 @@ import Select from "react-select";
 import { useQuery } from "react-query";
 import {
   getAllCustomer,
-  getTotalBooking,
-  getTotalIncome,
-  getTotalRooms,
+  getTotalBookingHotelAdmin,
+  getTotalIncomeHotelAdmin,
+  getTotalRoomHotelAdmin,
 } from "../../../constants/Api";
 
 const HotelAdminDashboard = () => {
@@ -39,24 +39,26 @@ const HotelAdminDashboard = () => {
 
   const token = localStorage.getItem("token");
   const { data: totalRooms } = useQuery("get-rooms", () =>
-    getTotalRooms(token)
+    getTotalRoomHotelAdmin(token)
   );
 
   const { data: totalBooking } = useQuery("get-booking", () =>
-    getTotalBooking(token)
+    getTotalBookingHotelAdmin(token)
   );
 
   const { data: totalIncome } = useQuery("get-totalincome", () =>
-    getTotalIncome(token)
+    getTotalIncomeHotelAdmin(token)
   );
 
-  console.log(totalIncome);
+  console.log(totalIncome, "total income");
 
   const { data: customerInfo } = useQuery("get-customer", () =>
     getAllCustomer(token)
   );
 
   const customer = customerInfo?.data;
+  console.log(customerInfo, "customer fetch");
+  console.log(customer, "customer");
 
   return (
     <>
@@ -81,7 +83,7 @@ const HotelAdminDashboard = () => {
                   <span className={styles.text}>
                     <h2 className={styles.topic}>Total Booking</h2>
                     <h2 className={styles["topic-heading"]}>
-                      {totalBooking.data}
+                      {totalBooking?.data}
                     </h2>
                   </span>
                   <span className={styles.image}>

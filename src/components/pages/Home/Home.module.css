@@ -295,7 +295,7 @@
 }
 
 .articlecontent {
-  margin-top: 500px;
+  margin-top: 350px;
   position: relative;
   text-align: center;
 }
@@ -304,7 +304,7 @@
   position: relative;
   border: none;
   user-select: none;
-  padding: 12px;
+  padding: 7px 10px;
   border-radius: 5px;
   background-color: rgb(206, 213, 223);
   box-shadow: rgba(158, 156, 156, 0.2) 0px 1px 3px 1px;
@@ -312,12 +312,12 @@
   transition: all 0.15s ease-in-out 0s;
   text-transform: uppercase;
   cursor: pointer;
-  top: -50px;
-  left: 300px;
+  top: -45px;
+  left: 250px;
 }
 
 .main {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .top {

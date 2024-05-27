@@ -38,8 +38,8 @@ const AddRoomsPopup = (props) => {
       .then((response) => {
         const message = response.data.message;
         toast.success(message);
+        // window.location.reload();
         setTimeout(() => {
-          // handleClose();
           props.toggle();
         }, 3000);
       })

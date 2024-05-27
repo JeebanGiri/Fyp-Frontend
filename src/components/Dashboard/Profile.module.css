@@ -39,6 +39,12 @@
   background-color: #e4dbdb;
 }
 
+.profileimage img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
 .profileimage p {
   text-align: center;
 }

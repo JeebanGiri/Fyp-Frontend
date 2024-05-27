@@ -137,8 +137,10 @@ const EditHotel = () => {
     Object.keys(formData).forEach((key) => {
       const value = formData[key];
       if (Array.isArray(value)) {
+        // if (key === "documents") {
+        //   value.forEach((file) => data.append(key, file));
         if (key === "documents") {
-          value.forEach((file) => data.append(key, file));
+          value.forEach((file) => data.append(`${key}[]`, file)); // Append as an array
         } else {
           value.forEach((item, index) => data.append(`${key}[${index}]`, item));
         }

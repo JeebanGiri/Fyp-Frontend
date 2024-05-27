@@ -42,7 +42,7 @@ const ViewRoom = () => {
 
   //--------FETCH HOTEL INFO-------------
   const { data: hotelInfo } = useQuery("hoteldetails", () => getHotel(token));
-  const hotelId = hotelInfo?.data[0]?.id;
+  const hotelId = hotelInfo?.data.id;
 
   // --------FETCH ROOM INFO-------------
   const { data: roomInfo } = useQuery(
@@ -119,13 +119,7 @@ const ViewRoom = () => {
       key: "action",
       render: (record) => (
         <Space size="middle">
-          <Button
-            // type="primary"
-            // icon={<EditOutlined />}
-            onClick={() => showModal(record.id)}
-          >
-            Edit
-          </Button>
+          <Button onClick={() => showModal(record.id)}>Edit</Button>
           <Modal
             title="Update Rooms"
             open={isModalOpen}
@@ -148,12 +142,7 @@ const ViewRoom = () => {
               />
             }
           >
-            <Button
-              danger
-              //  icon={<DeleteOutlined />}
-            >
-              Delete
-            </Button>
+            <Button danger>Delete</Button>
           </Popconfirm>
         </Space>
       ),

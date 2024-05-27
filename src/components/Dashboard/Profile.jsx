@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import { userProfile } from "../../constants/Api";
 import { useNavigate } from "react-router-dom";
 import { LuLogOut } from "react-icons/lu";
+import { BACKEND_URL } from "../../constants/constant";
 
 const Profile = () => {
   const navigateTo = useNavigate();
@@ -26,33 +27,34 @@ const Profile = () => {
     window.location.reload();
   };
 
-  const { data } = useQuery("get-profile", () => userProfile(token));
-  console.log(data, "datas");
+  const { data: userInfo } = useQuery("get-profile", () => userProfile(token));
 
   return (
     <>
-      {data ? (
+      {userInfo ? (
         <div className={styles.profilebox}>
           <div className={styles.profileimage}>
-            {data.data.avatar ? (
+            {userInfo.data.avatar ? (
               <img
-                src={data.data.avatar}
-                alt="Profile Image"
-                height={100}
-                width={100}
+                className={styles.avatar}
+                src={`${BACKEND_URL}/static/user/avatars/${userInfo?.data.avatar}`}
+                alt="Profile"
               />
             ) : (
               <div className={styles.avatarPlaceholder}>
                 <p>
-                  {data.data.full_name.charAt(0).toUpperCase()}
-                  {data.data.full_name.split(" ")[1]
-                    ? data.data.full_name.split(" ")[1].charAt(0).toUpperCase()
+                  {userInfo.data.full_name.charAt(0).toUpperCase()}
+                  {userInfo.data.full_name.split(" ")[1]
+                    ? userInfo.data.full_name
+                        .split(" ")[1]
+                        .charAt(0)
+                        .toUpperCase()
                     : ""}
                 </p>
               </div>
             )}
-            <p>{data?.data.full_name}</p>
-            <p>{data?.data.email}</p>
+            <p>{userInfo?.data.full_name}</p>
+            <p>{userInfo?.data.email}</p>
           </div>
           <hr />
           <span className={styles.booking}>

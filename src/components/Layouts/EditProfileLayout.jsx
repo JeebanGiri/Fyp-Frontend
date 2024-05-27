@@ -13,7 +13,6 @@ const EditProfleLayout = () => {
         style={{ display: "flex", marginTop: "40px", justifyContent: "center" }}
       >
         <>
-        
           <EditCustomerProfile />
           <Outlet />
         </>

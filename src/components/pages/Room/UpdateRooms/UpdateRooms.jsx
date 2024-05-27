@@ -17,6 +17,10 @@ const UpdateRooms = (props) => {
   ];
   const token = localStorage.getItem("token");
 
+  const hadleClose = () => {
+    props.toggle();
+  };
+
   const [formData, setFormData] = useState({
     room_name: "",
     room_number: "",
@@ -26,7 +30,6 @@ const UpdateRooms = (props) => {
     images: [],
   });
 
-  const hotel_id = props.hotelId;
   const room_id = props.roomId;
   // Fetch the room data based on roomId
   const { data: roomInfo } = useQuery(["room", room_id], () =>
@@ -59,6 +62,7 @@ const UpdateRooms = (props) => {
       .then((response) => {
         const message = response.data.message;
         toast.success(message);
+        props.toggle();
       })
       .catch((error) => {
         console.log(error.response);

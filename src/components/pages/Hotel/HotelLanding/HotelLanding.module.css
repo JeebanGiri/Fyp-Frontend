@@ -29,6 +29,27 @@
 .container1 {
   display: flex;
 }
+.noHotelsFound {
+  position: absolute;
+  left: 58%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+}
+.noHotelsFound h2 {
+  color: rgb(225, 45, 45);
+  font-size: 27px;
+}
+.noHotelsFound p {
+  font-size: 18px;
+}
+.noHotelsFound img {
+  height: 150px;
+  width: inherit;
+}
 
 .hotel-image {
   width: 180px;

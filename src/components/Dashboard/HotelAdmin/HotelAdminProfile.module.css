@@ -17,6 +17,11 @@
   height: 100px;
   cursor: pointer;
 }
+.profileimage img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
 
 .avatarPlaceholder {
   padding-top: 5px;

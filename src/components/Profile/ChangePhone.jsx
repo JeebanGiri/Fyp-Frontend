@@ -9,20 +9,16 @@ import "react-toastify/dist/ReactToastify.css";
 const ChangePhone = () => {
   const jwt = localStorage.getItem("token");
   const { data } = useQuery("get-profile", () => userProfile(jwt));
-  console.log(data);
 
   const [formData, setFormData] = useState({
-    old_phone_number: "",
+    phone_number: "",
     new_phone_number: "",
   });
 
-  console.log(formData.old_phone_number, "odl");
-  console.log(formData.new_phone_number, "new");
-
   useEffect(() => {
     if (data) {
-      const { full_name, email, phone_number, address } = data.data;
-      setFormData({ full_name, email, phone_number, address });
+      const { phone_number, new_phone_number } = data.data;
+      setFormData({ phone_number, new_phone_number });
     }
   }, [data]);
 
@@ -73,7 +69,7 @@ const ChangePhone = () => {
                     <input
                       type="text"
                       id="phone_number"
-                      name="old_phone_number"
+                      name="phone_number"
                       value={formData.phone_number}
                       placeholder="+9779807099754"
                       onChange={handleInputChange}

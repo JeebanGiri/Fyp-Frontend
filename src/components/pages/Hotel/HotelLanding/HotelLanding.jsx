@@ -164,76 +164,94 @@ const HotelLanding = () => {
           <p className="popfilter">Popular Filter</p>
         </div>
         <div className={styles.panel2}>
-          {data?.map((hotels) => (
-            <div className={styles["landing-container"]} key={hotels.id}>
-              <div className={styles.container1}>
-                <div className={styles["hotel-image"]}>
-                  <img
-                    src={
-                      `${BACKEND_URL}/static/hotel_admin/register-hotel/` +
-                      hotels.avatar
-                    }
-                    alt="Hotel Image"
-                  />
-                </div>
-                <div className={styles.articles}>
-                  <span className={styles.firstline}>
-                    <h5 key={hotels.id}>{hotels.name}</h5>
+          {data?.length === 0 ? (
+            <div className={styles.noHotelsFound}>
+              <span>
+                <h2>No hotels found</h2>
+              </span>
+              <span>
+                <p>Sorry! No hotel are availabile</p>
+              </span>
+              <span>
+                <img
+                  src="https://th.bing.com/th/id/OIP.zJiiBjHgTKD5kkoi9Mt3ggAAAA?rs=1&pid=ImgDetMain"
+                  alt=""
+                />
+              </span>
+            </div>
+          ) : (
+            // {
+            data?.map((hotels) => (
+              <div className={styles["landing-container"]} key={hotels.id}>
+                <div className={styles.container1}>
+                  <div className={styles["hotel-image"]}>
+                    <img
+                      src={
+                        `${BACKEND_URL}/static/hotel_admin/register-hotel/` +
+                        hotels.avatar
+                      }
+                      alt="Hotel Image"
+                    />
+                  </div>
+                  <div className={styles.articles}>
+                    <span className={styles.firstline}>
+                      <h5 key={hotels.id}>{hotels.name}</h5>
 
-                    <p className={styles.rating}>
-                      <Rate
-                        tooltips={desc}
-                        disabled
-                        defaultValue={hotels.rating_value}
-                      />
-                    </p>
-                  </span>
-                  <span className={styles.secondline}>
-                    <span>
-                      <p>
-                        <CiLocationOn className={styles.icon} />
-                        <span className={styles.locationlink}>
-                          {hotels.address}- <span>View on Map</span>
-                        </span>
+                      <p className={styles.rating}>
+                        <Rate
+                          tooltips={desc}
+                          disabled
+                          defaultValue={hotels.rating_value}
+                        />
                       </p>
                     </span>
-                    {hotels.rooms.map((room) => (
-                      <>
-                        <p>{room.room_type}</p>
-                      </>
-                    ))}
+                    <span className={styles.secondline}>
+                      <span>
+                        <p>
+                          <CiLocationOn className={styles.icon} />
+                          <span className={styles.locationlink}>
+                            {hotels.address}- <span>View on Map</span>
+                          </span>
+                        </p>
+                      </span>
+                      {hotels.rooms.map((room) => (
+                        <>
+                          <p>{room.room_type}</p>
+                        </>
+                      ))}
 
-                    <button
-                      onClick={() => gotoRooms(hotels.id)}
-                      key={hotels.id}
-                    >
-                      See Rooms
-                    </button>
-                  </span>
+                      <button
+                        onClick={() => gotoRooms(hotels.id)}
+                        key={hotels.id}
+                      >
+                        See Rooms
+                      </button>
+                    </span>
+                  </div>
+                </div>
+                <div className={styles.container2}>
+                  <div className={styles.justify}>
+                    <h5 className={styles.topcontent}>Very Good</h5>
+                    <span className={styles.sider}>
+                      <p className={styles["btn-contents"]}>1 night, 1 adult</p>
+
+                      {hotels.rooms.map((room) => (
+                        <>
+                          <h3>NPR {room.room_rate}</h3>
+                        </>
+                      ))}
+                      <p>Include Tax and Charge</p>
+                    </span>
+                    <span className={styles.footer}>
+                      <button onClick={() => fetchRoomStatus(hotels.id)}>
+                        Check Availiability
+                      </button>
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div className={styles.container2}>
-                <div className={styles.justify}>
-                  <h5 className={styles.topcontent}>Very Good</h5>
-                  <span className={styles.sider}>
-                    <p className={styles["btn-contents"]}>1 night, 1 adult</p>
-
-                    {hotels.rooms.map((room) => (
-                      <>
-                        <h3>NPR {room.room_rate}</h3>
-                      </>
-                    ))}
-                    <p>Include Tax and Charge</p>
-                  </span>
-                  <span className={styles.footer}>
-                    <button onClick={() => fetchRoomStatus(hotels.id)}>
-                      Check Availiability
-                    </button>
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </>

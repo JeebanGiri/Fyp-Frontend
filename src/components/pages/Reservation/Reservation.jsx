@@ -193,7 +193,6 @@ const Reservation = () => {
       .then((response) => {
         const message = response.data.message;
         toast.success(message);
-
         const redirectUrl = response.data.redirect;
         console.log(redirectUrl, "redirect");
         navigateTo("/my-reservation");

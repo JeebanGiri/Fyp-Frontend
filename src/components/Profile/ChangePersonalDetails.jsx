@@ -11,8 +11,6 @@ const ChangePersonaldetails = () => {
   const jwt = localStorage.getItem("token");
 
   const { data } = useQuery("get-profile", () => userProfile(jwt));
-  console.log(data);
-
   const [formData, setFormData] = useState({
     full_name: "",
     email: "",
@@ -33,6 +31,8 @@ const ChangePersonaldetails = () => {
       [name]: value,
     }));
   };
+
+  console.log(data);
 
   const changeProfileMutation = useMutation((data) => {
     const token = localStorage.getItem("token");
@@ -62,7 +62,7 @@ const ChangePersonaldetails = () => {
       {data ? (
         <div className={styles.personaldetails}>
           <div className={styles["top-content"]}>
-            <h4>Personal Information</h4>
+            <h5>Personal Information</h5>
             <p>
               Basic info, like your name and address, that you use on Nio
               Platform.
@@ -101,6 +101,7 @@ const ChangePersonaldetails = () => {
                     name="email"
                     placeholder="jeeban@gmail.com"
                     value={formData.email}
+                    readOnly
                   />
                   <span className={styles.icons}>
                     <IoIosLock />

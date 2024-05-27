@@ -3,110 +3,64 @@ import ThreeDot from "../../../assets/Dashboard/dot.png";
 import ArrowImg from "../../../assets/Dashboard/arrow.png";
 import Profileimg from "../../../assets/Dashboard/personalinf.png";
 import { FaCamera, FaExchangeAlt } from "react-icons/fa";
-import { RiEdit2Fill } from "react-icons/ri";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MdOutlinePhoneInTalk } from "react-icons/md";
-import { userProfile } from "../../../constants/Api";
-import { useQuery } from "react-query";
-import { ToastContainer } from "react-toastify";
+import { updateProfilePhoto, userProfile } from "../../../constants/Api";
+import { useMutation, useQuery } from "react-query";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { UseOutsideClick } from "../../../utils/useOutSideClick";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../../../constants/constant";
+import { UseOutsideClick } from "../../../utils/useOutSideClick";
 
 const EditCustomerProfile = () => {
-  const [isUpdateProfileOpen, setIsUpdateProfileOpen] = useState(false);
+  const [showProfileBox, setShowProfileBox] = useState(false);
+  const profileBoxRef = useRef();
+
+  UseOutsideClick(() => setShowProfileBox(false), profileBoxRef);
+
   const navigateTo = useNavigate();
   const jwt = localStorage.getItem("token");
 
-  const { data } = useQuery("get-profile", () => userProfile(jwt));
-  console.log(data);
-
-  // const [formData, setFormData] = useState({
-  //   full_name: "",
-  //   email: "",
-  //   old_phone_number: "",
-  //   new_phone_number: "",
-  //   address: "",
-  //   old_password: "",
-  //   new_password: "",
-  // });
-  // console.log(formData.old_phone_number, "odl");
-  // console.log(formData.new_phone_number, "new");
-
-  // useEffect(() => {
-  //   if (data) {
-  //     const { full_name, email, phone_number, address } = data.data;
-  //     setFormData({ full_name, email, phone_number, address });
-  //   }
-  // }, [data]);
-
-  // const handleInputChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     [name]: value,
-  //   }));
-  // };
-
-  // const [changePasswordUser, setChangePasswordUser] = useState({
-  //   old_password: "",
-  //   new_password: "",
-  // });
-
-  // const changeProfileMutation = useMutation((data) => {
-  //   const token = localStorage.getItem("token");
-  //   updateProfile(data, token)
-  //     .then((response) => {
-  //       const message = response.data.message;
-  //       toast.success(message);
-  //     })
-  //     .catch((error) => {
-  //       const errorMsg =
-  //         error.response.data.message || error.response.data.error.message;
-  //       if (Array.isArray(errorMsg)) {
-  //         errorMsg.forEach((err) => toast.error(err));
-  //       } else if (errorMsg) {
-  //         toast.error(errorMsg);
-  //       }
-  //     });
-  // });
-
-  // const changePMutation = useMutation((data) => {
-  //   const token = localStorage.getItem("token");
-  //   changePassword(data, token)
-  //     .then((response) => {
-  //       const message = response.data.message;
-  //       toast.success(message);
-  //     })
-  //     .catch((error) => {
-  //       const errorMsg =
-  //         error.response.data.message || error.response.data.error.message;
-  //       if (Array.isArray(errorMsg)) {
-  //         errorMsg.forEach((err) => toast.error(err));
-  //       } else if (errorMsg) {
-  //         toast.error(errorMsg);
-  //       }
-  //     });
-  // });
-
-  // const handlePasswordChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setChangePasswordUser({ ...changePasswordUser, [name]: value });
-  // };
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   changePMutation.mutate(changePasswordUser);
-  //   changeProfileMutation.mutate(formData);
-  // };
-
-  const outerRef = useRef();
-  UseOutsideClick(() => setIsUpdateProfileOpen(false), outerRef);
-
-  const toogleUpdateDropdown = (e) => {
+  const handleProfileClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsUpdateProfileOpen(!isUpdateProfileOpen);
+    setShowProfileBox(!showProfileBox);
   };
+
+  const [profileData, setProfileData] = useState({
+    avatar: "",
+  });
+  const [imagePreviewUrl, setImagePreviewUrl] = useState("");
+
+  const { data: userInfo } = useQuery("get-profile", () => userProfile(jwt));
+
+  const updateUserProfile = useMutation((data) => {
+    updateProfilePhoto(data, jwt)
+      .then((response) => {
+        const message = response.data.message;
+        toast.success(message);
+        setImagePreviewUrl("");
+      })
+      .catch((error) => {
+        const errorMsg =
+          (error.response && error.response.data.message) ||
+          error.response.data.error.message;
+        if (Array.isArray(errorMsg)) {
+          errorMsg.forEach((err) => toast.error(err));
+        } else if (errorMsg) {
+          toast.error(errorMsg);
+        }
+      });
+  });
+
+  useEffect(() => {
+    if (userInfo) {
+      setProfileData({
+        avatar: userInfo.data.avatar || null,
+      });
+    }
+  }, [userInfo]);
 
   const gotToInfo = () => {
     navigateTo("/edit-profile");
@@ -120,27 +74,47 @@ const EditCustomerProfile = () => {
     navigateTo("/edit-profile/change-phone");
   };
 
+  const triggerFileInput = () => {
+    document.getElementById("file-input").click();
+  };
+
+  const handleChangeProfile = (event, field) => {
+    if (event.target.type === "file") {
+      const file = event.target.files && event.target.files[0];
+      setProfileData({ ...profileData, [field]: file });
+      setImagePreviewUrl(URL.createObjectURL(file));
+    } else {
+      setProfileData({ ...profileData, [field]: event.target.value });
+    }
+  };
+
+  const handleProfileUpdate = () => {
+    // Create a FormData object to send the profile data including the file
+    const formData = new FormData();
+    formData.append("avatar", profileData.avatar);
+    updateUserProfile.mutate(formData);
+  };
+
   return (
     <>
       <ToastContainer />
-      {data ? (
+      {userInfo ? (
         <div className={styles["profile-box"]}>
           <div className={styles.box1}>
             <div className={styles.profileinfo}>
               <div className={styles.profileimage}>
-                {data.data.avatar ? (
+                {userInfo.data.avatar ? (
                   <img
-                    src={data.data.avatar}
-                    alt="Profile Image"
-                    height={100}
-                    width={100}
+                    className={styles.avatar}
+                    src={`${BACKEND_URL}/static/user/avatars/${userInfo?.data.avatar}`}
+                    alt="Profile"
                   />
                 ) : (
                   <div className={styles.pbox}>
                     <p>
-                      {data.data.full_name.charAt(0).toUpperCase()}
-                      {data.data.full_name.split(" ")[1]
-                        ? data.data.full_name
+                      {userInfo.data.full_name.charAt(0).toUpperCase()}
+                      {userInfo.data.full_name.split(" ")[1]
+                        ? userInfo.data.full_name
                             .split(" ")[1]
                             .charAt(0)
                             .toUpperCase()
@@ -149,35 +123,62 @@ const EditCustomerProfile = () => {
                   </div>
                 )}
                 <span className={styles.names}>
-                  <p>{data?.data.full_name}</p>
-                  <p>{data?.data.email}</p>
+                  <p>{userInfo.data.full_name}</p>
+                  <p>{userInfo.data.email}</p>
                 </span>
               </div>
-              <span
-                className={styles.actionsbtn}
-                onClick={toogleUpdateDropdown}
-              >
+              <span className={styles.actionsbtn} onClick={handleProfileClick}>
                 <img
                   src={ThreeDot}
                   alt="Action Button"
                   className={styles.actions}
-                  // onClick={openUpdateBox}
+                  ref={profileBoxRef}
                 />
               </span>
             </div>
-            {isUpdateProfileOpen && (
-              <div className={styles["openablebox"]} ref={outerRef}>
-                <div className={styles["photo-update"]}>
-                  <span>
-                    <FaCamera />
-                  </span>
-                  <span className={styles.contents}>Change Photo</span>
+            {showProfileBox && (
+              // <div className={styles["openablebox"]} ref={profileBoxRef}>
+              <div
+                className={`${styles["openablebox"]} ${
+                  imagePreviewUrl ? styles.expanded : ""
+                }`}
+                ref={profileBoxRef}
+              >
+                <div
+                  className={styles["photo-update"]}
+                  onClick={triggerFileInput}
+                >
+                  <div className={styles.changeimg}>
+                    <span>
+                      <FaCamera />
+                    </span>
+                    <span className={styles.contents}>Change Photo</span>
+                    <input
+                      id="file-input"
+                      type="file"
+                      name="avatar"
+                      // accept="image/*"
+                      onChange={(e) => handleChangeProfile(e, "avatar")}
+                      style={{ display: "none" }}
+                    />
+                  </div>
+                  {imagePreviewUrl ? (
+                    <div className={styles.imagePreview}>
+                      <img
+                        src={imagePreviewUrl}
+                        alt="Selected Image Preview"
+                        className={styles.previewImage}
+                      />
+                    </div>
+                  ) : null}
                 </div>
                 <div className={styles["profile-update"]}>
-                  <span>
-                    <RiEdit2Fill />
-                  </span>
-                  <span className={styles.contents}>Update Profile</span>
+                  <button
+                    className={styles.contents}
+                    onClick={handleProfileUpdate}
+                  >
+                    Update avatar
+                  </button>
                 </div>
               </div>
             )}

@@ -96,7 +96,7 @@ const Home = () => {
       </main>
 
       <div className={styles.articlecontent}>
-        <h2>Reach and Explore our site</h2>
+        <h3>Reach and Explore our site</h3>
         <button className={styles.explore} onClick={handleExlpore}>
           Explore
         </button>

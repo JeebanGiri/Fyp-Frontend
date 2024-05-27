@@ -121,6 +121,7 @@ const ReportPage = () => {
             columns={columns}
             dataSource={bookInfo}
             rowKey={"id"}
+            locale={{ emptyText: "No reservations made in the hotel" }}
           />
         </div>
       </div>

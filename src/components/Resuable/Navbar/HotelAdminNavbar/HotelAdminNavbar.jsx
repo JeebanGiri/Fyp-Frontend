@@ -19,8 +19,9 @@ import { RiEdit2Fill } from "react-icons/ri";
 import { GrView } from "react-icons/gr";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { UseOutsideClick } from "../../../../utils/useOutSideClick";
-import { getHotel } from "../../../../constants/Api";
+import { getHotel, userProfile } from "../../../../constants/Api";
 import { useQuery } from "react-query";
+import { BACKEND_URL } from "../../../../constants/constant";
 // import ClickAwayListener from "@mui/material/ClickAwayListener";
 
 const HotelAdminNavbar = () => {
@@ -54,15 +55,18 @@ const HotelAdminNavbar = () => {
     setShowNotificationBox(!showNotificationBox);
   };
 
+  const { data: userInfo } = useQuery("get-profile", () => userProfile(token));
+
   const toggleDashboard = () => {
     navigateTo("/hoteladmin-dashboard");
   };
 
-  const toggleHotelOptions = () => {
-    // e.preventDefault();
-    // e.stopPropagation();
+  const toggleHotelOptions = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     setShowHotelOptions(!showHotelOptions);
   };
+
   const toggleRoomOptions = () => {
     setShowRoomOptions(!showRoomOptions);
   };
@@ -123,21 +127,26 @@ const HotelAdminNavbar = () => {
         </div>
 
         <div className={styles.message}>
-          <span className={styles.notiimg}>
-            <IoNotificationsOutline
-              ref={notificationBoxRef}
-              onClick={handleNotificationClick}
-            />
+          <span className={styles.notiimg} onClick={handleNotificationClick}>
+            <IoNotificationsOutline ref={notificationBoxRef} />
           </span>
-          <div className={styles.dp}>
-            <img
-              src={Admin}
-              alt="Hotel Admin Profile"
-              height={40}
-              width={40}
-              ref={profileBoxRef}
-              onClick={handleProfileClick}
-            />
+
+          <div className={styles.dp} onClick={handleProfileClick}>
+            {userInfo?.data.avatar ? (
+              <img
+                className={styles.avatar}
+                src={`${BACKEND_URL}/static/user/avatars/${userInfo?.data.avatar}`}
+                alt="Profile"
+              />
+            ) : (
+              <img
+                src={Admin}
+                alt="Hotel Admin Profile"
+                height={40}
+                width={40}
+                ref={profileBoxRef}
+              />
+            )}
           </div>
         </div>
       </header>
@@ -191,8 +200,16 @@ const HotelAdminNavbar = () => {
           </div>
         </div>
       </div>
-      {showProfileBox && <HotelAdminProfile />}
-      {showNotificationBox && <Notification />}
+      {showProfileBox && (
+        <div ref={profileBoxRef}>
+          <HotelAdminProfile />
+        </div>
+      )}
+      {showNotificationBox && (
+        <div ref={notificationBoxRef}>
+          <Notification />
+        </div>
+      )}
       {showHotelOptions && (
         <div className={styles["openablebox"]}>
           <span className={styles.actions}>

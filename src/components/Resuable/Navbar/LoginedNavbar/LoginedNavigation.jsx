@@ -95,12 +95,12 @@ const LoginedNavigation = () => {
         </div>
       </nav>
       {showProfileBox && (
-        <div id="profile-box">
+        <div id="profile-box" ref={profileBoxRef}>
           <Profile />
         </div>
       )}
       {showNotificationBox && (
-        <div id="notification-box">
+        <div id="notification-box" ref={notificationBoxRef}>
           <Notification />
         </div>
       )}

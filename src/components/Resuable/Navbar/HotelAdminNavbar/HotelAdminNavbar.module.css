@@ -121,6 +121,11 @@ body {
   justify-content: center;
   overflow: hidden;
 }
+.dp img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
 
 .main-container {
   display: flex;
