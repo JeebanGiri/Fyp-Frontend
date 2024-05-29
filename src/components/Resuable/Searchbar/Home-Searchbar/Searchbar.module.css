@@ -15,10 +15,10 @@
   gap: 10px;
   border-radius: 10px;
   background: white;
-  width: 95%;
+  width: 75%;
   padding: 10px;
   border: 1px solid #dddfe2;
-  margin: 35px 0px 0px 20px;
+  margin: 35px 0px 0px 150px;
 }
 
 .main-content {
@@ -36,6 +36,19 @@
   padding: 5px;
   background: none;
 }
+
+.place-label select {
+  width: 400px;
+  font-size: 16px;
+  color: #2a2a2e;
+  font-weight: 400;
+  border: none;
+  border-bottom: none;
+  outline: none;
+  background: none;
+
+}
+
 .place-label input:focus {
   border: 2px solid #006ce4;
 }
@@ -292,104 +305,6 @@
   font-size: 16px;
   font-weight: 500;
 }
-
-/* .dates {
-    display: flex;
-    flex-wrap: wrap;
-} */
-
-/* Add Media Query */
-
-/* @media screen and (min-width: 1600px) and (max-width: 1800px) {
-    .searchbar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 200px;
-    }
-
-    .search-form {
-        width: 60%;
-        background: #f8f7f9;
-        border-radius: 10px;
-        margin-left: 20px;
-        padding: 20px;
-    }
-
-    .place-label {
-        width: 50%;
-    }
-
-    .main-content {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .dates {
-        width: 90%;
-    }
-
-    .guest {
-        display: flex;
-        width: 90%;
-    }
-
-    .guestlabel {
-        display: flex;
-    }
-
-    .btn-label button {
-        display: flex;
-        justify-content: center;
-        align-self: center;
-    }
-
-} */
-
-/* @media screen and (min-width: 1200px) and (max-width: 1599px) {
-    .searchbar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 200px;
-    }
-
-    .search-form {
-        width: 60%;
-        background: #f8f7f9;
-        border-radius: 10px;
-        margin-left: 20px;
-        padding: 20px;
-    }
-
-    .main-content {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .dates {
-        width: 90%;
-    }
-
-    .guest {
-        display: flex;
-        width: 90%;
-    }
-
-    .guestlabel {
-        display: flex;
-    }
-
-    .selectoption {
-        display: flex;
-    }
-
-    .btn-label button {
-        display: flex;
-        justify-content: center;
-        align-self: center;
-    }
-} */
 
 @media screen and (min-width: 1000px) and (max-width: 1199px) {
   .searchbar {
