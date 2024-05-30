@@ -11,12 +11,23 @@ const RegisterHotelAdmin = () => {
   const [data, setData] = useState({
     full_name: "",
     email: "",
-    phone_number: "",
+    phone_number: "+977-",
     password: "",
   });
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
+      // Prevent deletion of the prefix +977-
+      if (name === "phone_number" && !value.startsWith("+977-")) {
+        return;
+      }
+  
+      // Limit the phone number length to 15 characters (+977- + 10 digits)
+      if (name === "phone_number" && value.length > 15) {
+        return;
+      }
+
     setData({ ...data, [name]: value });
   };
 
@@ -76,7 +87,7 @@ const RegisterHotelAdmin = () => {
                     type="tel"
                     id="phoneNumber"
                     name="phone_number"
-                    placeholder="+977-9807099754"
+                    value={data.phone_number}
                     onChange={handleInputChange}
                     required
                   />

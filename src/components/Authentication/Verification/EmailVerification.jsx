@@ -107,6 +107,7 @@ const EmailVerification = () => {
               <TextField
                 id="standard-basic"
                 label="Enter 5-digit code"
+                // placeholder="Enter 5-digit code"
                 variant="standard"
                 name="code"
                 onChange={handleInputChange}

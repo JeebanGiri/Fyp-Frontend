@@ -1,11 +1,10 @@
 .notification-container {
-  /* display: grid; */
   height: 400px;
   width: 330px;
   overflow-x: hidden;
   overflow-y: scroll;
   position: absolute;
-  z-index: 999;
+  z-index: 1000;
   border-radius: 10px;
   border: 1px solid darkgray;
   left: 67%;
