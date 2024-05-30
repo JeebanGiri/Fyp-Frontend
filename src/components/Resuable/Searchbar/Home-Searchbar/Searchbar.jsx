@@ -191,6 +191,7 @@ const SearchBar = () => {
                 </div>
                 <div className={styles["check-out-label"]}>
                   <label htmlFor="checkout">
+                    
                     <DatePicker
                       selected={checkOutDate}
                       onChange={handleCheckOutDateChange}

@@ -3,11 +3,21 @@
   justify-content: center;
   align-items: center;
   width: 70%;
-  position: absolute;
+  /* position: absolute; */
   transform: translate(20%, -15%);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 3px;
   border-radius: 16px;
   background-color: rgb(248, 247, 249);
+}
+.search-form{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  place-items: center;
+  width: 100%;
+}
+.check-out-label .date-picker{
+  z-index: 1000;
 }
 
 .places {
@@ -15,30 +25,23 @@
   gap: 10px;
   border-radius: 10px;
   background: white;
-  width: 75%;
+  width: 100%;
   padding: 10px;
   border: 1px solid #dddfe2;
-  margin: 35px 0px 0px 150px;
+  margin: 35px 0px 0px 5px;
 }
 
 .main-content {
   display: flex;
-}
-
-.place-label input {
-  width: 400px;
-  font-size: 16px;
-  color: #2a2a2e;
-  font-weight: 400;
-  border: none;
-  border-bottom: none;
-  outline: none;
-  padding: 5px;
-  background: none;
+  width: 100%;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  place-items: center;
 }
 
 .place-label select {
-  width: 400px;
+  width: 800px;
   font-size: 16px;
   color: #2a2a2e;
   font-weight: 400;
@@ -46,7 +49,6 @@
   border-bottom: none;
   outline: none;
   background: none;
-
 }
 
 .place-label input:focus {
@@ -57,6 +59,7 @@
   font-size: 16px;
   color: #2a2a2e;
   font-weight: 400;
+  width: 200px;
 }
 
 .guestlabel {
@@ -70,25 +73,18 @@
   font-weight: 400;
 }
 
-.main-content {
-  display: flex;
-  flex-direction: row;
-  gap: 0px;
-}
-
 .dates {
   display: flex;
-  width: 60%;
-  gap: 10px;
-  justify-content: space-between;
-  gap: 10px;
+  width: 100%;
   border-radius: 10px;
   border: 1px solid #dddfe2;
   background: white;
   padding: 10px 10px;
-  margin: 20px;
+  margin: 20px 0px 0px 5px;
 }
-
+.react-datepicker{
+  z-index: 1500;
+}
 .check-in-dlabel {
   display: flex;
   gap: 10px;
@@ -110,17 +106,19 @@
   padding: 5px;
   background: none;
 }
-.weekday {
-  position: absolute;
-  top: 160px;
-  left: 360px;
-}
 
 .weekdays {
   position: absolute;
   top: 160px;
-  left: 90px;
+  left: 100px;
 }
+
+.weekday {
+  position: absolute;
+  top: 160px;
+  left: 340px;
+}
+
 .places .icon,
 .dates .icon,
 .guest .icon {
@@ -133,7 +131,6 @@
   justify-content: center;
   display: flex;
 }
-
 .btn-label button {
   position: relative;
   border: none;
@@ -164,9 +161,9 @@
   background: white;
   align-items: center;
   border: 1px solid #dddfe2;
-  padding: 10px;
-  width: 310px;
-  margin: 20px;
+  padding: 10px 10px;
+  width: 38%;
+  margin: 20px 0px 0px 5px;
   margin-left: var(--bui_spacing_1x);
 }
 
@@ -179,6 +176,7 @@
 .guest-container {
   display: flex;
   right: 5px;
+  width: 300px;
   top: 11px;
   border: none;
   outline: none;
@@ -195,7 +193,7 @@
 
 .selectoption {
   position: absolute;
-  right: 40px;
+  right: 50px;
   top: 150px;
 }
 .selectoption svg {
@@ -277,7 +275,6 @@
   height: 50px;
   justify-content: space-evenly;
   align-items: center;
-  /* border: 1px solid #333; */
   border-radius: 4px;
 }
 

@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   position: relative;
-  z-index: 1;
+  z-index: 999;
   top: -25px;
   text-align: center;
 }
@@ -295,16 +295,17 @@
 }
 
 .articlecontent {
-  margin-top: 350px;
-  position: relative;
+  margin-top: 50px;
   text-align: center;
+  justify-content: center;
+  gap: 20px;
+  display: flex;
 }
 
 .explore {
-  position: relative;
   border: none;
   user-select: none;
-  padding: 7px 10px;
+  padding: 7px 13px;
   border-radius: 5px;
   background-color: rgb(206, 213, 223);
   box-shadow: rgba(158, 156, 156, 0.2) 0px 1px 3px 1px;
@@ -312,8 +313,7 @@
   transition: all 0.15s ease-in-out 0s;
   text-transform: uppercase;
   cursor: pointer;
-  top: -45px;
-  left: 250px;
+  left: 50px;
 }
 
 .main {

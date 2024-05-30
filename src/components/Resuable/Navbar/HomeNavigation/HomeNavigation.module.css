@@ -55,7 +55,7 @@
 .navLink.active {
   color: red;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .active {
@@ -63,7 +63,7 @@
   position: relative;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: red;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 /* Responsive styles */
