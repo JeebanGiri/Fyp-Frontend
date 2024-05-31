@@ -50,15 +50,11 @@ const HotelAdminDashboard = () => {
     getTotalIncomeHotelAdmin(token)
   );
 
-  console.log(totalIncome, "total income");
-
   const { data: customerInfo } = useQuery("get-customer", () =>
     getAllCustomer(token)
   );
 
   const customer = customerInfo?.data;
-  console.log(customerInfo, "customer fetch");
-  console.log(customer, "customer");
 
   return (
     <>
@@ -83,7 +79,7 @@ const HotelAdminDashboard = () => {
                   <span className={styles.text}>
                     <h2 className={styles.topic}>Total Booking</h2>
                     <h2 className={styles["topic-heading"]}>
-                      {totalBooking?.data}
+                      {totalBooking?.data ?? 0}
                     </h2>
                   </span>
                   <span className={styles.image}>
@@ -98,7 +94,7 @@ const HotelAdminDashboard = () => {
                   <span className={styles.text}>
                     <h2 className={styles.topic}>Rooms Available</h2>
                     <h2 className={styles["topic-heading"]}>
-                      {totalRooms?.data}
+                      {totalRooms?.data ?? 0}
                     </h2>
                   </span>
                   <span className={styles.image}>
@@ -113,7 +109,7 @@ const HotelAdminDashboard = () => {
                   <span className={styles.text}>
                     <h2 className={styles.topic}>Total Income</h2>
                     <h2 className={styles["topic-heading"]}>
-                      {totalIncome?.data}
+                      {totalIncome?.data ?? 0}
                     </h2>
                   </span>
                   <span className={styles.image}>
