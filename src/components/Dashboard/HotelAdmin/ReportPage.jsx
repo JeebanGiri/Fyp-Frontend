@@ -1,7 +1,7 @@
 import styles from "./ReportPage.module.css";
 import Select from "react-select";
 import { useState } from "react";
-import { Button, Divider, Radio, Table } from "antd";
+import { Button, Divider, Table } from "antd";
 import { getAllReservation } from "../../../constants/Api";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
@@ -33,9 +33,6 @@ const ReportPage = () => {
 
   const handleGenerateReport = async () => {
     try {
-      // const cusInfo = await generateCustomerReport(token, datas);
-      // console.log(cusInfo);
-
       navigateTo("/hoteladmin-dashboard/generate-report", {
         state: { datas },
       });
@@ -100,16 +97,6 @@ const ReportPage = () => {
             <Select options={options} className={styles.select} />
           </span>
         </div>
-
-        {/* <Radio.Group
-          onChange={({ target: { value } }) => {
-            setSelectionType(value);
-          }}
-          value={selectionType}
-        >
-          <Radio value="checkbox">Checkbox</Radio>
-          <Radio value="radio">radio</Radio>
-        </Radio.Group> */}
 
         <div className={styles["report-table"]}>
           <Divider />

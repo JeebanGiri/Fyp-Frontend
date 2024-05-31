@@ -51,6 +51,12 @@ body {
 .notiimg svg {
   font-size: 25px;
 }
+.hotelname{
+  font-size: 20px;
+  font-family: 'Roboto';
+  font-weight: 500;
+  color:  #82cae2;
+}
 
 .menuicn {
   cursor: pointer;

@@ -67,10 +67,6 @@ const HotelAdminNavbar = () => {
     setShowHotelOptions(!showHotelOptions);
   };
 
-  const toggleRoomOptions = () => {
-    setShowRoomOptions(!showRoomOptions);
-  };
-
   const toogleViewHotelPage = () => {
     navigateTo("/hoteladmin-dashboard/view-hotel");
   };
@@ -108,13 +104,19 @@ const HotelAdminNavbar = () => {
   return (
     <>
       <header className={styles.header}>
-        {hotelInfo
-          ? hotelInfo && (
+        <div className={styles["hotel-logo"]}>
+          {hotelInfo ? (
+            hotelInfo && (
               <div className={styles.logosec}>
                 <div className={styles.logo}>{hotelInfo.name}</div>
               </div>
             )
-          : null}
+          ) : (
+            <div className={styles.hotelname}>
+              <p>Unknown Hotel</p>
+            </div>
+          )}
+        </div>
         <div className={styles.searchbar}>
           <input type="text" placeholder="Search" />
           <div className={styles.searchbtn}>
