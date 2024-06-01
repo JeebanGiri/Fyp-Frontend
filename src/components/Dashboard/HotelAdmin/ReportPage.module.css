@@ -6,7 +6,7 @@
 .report-page {
   width: 100%;
   min-height: 100vh;
-  background-color: #f5f6fa;
+  /* background-color: #f5f6fa; */
 }
 .selection {
   width: 200px;

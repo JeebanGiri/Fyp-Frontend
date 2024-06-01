@@ -72,6 +72,7 @@
   width: 325px;
   outline: none;
   border: none;
+  color: black;
 }
 .inputfields input[type="text"] {
   font-size: 15px;

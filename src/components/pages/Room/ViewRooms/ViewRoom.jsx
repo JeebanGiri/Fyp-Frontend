@@ -77,6 +77,23 @@ const ViewRoom = () => {
 
   const columns = [
     {
+      title: "Image",
+      key: "images",
+      dataIndex: "images",
+      render: (images) => (
+        <>
+          {images.map((image, index) => (
+            <img
+              key={index}
+              src={`${BACKEND_URL}/static/rooms/${image}`}
+              alt="Service"
+              style={{ width: "50px", height: "50px", marginRight: "5px" }}
+            />
+          ))}
+        </>
+      ),
+    },
+    {
       title: "Room Name",
       dataIndex: "room_name",
       key: "room_name",
@@ -96,23 +113,6 @@ const ViewRoom = () => {
       title: "Room Capacity",
       dataIndex: "room_capacity",
       key: "room_capacity",
-    },
-    {
-      title: "Image",
-      key: "images",
-      dataIndex: "images",
-      render: (images) => (
-        <>
-          {images.map((image, index) => (
-            <img
-              key={index}
-              src={`${BACKEND_URL}/static/rooms/${image}`}
-              alt="Service"
-              style={{ width: "50px", height: "50px", marginRight: "5px" }}
-            />
-          ))}
-        </>
-      ),
     },
     {
       title: "Action",

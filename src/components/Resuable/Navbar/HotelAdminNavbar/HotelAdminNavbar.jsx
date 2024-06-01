@@ -164,10 +164,10 @@ const HotelAdminNavbar = () => {
                 <Nav.Item eventKey="1" className={styles.navitem} onClick={toggleDashboard}><RxDashboard /> Dashboard</Nav.Item>
                 <Nav.Item eventKey="2" className={styles.navitem} onClick={toogleProfilePage}><ImProfile /> Profile</Nav.Item>
                 <Nav.Item eventKey="3" className={styles.navitem} onClick={toogleReportPage}><TbFileReport /> Report</Nav.Item>
-                <Dropdown eventKey="4" className={styles.navitem} title={<><FaHotel className={styles.faHotel} /> Hotel</>}>
-                  <Dropdown.Item eventKey="4-1" onClick={toogleAddHotelPage}>Add Hotel</Dropdown.Item>
-                  <Dropdown.Item eventKey="4-2" onClick={toogleEditHotelPage}>Edit Hotel</Dropdown.Item>
-                  <Dropdown.Item eventKey="4-3" onClick={toogleViewHotelPage}>View Hotel</Dropdown.Item>
+                <Dropdown eventKey="4" className={styles.hotelnav} title={<><FaHotel className={styles.faHotel} /> Hotel</>}>
+                  <Dropdown.Item eventKey="4-1" onClick={toogleAddHotelPage} className={styles.dropdownItem}>Add Hotel</Dropdown.Item>
+                  <Dropdown.Item eventKey="4-2" onClick={toogleEditHotelPage} className={styles.dropdownItem}>Edit Hotel</Dropdown.Item>
+                  <Dropdown.Item eventKey="4-3" onClick={toogleViewHotelPage} className={styles.dropdownItem}>View Hotel</Dropdown.Item>
                 </Dropdown>
                 <Nav.Item eventKey="5" className={styles.navitem} onClick={toogleViewRoomPage}><MdOutlineBedroomParent /> Rooms</Nav.Item>
                 <Nav.Item eventKey="6" className={styles.navitem} onClick={handleLogout}><FiLogOut /> Logout</Nav.Item>
