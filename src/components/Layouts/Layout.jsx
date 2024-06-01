@@ -15,7 +15,7 @@ const Layout = () => {
 
   return (
     <>
-      {isLogin == true && role === "CUSTOMER" ? (
+      {isLogin == true && role === "CUSTOMER" && role === "HOTEL_ADMIN" ? (
         <LoginedNavigation />
       ) : (
         <HomeNavigation />

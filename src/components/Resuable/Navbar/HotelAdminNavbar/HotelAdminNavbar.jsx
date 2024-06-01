@@ -22,6 +22,8 @@ import { UseOutsideClick } from "../../../../utils/useOutSideClick";
 import { getHotel, userProfile } from "../../../../constants/Api";
 import { useQuery } from "react-query";
 import { BACKEND_URL } from "../../../../constants/constant";
+import "rsuite/dist/rsuite.min.css";
+import { Sidenav, Nav, Dropdown } from "rsuite";
 // import ClickAwayListener from "@mui/material/ClickAwayListener";
 
 const HotelAdminNavbar = () => {
@@ -153,53 +155,25 @@ const HotelAdminNavbar = () => {
         </div>
       </header>
 
-      <div className={styles.navcontainer} id="navcontainer">
-        <div className={styles.slidebar}>
-          <div className={styles["nav-upper-options"]}>
-            <div className={`${styles.nav_option} ${styles.option1}`}>
-              <RxDashboard />
-              <h5 onClick={toggleDashboard}> Dashboard</h5>
-            </div>
-
-            <div className={`${styles.nav_option} ${styles.option3}`}>
-              <TbFileReport />
-              <h6 onClick={toogleReportPage}> Report</h6>
-            </div>
-            <div
-              className={`${styles.nav_option} ${styles.option4}`}
-              onClick={toggleHotelOptions}
-            >
-              <FaHotel />
-              <h6 className={styles.hotelmenu} ref={hotelDropdownBox}>
-                <span>Hotel</span>
-                <span>
-                  <IoIosArrowForward className={styles["hotel-dropdown"]} />
-                </span>
-              </h6>
-            </div>
-            <div
-              className={`${styles.nav_option} ${styles.option5}`}
-              onClick={toogleViewRoomPage}
-              ref={roomDropdownBox}
-            >
-              <MdOutlineBedroomParent />
-              <h6 className={styles.hotelmenu}>
-                <span>Room</span>
-                {/* <span>
-                  <IoIosArrowForward className={styles["hotel-dropdown"]} />
-                </span> */}
-              </h6>
-            </div>
-
-            <div className={`${styles.nav_option} ${styles.option6}`}>
-              <ImProfile />
-              <h6 onClick={toogleProfilePage}> Profile</h6>
-            </div>
-            <div className={`${styles.nav_option} ${styles.logout}`}>
-              <FiLogOut />
-              <h6 onClick={handleLogout}>Logout</h6>
-            </div>
-          </div>
+      <div className={styles.navcontainer} id="navcontainer" >
+        <div className={styles.slidebar} >
+        
+          <Sidenav defaultOpenKeys={["3", "4"]} activeKey="1" className={styles.customsidenav}> 
+            <Sidenav.Body>
+              <Nav className={styles.navlist}>
+                <Nav.Item eventKey="1" className={styles.navitem} onClick={toggleDashboard}><RxDashboard /> Dashboard</Nav.Item>
+                <Nav.Item eventKey="2" className={styles.navitem} onClick={toogleProfilePage}><ImProfile /> Profile</Nav.Item>
+                <Nav.Item eventKey="3" className={styles.navitem} onClick={toogleReportPage}><TbFileReport /> Report</Nav.Item>
+                <Dropdown eventKey="4" className={styles.navitem} title={<><FaHotel className={styles.faHotel} /> Hotel</>}>
+                  <Dropdown.Item eventKey="4-1" onClick={toogleAddHotelPage}>Add Hotel</Dropdown.Item>
+                  <Dropdown.Item eventKey="4-2" onClick={toogleEditHotelPage}>Edit Hotel</Dropdown.Item>
+                  <Dropdown.Item eventKey="4-3" onClick={toogleViewHotelPage}>View Hotel</Dropdown.Item>
+                </Dropdown>
+                <Nav.Item eventKey="5" className={styles.navitem} onClick={toogleViewRoomPage}><MdOutlineBedroomParent /> Rooms</Nav.Item>
+                <Nav.Item eventKey="6" className={styles.navitem} onClick={handleLogout}><FiLogOut /> Logout</Nav.Item>
+              </Nav>
+            </Sidenav.Body>
+          </Sidenav>
         </div>
       </div>
       {showProfileBox && (
@@ -239,7 +213,63 @@ const HotelAdminNavbar = () => {
           </span>
         </div>
       )}
-      {/* {showRoomOptions && (
+      
+    </>
+  );
+};
+export default HotelAdminNavbar;
+
+{
+  /* <span>
+                  <IoIosArrowForward className={styles["hotel-dropdown"]} />
+                </span> */
+}
+
+ {/* <div className={styles["nav-upper-options"]}>
+            <div className={`${styles.nav_option} ${styles.option1}`}>
+              <RxDashboard />
+              <h5 onClick={toggleDashboard}> Dashboard</h5>
+            </div>
+
+            <div className={`${styles.nav_option} ${styles.option3}`}>
+              <TbFileReport />
+              <h6 onClick={toogleReportPage}> Report</h6>
+            </div>
+            <div
+              className={`${styles.nav_option} ${styles.option4}`}
+              onClick={toggleHotelOptions}
+            >
+              <FaHotel />
+              <h6 className={styles.hotelmenu} ref={hotelDropdownBox}>
+                <span>Hotel</span>
+                <span>
+                  <IoIosArrowForward className={styles["hotel-dropdown"]} />
+                </span>
+              </h6>
+            </div>
+            <div
+              className={`${styles.nav_option} ${styles.option5}`}
+              onClick={toogleViewRoomPage}
+              ref={roomDropdownBox}
+            >
+              <MdOutlineBedroomParent />
+              <h6 className={styles.hotelmenu}>
+                <span>Room</span>
+                
+              </h6>
+            </div>
+
+            <div className={`${styles.nav_option} ${styles.option6}`}>
+              <ImProfile />
+              <h6 onClick={toogleProfilePage}> Profile</h6>
+            </div>
+            <div className={`${styles.nav_option} ${styles.logout}`}>
+              <FiLogOut />
+              <h6  onClick={handleLogout}>Logout</h6>
+            </div>
+          </div> */}
+
+{/* {showRoomOptions && (
         <div className={styles["roombox"]}>
           <span className={styles.actions}>
             <div className={styles["hotel-update"]}>
@@ -257,7 +287,3 @@ const HotelAdminNavbar = () => {
           </span>
         </div>
       )} */}
-    </>
-  );
-};
-export default HotelAdminNavbar;

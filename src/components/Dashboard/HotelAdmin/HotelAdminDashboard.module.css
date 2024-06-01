@@ -97,7 +97,8 @@ body {
 
 .main {
   padding: 130px 30px 30px 30px;
-  background-color: #f5f6fa;
+  height: 100vh;
+  /* background-color: #f5f6fa; */
 }
 
 .main::-webkit-scrollbar-thumb {
