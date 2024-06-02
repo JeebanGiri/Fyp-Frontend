@@ -49,12 +49,15 @@
   transition: 0.3s ease-out;
   color: whitesmoke;
   justify-content: center;
+  list-style-type: none;
 }
 
 .navLink:hover,
 .navLink.active {
   color: red;
+  text-decoration: none;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  list-style-type: none;
 }
 
 .active {
@@ -62,6 +65,7 @@
   position: relative;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: red;
+  list-style-type: none;
 }
 
 /* Responsive styles */

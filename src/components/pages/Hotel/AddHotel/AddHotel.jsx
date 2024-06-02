@@ -9,12 +9,12 @@ const { RangePicker } = TimePicker;
 
 const textareaStyle = {
   width: "100%",
-  height: "200px",
+  height: "150px",
 };
 
 const AddHotel = () => {
   const navigateTo = useNavigate();
-
+ 
   // -----------store all the input data using usestate hook--------------
   const [formData, setFormData] = useState({
     hotel_name: "",
