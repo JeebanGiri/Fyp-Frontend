@@ -85,14 +85,12 @@ const HotelLanding = () => {
     navigateTo("/view-location", { state: { data } });
     setClick(!click);
   };
-  
 
   //----------- Extract hotel IDs -----------------
   const fetchRoomStatus = async (hotel_id) => {
     try {
       const info = await getHotelRoomAvailiability(hotel_id)
         .then((response) => {
-          console.log(response);
           const message = response.data.message;
           toast.success(message);
           navigateTo(
@@ -106,13 +104,14 @@ const HotelLanding = () => {
             errorMsg.forEach((err) => toast.error(err));
           } else if (errorMsg) {
             toast.error(errorMsg);
-            setTimeout(() => {
-              navigateTo(
-                `/hotel-landing?address=${address}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&guests=${guests}&rooms=${rooms}`
-              );
-            }, 1000);
+            return;
           }
         });
+      setTimeout(() => {
+        navigateTo(
+          `/hotel-landing?address=${address}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&guests=${guests}&rooms=${rooms}`
+        );
+      }, 1000);
       return info;
     } catch (error) {
       console.error("Error fetching room data:", error);

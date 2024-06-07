@@ -222,7 +222,7 @@ body {
 }
 
 .dropdownItem {
-  font-size: 16px;
+  font-size: 1rem;
   white-space: normal;
   margin-left: 35px;
   font-family: Arial, Helvetica, sans-serif;
