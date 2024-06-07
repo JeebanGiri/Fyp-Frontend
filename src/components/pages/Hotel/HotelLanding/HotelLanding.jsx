@@ -37,7 +37,14 @@ const HotelLanding = () => {
   const getCheckIn = searchParams.get("checkInDate");
   const getCheckOut = searchParams.get("checkOutDate");
 
-  console.log(getAddress,getCheckIn,getCheckOut,getRooms,getGuests, "from searchbar rendering.");
+  console.log(
+    getAddress,
+    getCheckIn,
+    getCheckOut,
+    getRooms,
+    getGuests,
+    "from searchbar rendering."
+  );
   const [checkInDate, setCheckInDate] = useState(
     getCheckIn ? new Date(getCheckIn) : new Date()
   );
@@ -69,8 +76,6 @@ const HotelLanding = () => {
   };
 
   const { data, refetch } = useQuery("filter-hotel", fetchHotelData);
-
-  console.log(data);
 
   const handleViewMap = () => {
     navigateTo("/view-location", { state: { data } });
@@ -184,17 +189,13 @@ const HotelLanding = () => {
               </span>
             </div>
           ) : (
-            // {
             data?.map((hotels) => (
               <div className={styles["landing-container"]} key={hotels.id}>
                 <div className={styles.container1}>
                   <div className={styles["hotel-image"]}>
                     <img
-                      src={
-                        `${BACKEND_URL}/static/hotel_admin/register-hotel/` +
-                        hotels.avatar
-                      }
-                      alt="Hotel Image"
+                      src={`${BACKEND_URL}/static/hotel_admin/register-hotel/${hotels.avatar}`}
+                      alt="Hotel Profile"
                     />
                   </div>
                   <div className={styles.articles}>
