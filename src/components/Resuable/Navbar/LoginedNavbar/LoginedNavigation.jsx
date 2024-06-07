@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import {useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import style from "./LoginedNavigation.module.css";
