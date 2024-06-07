@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import HomeNavigation from "../Resuable/Navbar/HomeNavigation/HomeNavigation";
 import LoginedNavigation from "../Resuable/Navbar/LoginedNavbar/LoginedNavigation";
@@ -6,16 +6,28 @@ import LoginedNavigation from "../Resuable/Navbar/LoginedNavbar/LoginedNavigatio
 const Layout = () => {
   const [isLogin, setIsLogin] = useState(false);
   const role = localStorage.getItem("role");
+  const location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       setIsLogin(true);
+    } else {
+      setIsLogin(false);
     }
   }, []);
 
+  useEffect(() => {
+    if (isLogin && location.pathname === "/login") {
+      localStorage.removeItem("token");
+      window.location.reload();
+      navigate("/login"); // Redirect logged-in users trying to access /login to the home page
+    }
+  }, [isLogin, location, navigate]);
+
   return (
     <>
-      {isLogin == true && role === "CUSTOMER" && role === "HOTEL_ADMIN" ? (
+      {(isLogin == true && role === "CUSTOMER") || role === "HOTEL_ADMIN" ? (
         <LoginedNavigation />
       ) : (
         <HomeNavigation />

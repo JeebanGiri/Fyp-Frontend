@@ -9,7 +9,7 @@
   justify-content: center;
   position: relative;
   z-index: 999;
-  top: -25px;
+  top: 25px;
   text-align: center;
 }
 
@@ -99,72 +99,16 @@
   cursor: pointer;
   margin-top: 15px;
   font-weight: 500;
-  transition: 0.3s ease-in-out;
+  /* transition: 0.3s ease-in-out; */
 }
 
-.content a {
+.homeContent a:hover{
   text-decoration: none;
-  list-style-type: none;
 }
 
 .active {
   color: red;
 }
-
-/* @media screen and (max-width: 1800px) {
-    .homeContent {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    #titleBox {
-        display: flex;
-        flex-direction: row;
-        width: 30%;
-        background: rgb(192, 192, 192);
-        height: 60px;
-    }
-
-    .hotelHomes {
-        align-items: center;
-        display: flex;
-    }
-
-    .longStay {
-        align-items: center;
-    }
-} */
-
-/* @media screen and (min-width: 1200px) and (max-width: 1400px) {
-    .homeContent {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    #titleBox {
-        display: flex;
-        flex-direction: row;
-        width: 37%;
-        background: rgb(192, 192, 192);
-        height: 60px;
-        border-radius: 10px;
-        align-items: center;
-        padding: 10px 0px 0px 10px;
-        gap: 30px;
-        position: relative;
-        top: 200px;
-    }
-
-    .hotelHomes {
-        align-items: center;
-    }
-
-    .longStay {
-        align-items: center;
-    }
-} */
 
 @media screen and (min-width: 1090px) and (max-width: 1199px) {
   .homeContent {

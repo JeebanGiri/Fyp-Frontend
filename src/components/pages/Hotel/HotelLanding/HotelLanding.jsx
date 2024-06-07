@@ -72,7 +72,7 @@ const HotelLanding = () => {
     for (let i = 0; i < data.length; i++) {
       const hotelsss = data[i];
       if (hotelsss.location === null) {
-        toast.error("No Location found for hotel");
+        toast.error("No Location found for  the hotel");
         setTimeout(() => {
           navigateTo(
             `/hotel-landing?address=${address}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&guests=${guests}&rooms=${rooms}`

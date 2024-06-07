@@ -68,8 +68,8 @@ function App() {
           <Route path="/room-landing/:hotelId/" element={<RoomLanding />} />
           <Route path="/landing-searchbar" element={<LoginedSearchbar />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/email-verification" element={<EmailVerification />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/email-verification" element={<EmailVerification />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/rating" element={<Rating />} />
           <Route path="/booking" element={<Reservation />} />

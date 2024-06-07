@@ -57,12 +57,7 @@ const LoginedNavigation = () => {
               }
             >
               <li key="home" className={style.navItems}>
-                <NavLink
-                  to="/"
-                  exact="true"
-                  className={style.navLinksss}
-                  onClick={handleClick}
-                >
+                <NavLink to="/" exact="true" onClick={handleClick}>
                   Hotels & Homes
                 </NavLink>
               </li>
@@ -70,17 +65,15 @@ const LoginedNavigation = () => {
               <li key="notification" className={style.navItems}>
                 <NavLink
                   to="/#"
-                  className={style.navLinks}
                   ref={notificationBoxRef}
                   onClick={handleNotificationClick}
                 >
                   {notifi}
                 </NavLink>
               </li>
-              <li key="profile" className={style.navLinks}>
+              <li key="profile" className={style.navItems}>
                 <NavLink
                   to="#"
-                  className={style.navLinks}
                   ref={profileBoxRef}
                   onClick={handleProfileClick}
                 >
