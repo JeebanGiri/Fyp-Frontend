@@ -16,15 +16,18 @@ body html {
 .filtering1 {
   width: 300px;
   height: 140px;
-  padding: 0px 20px;
+  padding: 15px 20px;
   background: #fff;
   border-radius: 10px;
+  /* box-shadow: 0 1px 4px rgba(18, 22, 33, 0.12); */
+  border: 1px solid #f3f4f4;
   cursor: pointer;
 }
 
 .mapsimg img {
   height: 110px;
   width: 270px;
+  border-radius: 5px;
   border: 1px solid #f3f4f4;
 }
 .contents {

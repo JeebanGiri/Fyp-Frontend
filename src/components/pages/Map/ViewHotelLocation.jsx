@@ -3,30 +3,49 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon } from "leaflet";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./Map.module.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ViewHotelLocation() {
   const location = useLocation();
   const navigate = useNavigate();
   const [hotelLocation, setHotelLocation] = useState([]);
-  const [mapCenter, setMapCenter] = useState([27.7000769, 85.324]);
+  // const [mapCenter, setMapCenter] = useState([27.7000769, 85.324]);
+
+  hotelLocation.map((hotelsss) => {
+    if (hotelsss.location === null) {
+      setTimeout(() => {
+        toast.error("No Location found for hotel");
+      }, 500);
+    }
+  });
 
   useEffect(() => {
     if (location.state && location.state.data) {
       const hotelInfo = location.state.data;
       setHotelLocation(hotelInfo);
-      if (hotelInfo.length > 0) {
-        const avgLat =
-          hotelInfo.reduce(
-            (sum, hotel) => sum + hotel.location.coordinates[1],
-            0
-          ) / hotelInfo.length;
-        const avgLng =
-          hotelInfo.reduce(
-            (sum, hotel) => sum + hotel.location.coordinates[0],
-            0
-          ) / hotelInfo.length;
-        setMapCenter([avgLat, avgLng]);
-      }
+
+      // hotelLocation.map((hotelsss) => {
+      //   if (
+      //     hotelsss.location.coordinates === null
+      //   ) {
+      //     toast.error("No Location found for hotel");
+      //   }
+      // });
+
+      // if (hotelInfo.length > 0) {
+      //   const avgLat =
+      //     hotelInfo.reduce(
+      //       (sum, hotel) => sum + hotel.location.coordinates[1],
+      //       0
+      //     ) / hotelInfo.length;
+      //   const avgLng =
+      //     hotelInfo.reduce(
+      //       (sum, hotel) => sum + hotel.location.coordinates[0],
+      //       0
+      //     ) / hotelInfo.length;
+      //   setMapCenter([avgLat, avgLng]);
+      // }
     }
   }, [location]);
 
@@ -57,12 +76,13 @@ export default function ViewHotelLocation() {
   };
   return (
     <>
+      <ToastContainer />
       <div className={styles.returns}>
         <button onClick={handleGoBack}>Back</button>
       </div>
       <MapContainer
-        // center={[27.7000769, 85.324]}
-        center={mapCenter}
+        center={[27.7000769, 85.324]}
+        // center={mapCenter}
         zoom={20}
         style={{ height: "100vh", width: "100%" }}
       >

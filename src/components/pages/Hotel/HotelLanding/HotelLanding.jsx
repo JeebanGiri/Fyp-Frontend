@@ -7,7 +7,7 @@ import Slider from "react-slider";
 import { BACKEND_URL } from "../../../../constants/constant";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery } from "react-query";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Marker from "../../../../assets/Hotel/marker.png";
 import Maps from "../../../../assets/Hotel/maps.png";
@@ -28,8 +28,6 @@ const HotelLanding = () => {
   const [values, setValues] = useState([MIN, MAX]);
   const [searchParams, setSearchParam] = useSearchParams();
 
-  console.log(values);
-
   // Fetch the details of user input for searching hotel by their preference
   const getAddress = searchParams.get("address");
   const getGuests = searchParams.get("guests");
@@ -37,14 +35,6 @@ const HotelLanding = () => {
   const getCheckIn = searchParams.get("checkInDate");
   const getCheckOut = searchParams.get("checkOutDate");
 
-  console.log(
-    getAddress,
-    getCheckIn,
-    getCheckOut,
-    getRooms,
-    getGuests,
-    "from searchbar rendering."
-  );
   const [checkInDate, setCheckInDate] = useState(
     getCheckIn ? new Date(getCheckIn) : new Date()
   );
@@ -77,10 +67,42 @@ const HotelLanding = () => {
 
   const { data, refetch } = useQuery("filter-hotel", fetchHotelData);
 
-  const handleViewMap = () => {
+  // const handleViewMap = (event) => {
+  //   event.preventDefault();
+  //   data.map((hotelsss) => {
+  //     if (hotelsss.location === null) {
+  //       toast.error("No Location found for hotel");
+  //       setTimeout(() => {
+  //         navigateTo(
+  //           `/hotel-landing?address=${address}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&guests=${guests}&rooms=${rooms}`
+  //         );
+  //       }, 1000);
+  //     }
+  //   });
+
+  //   navigateTo("/view-location", { state: { data } });
+  //   setClick(!click);
+  // };
+
+  const handleViewMap = (event) => {
+    event.preventDefault();
+    for (let i = 0; i < data.length; i++) {
+      const hotelsss = data[i];
+      if (hotelsss.location === null) {
+        toast.error("No Location found for hotel");
+        setTimeout(() => {
+          navigateTo(
+            `/hotel-landing?address=${address}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&guests=${guests}&rooms=${rooms}`
+          );
+        }, 1000);
+        return; // Exit the loop after the first null location is found
+      }
+    }
+    // Navigate to the map view if all locations are valid
     navigateTo("/view-location", { state: { data } });
     setClick(!click);
   };
+  
 
   //----------- Extract hotel IDs -----------------
   const fetchRoomStatus = async (hotel_id) => {
@@ -95,13 +117,17 @@ const HotelLanding = () => {
           );
         })
         .catch((error) => {
-          console.log(error.response);
           const errorMsg =
             error.response.data.message || error.response.data.error.message;
           if (Array.isArray(errorMsg)) {
             errorMsg.forEach((err) => toast.error(err));
           } else if (errorMsg) {
             toast.error(errorMsg);
+            setTimeout(() => {
+              navigateTo(
+                `/hotel-landing?address=${address}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&guests=${guests}&rooms=${rooms}`
+              );
+            }, 1000);
           }
         });
       return info;
@@ -126,7 +152,7 @@ const HotelLanding = () => {
 
   return (
     <>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <div className={styles.header}>
         <LoginedSearchbar
           address={address}

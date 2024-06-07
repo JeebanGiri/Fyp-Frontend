@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 .landing-page {
-  padding: 50px 20px;
+  padding: 50px 90px;
   display: flex;
   gap: 20px;
   flex-wrap: no-wrap;
