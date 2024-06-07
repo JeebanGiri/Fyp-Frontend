@@ -3,22 +3,12 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon } from "leaflet";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./Map.module.css";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function ViewHotelLocation() {
   const location = useLocation();
   const navigate = useNavigate();
   const [hotelLocation, setHotelLocation] = useState([]);
   // const [mapCenter, setMapCenter] = useState([27.7000769, 85.324]);
-
-  hotelLocation.map((hotelsss) => {
-    if (hotelsss.location === null) {
-      setTimeout(() => {
-        toast.error("No Location found for hotel");
-      }, 500);
-    }
-  });
 
   useEffect(() => {
     if (location.state && location.state.data) {
@@ -76,7 +66,6 @@ export default function ViewHotelLocation() {
   };
   return (
     <>
-      <ToastContainer />
       <div className={styles.returns}>
         <button onClick={handleGoBack}>Back</button>
       </div>

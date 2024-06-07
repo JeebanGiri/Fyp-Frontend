@@ -67,23 +67,6 @@ const HotelLanding = () => {
 
   const { data, refetch } = useQuery("filter-hotel", fetchHotelData);
 
-  // const handleViewMap = (event) => {
-  //   event.preventDefault();
-  //   data.map((hotelsss) => {
-  //     if (hotelsss.location === null) {
-  //       toast.error("No Location found for hotel");
-  //       setTimeout(() => {
-  //         navigateTo(
-  //           `/hotel-landing?address=${address}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&guests=${guests}&rooms=${rooms}`
-  //         );
-  //       }, 1000);
-  //     }
-  //   });
-
-  //   navigateTo("/view-location", { state: { data } });
-  //   setClick(!click);
-  // };
-
   const handleViewMap = (event) => {
     event.preventDefault();
     for (let i = 0; i < data.length; i++) {
@@ -152,7 +135,6 @@ const HotelLanding = () => {
 
   return (
     <>
-      {/* <ToastContainer /> */}
       <div className={styles.header}>
         <LoginedSearchbar
           address={address}
