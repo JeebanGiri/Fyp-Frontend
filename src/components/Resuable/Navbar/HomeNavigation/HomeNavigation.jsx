@@ -40,7 +40,7 @@ const HomeNavigation = () => {
                   <Tooltip title="List Your Property" placement="top">
                     <NavLink
                       to={item.path}
-                      exact={true}
+                      exact="true"
                       className={`${style.navLink} ${
                         item.path === location.pathname ? style.active : ""
                       }`}
@@ -52,7 +52,7 @@ const HomeNavigation = () => {
                 ) : (
                   <NavLink
                     to={item.path}
-                    exact={true}
+                    exact="true"
                     className={`${style.navLink} ${
                       item.path === location.pathname ? style.active : ""
                     }`}

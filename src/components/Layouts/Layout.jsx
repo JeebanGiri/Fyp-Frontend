@@ -22,12 +22,14 @@ const Layout = () => {
       localStorage.removeItem("token");
       window.location.reload();
       navigate("/login"); // Redirect logged-in users trying to access /login to the home page
+      window.location.reload();
     }
   }, [isLogin, location, navigate]);
 
   return (
     <>
-      {(isLogin == true && role === "CUSTOMER") || role === "HOTEL_ADMIN" ? (
+      {(isLogin == true && role === "CUSTOMER") ||
+      (isLogin == true && role === "HOTEL_ADMIN") ? (
         <LoginedNavigation />
       ) : (
         <HomeNavigation />

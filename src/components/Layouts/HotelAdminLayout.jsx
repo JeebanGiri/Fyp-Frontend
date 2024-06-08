@@ -6,19 +6,26 @@ import { useQuery } from "react-query";
 const HotelAdminLayout = () => {
   const navigateTo = useNavigate();
   const jwt = localStorage.getItem("token");
-  const { data: userInfo, isLoading } = useQuery("userInfo", () =>
+  const {
+    data: userInfo,
+    isLoading,
+    isError,
+  } = useQuery("userInfo", () =>
     userProfile(jwt)
       .then((res) => {
         return res.data;
       })
       .catch((err) => {
-        console.log(err.responsse);
+        console.log(err.response);
         localStorage.removeItem("token");
         navigateTo("/login");
       })
   );
   if (isLoading) {
     return "Loading.....";
+  }
+  if (isError) {
+    return "Error Occured...!";
   }
   return userInfo?.role === "HOTEL_ADMIN" ? (
     <>

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import styles from "./HotelAdminDashboard.module.css";
 import { LiaMoneyCheckAltSolid } from "react-icons/lia";
 import { MdOutlineBedroomParent } from "react-icons/md";
@@ -19,23 +18,23 @@ const HotelAdminDashboard = () => {
     { value: "Last 1 Year", label: "Last 1 Year" },
   ];
 
-  useEffect(() => {
-    const handleMenuClick = () => {
-      const navcontainer = document.querySelector(".navcontainer");
-      if (navcontainer) {
-        navcontainer.classList.toggle("navclose");
-      }
-    };
+  // useEffect(() => {
+  //   const handleMenuClick = () => {
+  //     const navcontainer = document.querySelector(".navcontainer");
+  //     if (navcontainer) {
+  //       navcontainer.classList.toggle("navclose");
+  //     }
+  //   };
 
-    const menuicn = document.getElementById("menuicn");
-    if (menuicn) {
-      menuicn.addEventListener("click", handleMenuClick);
+  //   const menuicn = document.getElementById("menuicn");
+  //   if (menuicn) {
+  //     menuicn.addEventListener("click", handleMenuClick);
 
-      return () => {
-        menuicn.removeEventListener("click", handleMenuClick);
-      };
-    }
-  }, []);
+  //     return () => {
+  //       menuicn.removeEventListener("click", handleMenuClick);
+  //     };
+  //   }
+  // }, []);
 
   const token = localStorage.getItem("token");
   const { data: totalRooms } = useQuery("get-rooms", () =>
@@ -55,6 +54,10 @@ const HotelAdminDashboard = () => {
   );
 
   const customer = customerInfo?.data;
+  console.log(customer, "cus");
+  console.log(totalIncome, "total inc");
+  console.log(totalBooking, "total book");
+  console.log(totalRooms, "total tooms");
 
   return (
     <>
@@ -73,51 +76,45 @@ const HotelAdminDashboard = () => {
           </div>
         </div>
         <div className={styles["box-container"]}>
-          {totalBooking
-            ? totalBooking && (
-                <div className={`${styles.box} ${styles.box1}`}>
-                  <span className={styles.text}>
-                    <h2 className={styles.topic}>Total Booking</h2>
-                    <h2 className={styles["topic-heading"]}>
-                      {totalBooking?.data ?? 0}
-                    </h2>
-                  </span>
-                  <span className={styles.image}>
-                    <TbBrandBooking />
-                  </span>
-                </div>
-              )
-            : null}
-          {totalRooms
-            ? totalRooms && (
-                <div className={`${styles.box} ${styles.box2}`}>
-                  <span className={styles.text}>
-                    <h2 className={styles.topic}>Rooms Available</h2>
-                    <h2 className={styles["topic-heading"]}>
-                      {totalRooms?.data ?? 0}
-                    </h2>
-                  </span>
-                  <span className={styles.image}>
-                    <MdOutlineBedroomParent />
-                  </span>
-                </div>
-              )
-            : null}
-          {totalIncome
-            ? totalIncome && (
-                <div className={`${styles.box} ${styles.box3}`}>
-                  <span className={styles.text}>
-                    <h2 className={styles.topic}>Total Income</h2>
-                    <h2 className={styles["topic-heading"]}>
-                      {totalIncome?.data ?? 0}
-                    </h2>
-                  </span>
-                  <span className={styles.image}>
-                    <LiaMoneyCheckAltSolid />
-                  </span>
-                </div>
-              )
-            : null}
+          {totalBooking ? totalBooking && (
+            <div className={`${styles.box} ${styles.box1}`}>
+              <span className={styles.text}>
+                <h2 className={styles.topic}>Total Booking</h2>
+                <h2 className={styles["topic-heading"]}>
+                  {totalBooking?.data ?? 0}
+                </h2>
+              </span>
+              <span className={styles.image}>
+                <TbBrandBooking />
+              </span>
+            </div>
+          ):null}
+          {totalRooms ? totalRooms && (
+            <div className={`${styles.box} ${styles.box2}`}>
+              <span className={styles.text}>
+                <h2 className={styles.topic}>Rooms Available</h2>
+                <h2 className={styles["topic-heading"]}>
+                  {totalRooms?.data ?? 0}
+                </h2>
+              </span>
+              <span className={styles.image}>
+                <MdOutlineBedroomParent />
+              </span>
+            </div>
+          ):null}
+          {totalIncome ? totalIncome && (
+            <div className={`${styles.box} ${styles.box3}`}>
+              <span className={styles.text}>
+                <h2 className={styles.topic}>Total Income</h2>
+                <h2 className={styles["topic-heading"]}>
+                  {totalIncome?.data ?? 0}
+                </h2>
+              </span>
+              <span className={styles.image}>
+                <LiaMoneyCheckAltSolid />
+              </span>
+            </div>
+          ):null}
         </div>
 
         <div className={styles["report-container"]}>
@@ -135,8 +132,8 @@ const HotelAdminDashboard = () => {
               <h4 className={styles["t-op"]}>Total Amount</h4>
             </div>
             {customer
-              ? customer.map((customer) => (
-                  <div className={styles.items} key={customer.id}>
+              ? customer.map((customer,index) => (
+                  <div className={styles.items}  key={index}>
                     <div className={styles.item1}>
                       <h4 className={styles["t-op-nextlvl"]}>
                         {customer.full_name}

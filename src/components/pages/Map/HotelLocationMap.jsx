@@ -11,17 +11,29 @@ import "leaflet/dist/leaflet.css";
 import styles from "./HotelLocationMap.module.css";
 import { useState } from "react";
 import { Input } from "antd";
-import { setHotelLocation } from "../../../constants/Api";
+import { getHotel, setHotelLocation } from "../../../constants/Api";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
+import { useQuery } from "react-query";
 const { Search } = Input;
 
-export default function HotelLocationMap({ hotelId }) {
+export default function HotelLocationMap() {
+  const token = localStorage.getItem("token");
+
   const [latitude, setLatitude] = useState(27.7000769);
   const [longitude, setLongitude] = useState(85.324);
 
-  const hotelIdString = hotelId && hotelId.length > 0 ? hotelId[0].id : null;
+  const { data: fetchHotelInfo } = useQuery("hotel-info", () =>
+    getHotel(token)
+  );
+  const hotelInfo = fetchHotelInfo?.data;
+
+  // const hotelIdString = hotelId && hotelId.length > 0 ? hotelId[0].id : null;
+
+  console.log(hotelInfo);
+  const hotelIdString = hotelInfo;
+
   const onMapClick = (lat, lon) => {
     setLatitude(lat);
     setLongitude(lon);
@@ -30,7 +42,7 @@ export default function HotelLocationMap({ hotelId }) {
   const handleSubmit = () => {
     const token = localStorage.getItem("token");
     const hotelData = { latitude, longitude };
-    console.log(hotelId);
+    // console.log(hotelId);
     setHotelLocation(hotelData, hotelIdString, token)
       .then((response) => {
         console.log(response);
@@ -125,7 +137,7 @@ export default function HotelLocationMap({ hotelId }) {
     </>
   );
 }
-HotelLocationMap.propTypes = {
-  hotelId: PropTypes.string.isRequired,
-  handleMapClick: PropTypes.func.isRequired,
-};
+// HotelLocationMap.propTypes = {
+//   hotelId: PropTypes.string.isRequired,
+//   handleMapClick: PropTypes.func.isRequired,
+// };
