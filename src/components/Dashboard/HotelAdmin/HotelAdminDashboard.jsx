@@ -54,10 +54,6 @@ const HotelAdminDashboard = () => {
   );
 
   const customer = customerInfo?.data;
-  console.log(customer, "cus");
-  console.log(totalIncome, "total inc");
-  console.log(totalBooking, "total book");
-  console.log(totalRooms, "total tooms");
 
   return (
     <>
@@ -76,25 +72,25 @@ const HotelAdminDashboard = () => {
           </div>
         </div>
         <div className={styles["box-container"]}>
-          {totalBooking ? totalBooking && (
+          {totalBooking && totalBooking.data && (
             <div className={`${styles.box} ${styles.box1}`}>
               <span className={styles.text}>
                 <h2 className={styles.topic}>Total Booking</h2>
                 <h2 className={styles["topic-heading"]}>
-                  {totalBooking?.data ?? 0}
+                {totalBooking.data}
                 </h2>
               </span>
               <span className={styles.image}>
                 <TbBrandBooking />
               </span>
             </div>
-          ):null}
-          {totalRooms ? totalRooms && (
+          )}
+          {totalRooms ? totalRooms.data && (
             <div className={`${styles.box} ${styles.box2}`}>
               <span className={styles.text}>
                 <h2 className={styles.topic}>Rooms Available</h2>
                 <h2 className={styles["topic-heading"]}>
-                  {totalRooms?.data ?? 0}
+                  {totalRooms.data}
                 </h2>
               </span>
               <span className={styles.image}>
@@ -102,19 +98,19 @@ const HotelAdminDashboard = () => {
               </span>
             </div>
           ):null}
-          {totalIncome ? totalIncome && (
+          {/* {totalIncome ? totalIncome && (
             <div className={`${styles.box} ${styles.box3}`}>
               <span className={styles.text}>
                 <h2 className={styles.topic}>Total Income</h2>
                 <h2 className={styles["topic-heading"]}>
-                  {totalIncome?.data ?? 0}
+                  {totalIncome.data}
                 </h2>
               </span>
               <span className={styles.image}>
                 <LiaMoneyCheckAltSolid />
               </span>
             </div>
-          ):null}
+          ):null} */}
         </div>
 
         <div className={styles["report-container"]}>
@@ -132,8 +128,8 @@ const HotelAdminDashboard = () => {
               <h4 className={styles["t-op"]}>Total Amount</h4>
             </div>
             {customer
-              ? customer.map((customer,index) => (
-                  <div className={styles.items}  key={index}>
+              ? customer.map((customer, index) => (
+                  <div className={styles.items} key={index}>
                     <div className={styles.item1}>
                       <h4 className={styles["t-op-nextlvl"]}>
                         {customer.full_name}

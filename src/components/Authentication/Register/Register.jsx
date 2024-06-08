@@ -11,25 +11,25 @@ const Register = () => {
   const [data, setData] = useState({
     full_name: "",
     email: "",
-    phone_number: "+977-",
+    phone_number: "",
     password: "",
   });
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-     // Prevent deletion of the prefix +977-
-     if (name === "phone_number" && !value.startsWith("+977-")) {
-      return;
+    // Add prefix to phone number if not present
+    if (name === "phone_number") {
+      const formattedPhoneNumber = value.startsWith("+977-")
+        ? value
+        : `+977-${value}`;
+      setData({ ...data, [name]: formattedPhoneNumber });
+    } else if (value.length > 15) {
+      toast.warn("Phone number is invalid");
+    } else {
+      setData({ ...data, [name]: value });
     }
-
-    // Limit the phone number length to 15 characters (+977- + 10 digits)
-    if (name === "phone_number" && value.length > 15) {
-      return;
-    }
-
-    setData({ ...data, [name]: value });
-  };
-
+  }
+  
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -85,7 +85,6 @@ const Register = () => {
                     id="phoneNumber"
                     name="phone_number"
                     placeholder="9807099754"
-                    value={data.phone_number}
                     onChange={handleInputChange}
                     required
                   />

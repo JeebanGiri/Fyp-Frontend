@@ -280,5 +280,6 @@ LoginedSearchbar.propTypes = {
   rooms: PropTypes.number,
   checkIn: PropTypes.string,
   checkOut: PropTypes.string,
+  setSearchParam: PropTypes.func,
 };
 export default LoginedSearchbar;

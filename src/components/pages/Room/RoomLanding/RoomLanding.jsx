@@ -38,7 +38,6 @@ const RoomLanding = () => {
   const [roomDetail, setRoomDetail] = useState(null);
   const navigateTo = useNavigate();
   const [searchParams, setSearchParam] = useSearchParams();
-
   const getAddress = searchParams.get("address");
   const getGuests = searchParams.get("guests");
   const getRooms = searchParams.get("rooms");
@@ -68,8 +67,10 @@ const RoomLanding = () => {
   const { hotelId } = useParams();
 
   const { data } = useQuery(["fetch-data", hotelId], () => getRoom(hotelId));
-  console.log(data);
+
   const roominfo = data ? data?.data : null;
+
+  console.log(roomDetail, "room Info");
 
   useEffect(() => {
     const fetchRoomInfo = async () => {
@@ -328,15 +329,25 @@ const RoomLanding = () => {
                     <span className={styles.rules1}>
                       <h6>Check-in/Check-out</h6>
                       <li>
-                        <img src={CheckIn} alt="" /> Check-in from: <b>14:00</b>
+                        <img src={CheckIn} alt="" /> Check-in from:{" "}
+                        <b>
+                          {" "}
+                          {roomDetail?.hotel.checkin_checkout.check_in_time}
+                        </b>
                       </li>
                       <li>
                         <img src={CheckOut} alt="" /> Check-in untill:{" "}
-                        <b>12:00</b>
+                        <b>
+                          {" "}
+                          {roomDetail?.hotel.checkin_checkout.check_in_time}
+                        </b>
                       </li>
                       <li>
                         <img src={CheckOut} alt="" /> Recption open untill:
-                        <b>22:00</b>
+                        <b>
+                          {" "}
+                          {roomDetail?.hotel.checkin_checkout.check_in_time}
+                        </b>
                       </li>
                     </span>
                   </div>

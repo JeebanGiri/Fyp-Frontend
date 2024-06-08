@@ -102,16 +102,21 @@ const HotelLanding = () => {
             error.response.data.message || error.response.data.error.message;
           if (Array.isArray(errorMsg)) {
             errorMsg.forEach((err) => toast.error(err));
+            setTimeout(() => {
+              navigateTo(
+                `/hotel-landing?address=${address}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&guests=${guests}&rooms=${rooms}`
+              );
+            }, 1000);
           } else if (errorMsg) {
             toast.error(errorMsg);
             return;
           }
         });
-      setTimeout(() => {
-        navigateTo(
-          `/hotel-landing?address=${address}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&guests=${guests}&rooms=${rooms}`
-        );
-      }, 1000);
+      // setTimeout(() => {
+      //   navigateTo(
+      //     `/hotel-landing?address=${address}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&guests=${guests}&rooms=${rooms}`
+      //   );
+      // }, 1000);
       return info;
     } catch (error) {
       console.error("Error fetching room data:", error);

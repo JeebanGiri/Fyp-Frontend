@@ -118,8 +118,16 @@ const Reservation = () => {
 
   const handleBookChange = (event) => {
     const { name, value } = event.target;
-    console.log(event.target.value);
-    setBookData({ ...bookData, [name]: value });
+     // Add prefix to phone number if not present
+     if (name === "phone_number") {
+      const formattedPhoneNumber = value.startsWith("+977-")
+        ? value
+        : `+977-${value}`;
+      setBookData({ ...bookData, [name]: formattedPhoneNumber });
+    } else {
+      setBookData({ ...bookData, [name]: value });
+    }
+    // setBookData({ ...bookData, [name]: value });
   };
 
   const toogleLogin = () => {
