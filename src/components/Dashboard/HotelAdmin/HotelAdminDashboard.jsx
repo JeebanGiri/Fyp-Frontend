@@ -53,7 +53,8 @@ const HotelAdminDashboard = () => {
     getAllCustomer(token)
   );
 
-  const customer = customerInfo?.data;
+  // const customer = customerInfo?.data;
+  console.log(customerInfo, "cus info");
 
   return (
     <>
@@ -76,41 +77,43 @@ const HotelAdminDashboard = () => {
             <div className={`${styles.box} ${styles.box1}`}>
               <span className={styles.text}>
                 <h2 className={styles.topic}>Total Booking</h2>
-                <h2 className={styles["topic-heading"]}>
-                {totalBooking.data}
-                </h2>
+                <h2 className={styles["topic-heading"]}>{totalBooking.data}</h2>
               </span>
               <span className={styles.image}>
                 <TbBrandBooking />
               </span>
             </div>
           )}
-          {totalRooms ? totalRooms.data && (
-            <div className={`${styles.box} ${styles.box2}`}>
-              <span className={styles.text}>
-                <h2 className={styles.topic}>Rooms Available</h2>
-                <h2 className={styles["topic-heading"]}>
-                  {totalRooms.data}
-                </h2>
-              </span>
-              <span className={styles.image}>
-                <MdOutlineBedroomParent />
-              </span>
-            </div>
-          ):null}
-          {/* {totalIncome ? totalIncome && (
-            <div className={`${styles.box} ${styles.box3}`}>
-              <span className={styles.text}>
-                <h2 className={styles.topic}>Total Income</h2>
-                <h2 className={styles["topic-heading"]}>
-                  {totalIncome.data}
-                </h2>
-              </span>
-              <span className={styles.image}>
-                <LiaMoneyCheckAltSolid />
-              </span>
-            </div>
-          ):null} */}
+          {totalRooms
+            ? totalRooms.data && (
+                <div className={`${styles.box} ${styles.box2}`}>
+                  <span className={styles.text}>
+                    <h2 className={styles.topic}>Rooms Available</h2>
+                    <h2 className={styles["topic-heading"]}>
+                      {totalRooms.data}
+                    </h2>
+                  </span>
+                  <span className={styles.image}>
+                    <MdOutlineBedroomParent />
+                  </span>
+                </div>
+              )
+            : null}
+          {totalIncome
+            ? totalIncome.data && (
+                <div className={`${styles.box} ${styles.box3}`}>
+                  <span className={styles.text}>
+                    <h2 className={styles.topic}>Total Income</h2>
+                    <h2 className={styles["topic-heading"]}>
+                      {totalIncome.data}
+                    </h2>
+                  </span>
+                  <span className={styles.image}>
+                    <LiaMoneyCheckAltSolid />
+                  </span>
+                </div>
+              )
+            : null}
         </div>
 
         <div className={styles["report-container"]}>
@@ -124,12 +127,12 @@ const HotelAdminDashboard = () => {
               <h4 className={styles["t-op"]}>Address</h4>
               <h4 className={styles["t-op"]}>Phone Number</h4>
               <h4 className={styles["t-op"]}>Check-in-Date</h4>
-              <h4 className={styles["t-op"]}>Check-Out-Date</h4>
+              <h4 className={styles["t-op"]}>Check-out-Date</h4>
               <h4 className={styles["t-op"]}>Total Amount</h4>
             </div>
-            {customer
-              ? customer.map((customer, index) => (
-                  <div className={styles.items} key={index}>
+            {customerInfo?.data[0]
+              ? customerInfo?.data[0].map((customer) => (
+                  <div className={styles.items} key={customer.id}>
                     <div className={styles.item1}>
                       <h4 className={styles["t-op-nextlvl"]}>
                         {customer.full_name}
