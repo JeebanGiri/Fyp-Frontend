@@ -111,7 +111,7 @@ function App() {
         <Route
           path="/superadmin-dashboard"
           element={<SuperAdminLayout />}
-          exact
+          // exact
         >
           <Route index element={<SuperAdminDashboard />} />
           <Route path="hotels" element={<AddHotels />} />

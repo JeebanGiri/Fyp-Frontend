@@ -41,7 +41,6 @@ const AddHotels = () => {
     branch_name: "",
     description: "",
   });
-
   console.log(formData);
 
   const handleChange = (event) => {
@@ -63,12 +62,13 @@ const AddHotels = () => {
           [name]: files[0],
         });
       }
-      console.log(files, "File selected");
+    } else if (name === "phone_number" || name === "contact_number") {
+      const formattedPhoneNumber = value.startsWith("+977-")
+        ? value
+        : `+977-${value}`;
+      setFormData({ ...formData, [name]: formattedPhoneNumber });
     } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
+      setFormData({ ...formData, [name]: value });
     }
   };
 
@@ -83,12 +83,34 @@ const AddHotels = () => {
     console.log(formData.checkin_checkout);
   };
 
+  const validatePhoneNumbers = () => {
+    const { phone_number, contact_number } = formData;
+    if (phone_number.length > 15 || contact_number.length > 15) {
+      toast.warn("Phone number is invalid");
+      return false;
+    }
+    return true;
+  };
+
   const handleUpload = () => {
+    if (!validatePhoneNumbers()) {
+      return;
+    }
     const data = new FormData();
     Object.keys(formData).forEach((key) => {
       const value = formData[key];
-      if (Array.isArray(value)) {
-        value.forEach((file) => data.append(key, file));
+      // if (Array.isArray(value)) {
+      //   value.forEach((file) => data.append(key, file));
+      //   // Use the appropriate key format for array elements
+      //   value.forEach((file, index) => data.append(`${key}[${index}]`, file));
+      // } else {
+      //   data.append(key, value);
+      // }
+      if (key === "documents") {
+        value.forEach((file) => data.append("documents", file));
+      } else if (key === "checkin_checkout") {
+        data.append("check_in_time", formData.checkin_checkout.check_in_time);
+        data.append("check_out_time", formData.checkin_checkout.check_out_time);
       } else {
         data.append(key, value);
       }
@@ -98,7 +120,6 @@ const AddHotels = () => {
     // Pass the FormData object here
     registerHotel(data, token)
       .then((response) => {
-        console.log(response);
         const message = response.data.message;
         toast.success(message);
         setTimeout(() => {
@@ -106,7 +127,6 @@ const AddHotels = () => {
         }, 2000);
       })
       .catch((error) => {
-        console.log(error.response);
         const errorMsg =
           error.response.data.message || error.response.data.error.message;
         if (Array.isArray(errorMsg)) {
@@ -209,7 +229,7 @@ const AddHotels = () => {
                       <input
                         type="text"
                         name="email"
-                        placeholder="email address"
+                        placeholder="Email Address"
                         className={styles["input-field"]}
                         onChange={handleChange}
                       />
@@ -226,7 +246,7 @@ const AddHotels = () => {
                       <input
                         type="password"
                         name="password"
-                        placeholder="Enter password"
+                        placeholder="Enter Password"
                         className={styles["input-field"]}
                         onChange={handleChange}
                       />

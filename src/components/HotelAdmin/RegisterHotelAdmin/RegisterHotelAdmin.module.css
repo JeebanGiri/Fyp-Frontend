@@ -46,6 +46,9 @@
 .inputitem input {
   margin-bottom: 10px;
   padding-left: 20px;
+  border: none;
+  background-color: #F1F7F3;
+  outline: none;
 }
 .inputitem input[type="text"],
 .inputitem input[type="tel"],
@@ -112,8 +115,10 @@
   text-align: center;
   margin-top: -20px;
 }
-
-.footer a {
+.footer p a{
+  text-decoration: none;
+}
+.footer p a:hover{
   text-decoration: none;
 }
 

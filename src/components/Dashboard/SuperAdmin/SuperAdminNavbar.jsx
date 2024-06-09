@@ -15,8 +15,9 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { mainListItems, secondaryListItems } from "./ListItems";
 import { AccountCircle } from "@mui/icons-material";
 import SuperAdminProfile from "./SuperAdminProfile";
-import SuperAdminNotification from "./SuperAdminNotification";
-
+// import SuperAdminNotification from "./SuperAdminNotification";
+import Notification from "../../Notification/Notification";
+import { UseOutsideClick } from "../../../utils/useOutSideClick";
 
 const drawerWidth = 240;
 
@@ -76,54 +77,21 @@ export default function SuperAdminNavbar() {
     setOpen(!open);
   };
 
-  React.useEffect(() => {
-    if (showProfileBox && showNotificationBox) {
-      // Attach click event listener to handle clicks outside of the modal
-      document.addEventListener("click", handleClickOutside);
-      // document.addEventListener('click', handleClickOutside);
-    } else {
-      // Remove the event listener when the modal is closed
-      document.removeEventListener("click", handleClickOutside);
-      // document.removeEventListener('click', handleClickOutside);
-    }
+  const profileBoxRef = React.useRef();
+  const notificationBoxRef = React.useRef();
 
-    // Cleanup function to remove the event listener
-    return () => {
-      // document.removeEventListener('click', handleClickOutside);
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [showProfileBox, showNotificationBox]);
-
-  const handleClickOutside = (event) => {
-    if (
-      !event.target.closest(".profile-box") ||
-      !event.target.closest(".notification-box")
-    ) {
-      // Close both the profile and notification boxes (modals)
-      setShowProfileBox(false);
-      setShowNotificationBox(false);
-    } else if (event.target.closest(".profile-box")) {
-      // Close only the profile box (modal)
-      setShowProfileBox(false);
-    } else if (event.target.closest(".notification-box")) {
-      // Close only the notification box (modal)
-      setShowNotificationBox(false);
-    }
-  };
+  UseOutsideClick(() => setShowProfileBox(false), profileBoxRef);
+  UseOutsideClick(() => setShowNotificationBox(false), notificationBoxRef);
 
   const handleProfileClick = (e) => {
-    // Prevent the click event from propagating to document level
     e.preventDefault();
     e.stopPropagation();
-    // Toggle the profile box (modal)
     setShowProfileBox(!showProfileBox);
   };
 
   const handleNotificationClick = (e) => {
     e.preventDefault();
-    // Prevent the click event from propagating to document level
     e.stopPropagation();
-    // Toggle the profile box (modal)
     setShowNotificationBox(!showNotificationBox);
   };
 
@@ -160,11 +128,14 @@ export default function SuperAdminNavbar() {
             <IconButton color="inherit">
               {/* badgeContent={4} */}
               <Badge color="secondary">
-                <NotificationsIcon onClick={handleNotificationClick} />
+                <NotificationsIcon
+                  onClick={handleNotificationClick}
+                  ref={notificationBoxRef}
+                />
               </Badge>
             </IconButton>
             <IconButton color="inherit">
-              <AccountCircle onClick={handleProfileClick} />
+              <AccountCircle onClick={handleProfileClick} ref={profileBoxRef} />
             </IconButton>
           </Toolbar>
         </AppBar>
@@ -188,14 +159,14 @@ export default function SuperAdminNavbar() {
             {secondaryListItems}
           </List>
         </Drawer>
-        {showProfileBox && (
-          <div id="profile-box">
-            <SuperAdminProfile />
+        {showNotificationBox && (
+          <div id="notification-box" ref={notificationBoxRef}>
+            <Notification />
           </div>
         )}
-        {showNotificationBox && (
-          <div id="notification-box">
-            <SuperAdminNotification />
+        {showProfileBox && (
+          <div id="profile-box" ref={profileBoxRef}>
+            <SuperAdminProfile />
           </div>
         )}
       </Box>

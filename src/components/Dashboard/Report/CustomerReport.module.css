@@ -10,8 +10,9 @@
   align-items: center;
   width: 100%;
   min-height: 100vh;
-  /* background: #f5f6fa; */
+
 }
+
 .dwn-btn {
   position: absolute;
   top: 130px;
@@ -23,8 +24,8 @@
   min-height: 60vh;
   padding: 20px;
   margin-top: 140px;
-  /* margin-top: 100px; */
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: #F5F5F5;
   border: 2px solid #cfcbcb;
   border-radius: 5px;
 }
@@ -38,11 +39,13 @@
 .header span {
   text-align: center;
 }
+
 .header span h5 {
   justify-content: center;
   display: flex;
   gap: 10px;
 }
+
 .header span p {
   justify-content: center;
   display: flex;
@@ -70,12 +73,15 @@
 .col {
   padding: 10px;
 }
+
 .col h6 {
   color: slategrey;
 }
+
 .col p {
   font-size: 15px;
 }
+
 .gtotal {
   padding-top: 70px;
 }

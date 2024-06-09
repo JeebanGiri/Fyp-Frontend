@@ -26,6 +26,7 @@ import {
   getAllHotel,
   getTotalPrice,
 } from "../../../constants/Api";
+import { Navigate } from "react-router-dom";
 
 export default function Orders() {
   const jwt = localStorage.getItem("token");
@@ -62,13 +63,17 @@ export default function Orders() {
       toast.success(message);
       refetchHotelInfo();
     } catch (error) {
-      console.log(error.response);
       const errorMsg =
         error.response.data.message || error.response.data.error.message;
+
       if (Array.isArray(errorMsg)) {
         errorMsg.forEach((err) => toast.error(err));
       } else if (errorMsg) {
-        toast.error(errorMsg);
+        if (errorMsg === "Hotel Already Approved") {
+          toast.warn("This hotel is already approved!");
+        } else {
+          toast.error(errorMsg);
+        }
       }
     }
   };
@@ -104,15 +109,16 @@ export default function Orders() {
     if (action === "approve") {
       handleApprove(selectedHotelId, jwt);
     } else if (action === "edit") {
-      // setConfirmOpen(true);
+      <Navigate to="" />;
     } else if (action === "delete") {
-      handleDelete(selectedHotelId, jwt);
+      setConfirmOpen(true);
     }
     handleMenuClose();
   };
 
   const handleConfirmDelete = () => {
     // Handle delete action
+    handleDelete(selectedHotelId, jwt);
     setConfirmOpen(false);
   };
 
@@ -131,8 +137,8 @@ export default function Orders() {
             <TableCell>Vendor Name</TableCell>
             <TableCell>Hotel Name</TableCell>
             <TableCell>Hotel Address</TableCell>
-            <TableCell align="right">Hotel Status</TableCell>
-            <TableCell align="right">Action</TableCell>
+            <TableCell align="left">Hotel Status</TableCell>
+            <TableCell align="left">Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -143,24 +149,25 @@ export default function Orders() {
                 <TableCell>{hotels.user.full_name}</TableCell>
                 <TableCell>{hotels.name}</TableCell>
                 <TableCell>{hotels.address}</TableCell>
-                <TableCell
-                  align="right"
-                  className={
-                    hotels.status === "APPROVED"
-                      ? styles.approvedCell
-                      : styles.approves
-                  }
-
-                  // className={`${getStatusStyle(hotels.status)}`}
-                  // onClick={() => {
-                  //   handleApprove(hotels.id, jwt);
-                  // }}
-                >
-                  {hotels.status}
+                <TableCell>
+                  <Button
+                    variant="contained"
+                    color={hotels.status === "APPROVED" ? "success" : "warning"}
+                    onClick={() => handleApprove(hotels.id, jwt)}
+                    sx={{
+                      minWidth: "80px",
+                      padding: "4px 8px",
+                      fontSize: "12px",
+                      fontWeight: 400,
+                    }}
+                  >
+                    {hotels.status}
+                  </Button>
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align="left">
                   <MoreVertIcon
                     onClick={(event) => handleMenuOpen(event, hotels.id)}
+                    style={{ cursor: "pointer" }}
                   />
                   <Menu
                     anchorEl={anchorEl}
@@ -168,13 +175,58 @@ export default function Orders() {
                     onClose={handleMenuClose}
                   >
                     <MenuItem onClick={() => handleMenuItemClick("approve")}>
-                      Approve
+                      <Button
+                        variant="contained"
+                        sx={{
+                          height: "35px",
+                          minWidth: "80px",
+                          fontSize: "0.75rem",
+                          fontWeight: 600,
+                          backgroundColor: "green",
+                          color: "white",
+                          "&:hover": {
+                            backgroundColor: "darkgreen",
+                          },
+                        }}
+                      >
+                        Approve
+                      </Button>
                     </MenuItem>
                     <MenuItem onClick={() => handleMenuItemClick("edit")}>
-                      Edit
+                      <Button
+                        variant="contained"
+                        sx={{
+                          minWidth: "80px",
+                          backgroundColor: "blue",
+                          color: "white",
+                          height: "35px",
+                          fontSize: "0.75rem",
+                          fontWeight: 600,
+                          "&:hover": {
+                            backgroundColor: "darkblue",
+                          },
+                        }}
+                      >
+                        Update
+                      </Button>
                     </MenuItem>
                     <MenuItem onClick={() => handleMenuItemClick("delete")}>
-                      Delete
+                      <Button
+                        variant="contained"
+                        sx={{
+                          minWidth: "80px",
+                          height: "35px",
+                          fontSize: "0.75rem",
+                          fontWeight: 600,
+                          backgroundColor: "red",
+                          color: "white",
+                          "&:hover": {
+                            backgroundColor: "darkred",
+                          },
+                        }}
+                      >
+                        Delete
+                      </Button>
                     </MenuItem>
                   </Menu>
                 </TableCell>

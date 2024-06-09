@@ -62,6 +62,9 @@ body {
 .inputitem input[type="email"],
 .inputitem input[type="password"] {
   font-size: 15px;
+  border: none;
+  background-color: #F1F7F3;
+  outline: none;
 }
 
 .action p {
@@ -89,4 +92,11 @@ body {
 
 .register-link {
   text-decoration: none;
+}
+.footer p a{
+  text-decoration: none;
+}
+a:active{
+  text-decoration: none;
+  color: white;
 }

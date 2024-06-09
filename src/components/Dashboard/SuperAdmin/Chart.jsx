@@ -82,7 +82,6 @@ import Hotel from "../../../assets/Hotel/hotelstar.png";
 import Room from "../../../assets/Room/rooms.png";
 import ShoppingCartIcon from "../../../assets/Room/cart.png";
 import {
-  getAllHotel,
   getHotelCount,
   getTotalBooking,
   getTotalRoom,

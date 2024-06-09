@@ -22,6 +22,7 @@
 }
 .header p:nth-child(2) {
   font-size: 22px;
+  margin-top: -5px;
 }
 
 .titles {
@@ -43,6 +44,7 @@
 
 .messagecontent :first-child {
   color: #4f5253;
+  font-weight: 600;
 }
 
 .line {

@@ -14,7 +14,7 @@ const textareaStyle = {
 
 const AddHotel = () => {
   const navigateTo = useNavigate();
- 
+
   // -----------store all the input data using usestate hook--------------
   const [formData, setFormData] = useState({
     hotel_name: "",
@@ -33,6 +33,7 @@ const AddHotel = () => {
     },
     account_number: "",
     bank_name: "",
+    account_name: "",
     branch_name: "",
     description: "",
   });
@@ -56,6 +57,13 @@ const AddHotel = () => {
           [name]: files[0],
         });
       }
+    }
+    // Add prefix to phone number if not present
+    else if (name === "phone_number") {
+      const formattedPhoneNumber = value.startsWith("+977-")
+        ? value
+        : `+977-${value}`;
+      setFormData({ ...formData, [name]: formattedPhoneNumber });
     } else {
       setFormData({
         ...formData,
@@ -74,9 +82,20 @@ const AddHotel = () => {
   const handleCheckinCheckoutChange = (dates, dateString) => {
     setFormData({ ...formData, checkin_checkout: dateString });
   };
+  const validatePhoneNumbers = () => {
+    const { phone_number } = formData;
+    if (phone_number.length > 15) {
+      toast.warn("Phone number is invalid");
+      return false;
+    }
+    return true;
+  };
 
   // ------------Form data-----------------
   const handleRegister = () => {
+    if (!validatePhoneNumbers()) {
+      return;
+    }
     const data = new FormData();
     Object.keys(formData).forEach((key) => {
       const value = formData[key];
@@ -90,7 +109,6 @@ const AddHotel = () => {
 
     createHotel(data, token)
       .then((response) => {
-        console.log(response);
         const message = response.data.message;
         toast.success(message);
         setTimeout(() => {
@@ -98,7 +116,6 @@ const AddHotel = () => {
         }, 2000);
       })
       .catch((error) => {
-        console.log(error.response);
         const errorMsg =
           error.response.data.message || error.response.data.error.message;
         if (Array.isArray(errorMsg)) {

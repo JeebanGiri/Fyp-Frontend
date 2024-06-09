@@ -61,7 +61,8 @@
 
 .navLink:hover,
 .navLink.active {
-  color: #cf7676;
+  text-decoration: none;
+  color: #b6b6c9;
 }
 
 li button {
@@ -277,11 +278,11 @@ button {
 }
 
 /* ------ On check event ------ */
-.container input:checked ~ .bell-regular {
+.container input:checked~.bell-regular {
   display: none;
 }
 
-.container input:checked ~ .bell-solid {
+.container input:checked~.bell-solid {
   display: block;
 }
 

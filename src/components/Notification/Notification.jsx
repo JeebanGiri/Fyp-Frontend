@@ -43,14 +43,15 @@ const Notification = () => {
             messages.map((message) => (
               <div className={styles.body} key={message.id}>
                 <div className={styles.line}>
-                  <hr />
                 </div>
                 <div className={styles.messagecontent}>
-                  <b>{message.title}</b>
+                  <p>{message.title}</p>
                   <p>{message.body}</p>
                   <p>{formattedDateTime(message.created_at)}</p>
                 </div>
+                <hr />
               </div>
+
             ))
           ) : (
             <div className={styles.nomessage}>

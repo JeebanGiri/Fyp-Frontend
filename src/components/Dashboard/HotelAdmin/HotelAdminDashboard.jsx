@@ -55,6 +55,9 @@ const HotelAdminDashboard = () => {
 
   // const customer = customerInfo?.data;
   console.log(customerInfo, "cus info");
+  console.log(totalBooking, "bbok");
+  console.log(totalIncome, "income");
+  console.log(totalRooms, "rooms");
 
   return (
     <>
@@ -73,47 +76,54 @@ const HotelAdminDashboard = () => {
           </div>
         </div>
         <div className={styles["box-container"]}>
-          {totalBooking && totalBooking.data && (
-            <div className={`${styles.box} ${styles.box1}`}>
-              <span className={styles.text}>
-                <h2 className={styles.topic}>Total Booking</h2>
-                <h2 className={styles["topic-heading"]}>{totalBooking.data}</h2>
-              </span>
-              <span className={styles.image}>
-                <TbBrandBooking />
-              </span>
-            </div>
-          )}
-          {totalRooms
-            ? totalRooms.data && (
-                <div className={`${styles.box} ${styles.box2}`}>
-                  <span className={styles.text}>
-                    <h2 className={styles.topic}>Rooms Available</h2>
+          <div className={`${styles.box} ${styles.box1}`}>
+            <span className={styles.text}>
+              <h2 className={styles.topic}>Total Booking</h2>
+              {totalBooking
+                ? totalBooking &&
+                  totalBooking.data && (
+                    <h2 className={styles["topic-heading"]}>
+                      {totalBooking.data}
+                    </h2>
+                  )
+                : null}
+            </span>
+            <span className={styles.image}>
+              <TbBrandBooking />
+            </span>
+          </div>
+
+          <div className={`${styles.box} ${styles.box2}`}>
+            <span className={styles.text}>
+              <h2 className={styles.topic}>Rooms Available</h2>
+              {totalRooms
+                ? totalRooms.data && (
                     <h2 className={styles["topic-heading"]}>
                       {totalRooms.data}
                     </h2>
-                  </span>
-                  <span className={styles.image}>
-                    <MdOutlineBedroomParent />
-                  </span>
-                </div>
-              )
-            : null}
-          {totalIncome
-            ? totalIncome.data && (
-                <div className={`${styles.box} ${styles.box3}`}>
-                  <span className={styles.text}>
-                    <h2 className={styles.topic}>Total Income</h2>
+                  )
+                : null}
+            </span>
+            <span className={styles.image}>
+              <MdOutlineBedroomParent />
+            </span>
+          </div>
+
+          <div className={`${styles.box} ${styles.box3}`}>
+            <span className={styles.text}>
+              <h2 className={styles.topic}>Total Income</h2>
+              {totalIncome
+                ? totalIncome.data && (
                     <h2 className={styles["topic-heading"]}>
                       {totalIncome.data}
                     </h2>
-                  </span>
-                  <span className={styles.image}>
-                    <LiaMoneyCheckAltSolid />
-                  </span>
-                </div>
-              )
-            : null}
+                  )
+                : null}
+            </span>
+            <span className={styles.image}>
+              <LiaMoneyCheckAltSolid />
+            </span>
+          </div>
         </div>
 
         <div className={styles["report-container"]}>

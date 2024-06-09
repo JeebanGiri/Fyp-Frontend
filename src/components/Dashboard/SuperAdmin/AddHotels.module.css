@@ -3,6 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+.hotel-listform{
+  background-color: #F5F5F5;
+  height: 190vh;
+}
 
 .form-box {
   position: absolute;
@@ -39,6 +43,7 @@
   color: #9ca3af;
   border: 1px solid #f5f6fa;
 }
+
 .back-btn button:hover {
   color: #a7a847;
   background-color: #fff;
@@ -69,10 +74,12 @@
   margin-bottom: -15px;
   color: #4f46e5;
 }
+
 .ownerinfo hr {
   width: 30%;
   border: 1px solid #4f46e5;
 }
+
 .top,
 .hotelimg {
   margin-top: -50px;
@@ -90,6 +97,7 @@
   font-size: 14px;
   color: black;
 }
+
 .timepicker {
   display: grid;
 }
@@ -110,13 +118,12 @@
 }
 
 .input-fields::placeholder {
-  font-size: 13px;
+  font-size: 14px;
   color: #ddd7d7;
 }
 
 .input-field::placeholder {
-  font-size: 13px;
-  color: rgb(201, 201, 201);
+  font-size: 14px;
 }
 
 .input-field:focus {
@@ -200,9 +207,11 @@
   margin-top: 10px;
   flex-wrap: wrap;
 }
+
 .label6 {
   margin-top: 10px;
 }
+
 .btn button {
   position: relative;
   letter-spacing: 0.02em;
@@ -211,10 +220,11 @@
   margin: 10px 0px 0px 75px;
   cursor: pointer;
   width: 120px;
-  height: 45px;
+  height: 40px;
   border-radius: 5px;
   justify-content: center;
-  background-color: #5664d9;
+  /* background-color: #5664d9; */
+  background-color: #5CBDFA;
   color: white;
   margin-bottom: 20px;
 }
