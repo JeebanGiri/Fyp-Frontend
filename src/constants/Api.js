@@ -237,7 +237,7 @@ export const getNotification = (token) =>
 export const filterHotelByPrice = () => api.get(`/hotel/filter-hotels-price`);
 
 export const getTotalPrice = (token) =>
-  api.get("/transaction/get-all", {
+  api.get("/reservation/get-all", {
     headers: { Authorization: `Bearer ${token}` },
   });
 
@@ -255,6 +255,7 @@ export const generateCustomerReport = (token, bookId, user_id, checkInDate) =>
   api.get(`/reservation/generate-report/${bookId}/${user_id}/${checkInDate}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
+  
 
 export const rateHotel = (rateInfo, token) =>
   api.post("/rating/rate-hotel", rateInfo, {

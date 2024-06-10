@@ -123,7 +123,7 @@ const AddHotels = () => {
         const message = response.data.message;
         toast.success(message);
         setTimeout(() => {
-          navigateTo("/hoteladmin-dashboard/view-hotel");
+          navigateTo("/superadmin-dashboard");
         }, 2000);
       })
       .catch((error) => {
