@@ -42,6 +42,7 @@ import CustomerReport from "./components/Dashboard/Report/CustomerReport";
 import ReportPage from "./components/Dashboard/HotelAdmin/ReportPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CustomerList from "./components/Dashboard/SuperAdmin/CustomerList";
 
 function App() {
   setupNotifications();
@@ -115,6 +116,7 @@ function App() {
         >
           <Route index element={<SuperAdminDashboard />} />
           <Route path="hotels" element={<AddHotels />} />
+          <Route path="all-vendors" element={<CustomerList />} />
         </Route>
         <Route path="unauthorized" element={<UnauthorizedPage />} />
         <Route path="cus-reports" element={<CustomerReport />} />

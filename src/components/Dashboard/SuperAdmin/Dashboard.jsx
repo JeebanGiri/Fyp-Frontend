@@ -5,7 +5,7 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import styles from "./Orders.module.css";
+// import styles from "./Dashboard.module.css";
 import Title from "./Title";
 import { useQuery } from "react-query";
 import { toast, ToastContainer } from "react-toastify";
@@ -28,7 +28,7 @@ import {
 } from "../../../constants/Api";
 import { Navigate } from "react-router-dom";
 
-export default function Orders() {
+export default function Dashboards() {
   const jwt = localStorage.getItem("token");
   const [hotelData, setHotelData] = React.useState([]);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -36,7 +36,7 @@ export default function Orders() {
   const [confirmOpen, setConfirmOpen] = React.useState(false);
 
   // --------GET ALL HOTEL DETAILS----------
-  const { data, refetch: refetchHotelInfo } = useQuery(
+  const { refetch: refetchHotelInfo } = useQuery(
     "hotel-info",
     () => getAllHotel(jwt),
     {
@@ -49,6 +49,8 @@ export default function Orders() {
   const { data: getBookingPrice } = useQuery("get-amount", () =>
     getTotalPrice(jwt)
   );
+
+  console.log(getBookingPrice);
 
   function formatDate(dateString) {
     const date = new Date(dateString);

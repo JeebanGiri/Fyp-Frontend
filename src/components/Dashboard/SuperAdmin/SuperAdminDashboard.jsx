@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Chart from "./Chart";
 import Deposits from "./Deposits";
-import Orders from "./Orders";
+import Dashboard from "./Dashboard";
 
 const defaultTheme = createTheme();
 export default function SuperAdminDashboard() {
@@ -39,7 +39,7 @@ export default function SuperAdminDashboard() {
           </Grid>
           <Grid item xs={12}>
             <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-              <Orders />
+              <Dashboard />
             </Paper>
           </Grid>
         </Grid>

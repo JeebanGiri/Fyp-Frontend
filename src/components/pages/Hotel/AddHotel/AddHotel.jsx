@@ -203,7 +203,7 @@ const AddHotel = () => {
                     type="file"
                     name="avatar"
                     onChange={handleChange}
-                    className={styles["input-field"]}
+                    className={styles["input-fields"]}
                   />
                 </div>
               </div>
@@ -215,7 +215,7 @@ const AddHotel = () => {
                   <input
                     type="file"
                     name="cover"
-                    className={styles["input-field"]}
+                    className={styles["input-fields"]}
                     onChange={handleChange}
                   />
                 </div>
@@ -229,7 +229,7 @@ const AddHotel = () => {
                   <input
                     type="file"
                     name="documents"
-                    className={styles["input-field"]}
+                    className={styles["input-fields"]}
                     onChange={handleChange}
                     multiple
                   />
@@ -274,7 +274,7 @@ const AddHotel = () => {
                   <input
                     type="file"
                     name="citizenship_front"
-                    className={styles["input-field"]}
+                    className={styles["input-fields"]}
                     onChange={handleChange}
                   />
                 </div>
@@ -289,7 +289,7 @@ const AddHotel = () => {
                   <input
                     type="file"
                     name="citizenship_back"
-                    className={styles["input-field"]}
+                    className={styles["input-fields"]}
                     onChange={handleChange}
                   />
                 </div>

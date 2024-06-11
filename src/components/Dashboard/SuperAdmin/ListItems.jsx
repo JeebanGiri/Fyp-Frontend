@@ -31,16 +31,15 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Rooms" />
     </ListItemButton>
-    <ListItemButton component={Link} to={"/superadmin-dashboard/hotels"}>
+    <ListItemButton
+      component={Link}
+      to={"/superadmin-dashboard/hotels"}
+      style={{ textDecoration: "none", color: "black" }}
+    >
       <ListItemIcon>
         <BuildingIcon />
       </ListItemIcon>
-      {/* <Link
-        to={"/superadmin-dashboard/hotels"}
-        style={{ textDecoration: "none", color: "black" }}
-      > */}
       <ListItemText primary="Hotel" />
-      {/* </Link> */}
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
@@ -48,7 +47,11 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Booking" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton
+      component={Link}
+      to={"/superadmin-dashboard/all-vendors"}
+      style={{ textDecoration: "none", color: "black" }}
+    >
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>

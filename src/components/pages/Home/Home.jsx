@@ -25,6 +25,7 @@ const Home = () => {
   };
 
   const location = useLocation();
+  
   return (
     <>
       <div className={styles.imgcontainer}>
