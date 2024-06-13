@@ -19,6 +19,7 @@ import { BACKEND_URL } from "../../../constants/constant";
 import RegisterPopUp from "./RegisterPopUp/RegisterPopUp";
 import LoginPopUp from "./LoginPopUp/LoginPopUp";
 import { Button, Popconfirm, Modal } from "antd";
+import ChoosePayment from "../Payment/ChoosePayment";
 
 var desc = ["terrible", "bad", "normal", "good", "wonderful"];
 
@@ -45,7 +46,9 @@ const Reservation = () => {
   const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [isBookingOptionOpen, setIsBookingOptionOpen] = useState(false);
   const [isRatingOpen, setIsRatingOpen] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const searchParams = new URLSearchParams(location.search);
   const hotelId = searchParams.get("hotelId");
@@ -108,6 +111,23 @@ const Reservation = () => {
     setIsRatingOpen(false);
   };
 
+  const showBookingModal = () => {
+    if (!validateForm()) {
+      toast.error("Please fill in all required fields correctly");
+      return;
+    }
+
+    setIsBookingOptionOpen(true);
+  };
+
+  const handleBookingOk = () => {
+    setIsBookingOptionOpen(false);
+  };
+
+  const handleBookingancel = () => {
+    setIsBookingOptionOpen(false);
+  };
+
   const [bookData, setBookData] = useState({
     full_name: "",
     email: "",
@@ -118,8 +138,8 @@ const Reservation = () => {
 
   const handleBookChange = (event) => {
     const { name, value } = event.target;
-     // Add prefix to phone number if not present
-     if (name === "phone_number") {
+    // Add prefix to phone number if not present
+    if (name === "phone_number") {
       const formattedPhoneNumber = value.startsWith("+977-")
         ? value
         : `+977-${value}`;
@@ -184,7 +204,24 @@ const Reservation = () => {
   const checkIn_Date = formatDate(checkIn);
   const checkOut_Date = formatDate(checkOut);
 
-  const handleBokingSubmit = (e) => {
+  const validateForm = () => {
+    const newErrors = {};
+    if (!bookData.full_name) newErrors.full_name = "Full Name is required";
+    if (!bookData.email) newErrors.email = "Email is required";
+    if (!bookData.confirm_email)
+      newErrors.confirm_email = "Confirm Email is required";
+    if (bookData.email !== bookData.confirm_email)
+      newErrors.confirm_email = "Emails do not match";
+    if (!bookData.phone_number)
+      newErrors.phone_number = "Phone Number is required";
+    if (!bookData.country) newErrors.country = "Country is required";
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleBookingSubmit = (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
     reserveHotel(
@@ -336,7 +373,7 @@ const Reservation = () => {
             >
               <RegisterPopUp />
             </Modal>
-            <form action="bookhotel" onSubmit={handleBokingSubmit}>
+            <form action="bookhotel">
               <div className={styles["booking-details"]}>
                 <h5>Let's us know who you are</h5>
                 <div className={styles.inputs}>
@@ -350,6 +387,7 @@ const Reservation = () => {
                       placeholder="Full Name"
                       onChange={handleBookChange}
                       className={styles["input-field"]}
+                      required
                     />
                   </span>
                   <label htmlFor="inputname" className={styles["input-label"]}>
@@ -362,6 +400,7 @@ const Reservation = () => {
                       placeholder="Email"
                       onChange={handleBookChange}
                       className={styles["input-field"]}
+                      required
                     />
                   </span>
                   <label htmlFor="inputname" className={styles["input-label"]}>
@@ -374,6 +413,7 @@ const Reservation = () => {
                       placeholder="Confirm email"
                       onChange={handleBookChange}
                       className={styles["input-field"]}
+                      required
                     />
                   </span>
                   <p className={styles.sendnotifi}>
@@ -400,6 +440,7 @@ const Reservation = () => {
                           placeholder="Phone Number"
                           onChange={handleBookChange}
                           className={styles["input-fields"]}
+                          required
                         />
                       </div>
                     </span>
@@ -417,6 +458,7 @@ const Reservation = () => {
                           name="country"
                           onChange={handleSelectCountry}
                           className={styles["country-fields"]}
+                          required
                         />
                       </div>
                     </span>
@@ -505,8 +547,24 @@ const Reservation = () => {
               </div>
               {/* {!isLoggedIn && isLoginOpen && <SignIn toggle={toggleLoginOpen} />} */}
               <div className={styles.bookbtn}>
-                <button>Next Step</button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    showBookingModal();
+                  }}
+                >
+                  Next Step
+                </button>
               </div>
+              <Modal
+                title="Choose payment gateway"
+                open={isBookingOptionOpen}
+                onOk={handleBookingOk}
+                onCancel={handleBookingancel}
+                footer={null}
+              >
+                <ChoosePayment handleBookingSubmit={handleBookingSubmit} />
+              </Modal>
             </form>
           </div>
         </div>

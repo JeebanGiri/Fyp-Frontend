@@ -1,0 +1,30 @@
+.choosebox {
+    height: 30vh;
+}
+
+.choosebox h5 {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.options {
+    place-items: center;
+    display: grid;
+    margin-top: 20px;
+}
+
+.options button {
+    background-color: #55A833;
+    color: white;
+    padding: 7px 40px;
+    border-radius: 3px;
+    border: 1px solid wheat;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.options button:hover {
+    border: 1px solid white;
+    transition: 0.3s ease-out;
+}
