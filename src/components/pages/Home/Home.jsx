@@ -174,11 +174,6 @@ const Home = () => {
             <div className={styles.image1}>
               <img src={img1} alt="Recommend Image" />
             </div>
-            <div className={styles.articles}>
-              <p className={styles.hotelnames}>Hotel Lumbini Yet</p>
-              <p className={styles.hotelplace}>Lumbini</p>
-              <p>Rating Value</p>
-            </div>
             <div className={styles.discPrice}>
               <p className={styles.offer}>20% DISCOUNT</p>
               <p className={styles.price}>Rs. 2000</p>
