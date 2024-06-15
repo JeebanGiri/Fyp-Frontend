@@ -198,11 +198,6 @@ const Home = () => {
               <p className={styles.price}>Rs. 2000</p>
             </div>
           </div>
-          <div className={styles.box2}>
-            <div className={styles.image1}>
-              <img src={img5} alt="Recommend Image" />
-            </div>
-          </div>
         </div>
       </div> */}
     </>
