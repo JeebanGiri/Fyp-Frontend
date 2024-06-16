@@ -193,10 +193,6 @@ const Home = () => {
               <p className={styles.hotelplace}>Lumbini</p>
               <p>Rating Value</p>
             </div>
-            <div className={styles.discPrice}>
-              <p className={styles.offer}>20% DISCOUNT</p>
-              <p className={styles.price}>Rs. 2000</p>
-            </div>
           </div>
         </div>
       </div> */}
