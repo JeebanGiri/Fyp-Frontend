@@ -23,15 +23,25 @@ const Register = () => {
         ? value
         : `+977-${value}`;
       setData({ ...data, [name]: formattedPhoneNumber });
-    } else if (value.length > 15) {
-      toast.warn("Phone number is invalid");
     } else {
       setData({ ...data, [name]: value });
     }
-  }
-  
+  };
+
+  const validatePhoneNumbers = () => {
+    const { phone_number } = data;
+    if (phone_number.length > 15) {
+      toast.warn("Phone number is invalid");
+      return false;
+    }
+    return true;
+  };
+
   const handleRegister = (e) => {
     e.preventDefault();
+    if (!validatePhoneNumbers()) {
+      return;
+    }
 
     localStorage.setItem("Email", data.email);
 
@@ -48,9 +58,12 @@ const Register = () => {
         const errorMsg =
           error.response.data.message || error.response.data.error.message;
         toast.error(errorMsg);
+        if ("Email already exists!") {
+          toast.warn("Email already exists!");
+        }
         if (Array.isArray(errorMsg)) {
           errorMsg.forEach((err) => toast.error(err));
-        } else if (errorMsg) {
+        } else {
           toast.error(errorMsg);
         }
       });
