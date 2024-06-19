@@ -203,7 +203,7 @@ const AddHotel = () => {
                     type="file"
                     name="avatar"
                     onChange={handleChange}
-                    className={styles["input-fiel"]}
+                    className={styles["input-fields"]}
                   />
                 </div>
               </div>
