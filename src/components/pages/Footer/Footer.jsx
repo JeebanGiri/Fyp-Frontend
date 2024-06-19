@@ -49,7 +49,7 @@ const Footer = () => {
               world leader in online reservation & related services.
             </p>
             <div className={styles.icons}>
-              <span>
+              <span className={styles["footer-icon"]}>
                 <FaFacebookF />
               </span>
               <span>

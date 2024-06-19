@@ -20,8 +20,20 @@ const RegisterPopUp = () => {
     setData({ ...data, [name]: value });
   };
 
+  const validatePhoneNumbers = () => {
+    const { phone_number } = data;
+    if (phone_number.length > 15) {
+      toast.warn("Phone number is invalid");
+      return false;
+    }
+    return true;
+  };
+
   const handleRegister = (e) => {
     e.preventDefault();
+    if (!validatePhoneNumbers()) {
+      return;
+    }
 
     localStorage.setItem("Email", data.email);
 

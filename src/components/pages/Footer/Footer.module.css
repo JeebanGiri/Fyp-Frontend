@@ -37,7 +37,6 @@
   color: black;
 }
 
-
 .below-footer {
   background-color: #2a2a2e;
   display: grid;
@@ -64,6 +63,8 @@
 
 .icons svg:hover {
   border-radius: 50%;
+  height: 30px;
+  width: 30px;
   background: white;
   text-align: center;
   color: black;
@@ -71,5 +72,9 @@
 
 .icons svg {
   color: whitesmoke;
+  font-size: 25px;
+}
+
+.footer-icon:hover {
   font-size: 25px;
 }

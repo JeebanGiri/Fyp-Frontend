@@ -58,13 +58,15 @@ const Register = () => {
         const errorMsg =
           error.response.data.message || error.response.data.error.message;
         toast.error(errorMsg);
-        if ("Email already exists!") {
-          toast.warn("Email already exists!");
-        }
-        if (Array.isArray(errorMsg)) {
-          errorMsg.forEach((err) => toast.error(err));
-        } else {
-          toast.error(errorMsg);
+
+        if (errorMsg) {
+          if (Array.isArray(errorMsg)) {
+            errorMsg.forEach((err) => toast.error(err));
+          } else if (errorMsg === "Email already exists!") {
+            toast.warn("Email already exists!");
+          } else {
+            toast.error(errorMsg);
+          }
         }
       });
   };

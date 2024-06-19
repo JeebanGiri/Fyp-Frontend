@@ -64,10 +64,6 @@ const LoginPopUp = () => {
   const handleForgetPassword = () => {
     try {
       const email = localStorage.getItem("Email");
-
-      console.log("Email data", email);
-      console.log(email);
-
       axios
         .post("http://localhost:8848/auth/initiate-password-reset", {
           email: email,
