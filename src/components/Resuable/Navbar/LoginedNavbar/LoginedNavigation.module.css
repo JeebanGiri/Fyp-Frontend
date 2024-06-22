@@ -54,15 +54,10 @@
   font-weight: 500;
 }
 
-a {
-  text-decoration: none;
-}
-
 a:active,
 a:focus,
 a:hover {
   text-decoration: none;
-
 }
 
 .navItems a:hover {
@@ -94,8 +89,6 @@ a:hover {
   font-weight: 600;
   color: white;
 }
-
-
 
 /* @media screen and (min-width: 820px) and (max-width: 1080px) {
   .navItems a {

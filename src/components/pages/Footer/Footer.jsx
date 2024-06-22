@@ -3,6 +3,7 @@ import styles from "./Footer.module.css";
 import { FiTwitter } from "react-icons/fi";
 import { LiaGoogle } from "react-icons/lia";
 import { BsYoutube } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -27,8 +28,12 @@ const Footer = () => {
               <p>About</p>
               <li>About us</li>
               <li>FAQ</li>
-              <li>Login</li>
-              <li>Register</li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/register">Register</Link>
+              </li>
               <li className={styles.condt}>Terms and condition</li>
             </span>
             <span>
@@ -38,7 +43,11 @@ const Footer = () => {
             </span>
             <span>
               <p>Partner with us</p>
-              <li>Join us today</li>
+              <li>
+                <Link to="/list-property/register-hoteladmin">
+                  Join us today
+                </Link>
+              </li>
             </span>
             <hr />
           </div>

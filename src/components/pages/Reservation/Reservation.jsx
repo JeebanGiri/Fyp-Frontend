@@ -220,10 +220,11 @@ const Reservation = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleBookingSubmit = (e) => {
+  const handleBookingSubmit = (e, gateway) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
-    reserveHotel(
+
+    const bookingDetails = {
       hotelId,
       roomId,
       room_Type,
@@ -231,9 +232,22 @@ const Reservation = () => {
       total_Amount,
       checkIn_Date,
       checkOut_Date,
-      bookData,
-      token
-    )
+      ...bookData,
+      paymentGateway: gateway,
+    }; // new code
+    reserveHotel(bookingDetails, token) // New code
+      // reserveHotel(
+      //   hotelId,
+      //   roomId,
+      //   room_Type,
+      //   room_Quantity,
+      //   total_Amount,
+      //   checkIn_Date,
+      //   checkOut_Date,
+      //   bookData,
+      //   gateway,
+      //   token
+      // )
       .then((response) => {
         const message = response.data.message;
         toast.success(message);

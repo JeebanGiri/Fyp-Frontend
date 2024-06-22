@@ -17,6 +17,7 @@
   list-style-type: none;
   text-decoration: none;
   font-size: 14px;
+  cursor: pointer;
   font-family: kite-mallory, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -35,6 +36,7 @@
   font-family: kite-mallory, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: black;
+  cursor: pointer;
 }
 
 .below-footer {

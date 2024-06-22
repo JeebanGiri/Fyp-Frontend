@@ -118,24 +118,37 @@ export const registerUserForBook = (registerUser) =>
   api.post("/auth/register", registerUser);
 
 // ---------BOOK HOTEL-------------
-export const reserveHotel = (
-  hotelId,
-  roomId,
-  roomType,
-  roomQuantity,
-  totalAmount,
-  checkInDate,
-  checkOutDate,
-  bookData,
-  token
-) =>
+// export const reserveHotel = (
+//   hotelId,
+//   roomId,
+//   roomType,
+//   roomQuantity,
+//   totalAmount,
+//   checkInDate,
+//   checkOutDate,
+//   bookData,
+//   gateway,
+//   token
+// ) =>
+//   api.post(
+//     `/reservation/reserve/${hotelId}/${roomId}/${roomType}/${roomQuantity}/${totalAmount}/${checkInDate}/${checkOutDate}`,
+//     bookData,
+//     gateway,
+//     {
+//       headers: { Authorization: `Bearer ${token}` },
+//     }
+//   );
+// ---------BOOK HOTEL-------------
+export const reserveHotel = (bookingDetails, token) =>
   api.post(
-    `/reservation/reserve/${hotelId}/${roomId}/${roomType}/${roomQuantity}/${totalAmount}/${checkInDate}/${checkOutDate}`,
-    bookData,
+    `/reservation/reserve/${bookingDetails.hotelId}/${bookingDetails.roomId}/${bookingDetails.room_Type}/${bookingDetails.room_Quantity}/${bookingDetails.total_Amount}/${bookingDetails.checkIn_Date}/${bookingDetails.checkOut_Date}`,
+    { ...bookingDetails },
     {
       headers: { Authorization: `Bearer ${token}` },
     }
   );
+
+// console.log(bookData, gateway, token);
 
 export const getReservation = (token) =>
   api.get("/reservation/get-reservation", {
@@ -255,7 +268,6 @@ export const generateCustomerReport = (token, bookId, user_id, checkInDate) =>
   api.get(`/reservation/generate-report/${bookId}/${user_id}/${checkInDate}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  
 
 export const rateHotel = (rateInfo, token) =>
   api.post("/rating/rate-hotel", rateInfo, {
