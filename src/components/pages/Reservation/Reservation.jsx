@@ -214,7 +214,6 @@ const Reservation = () => {
     if (!bookData.phone_number)
       newErrors.phone_number = "Phone Number is required";
     if (!bookData.country) newErrors.country = "Country is required";
-
     setErrors(newErrors);
 
     return Object.keys(newErrors).length === 0;
@@ -250,12 +249,17 @@ const Reservation = () => {
       // )
       .then((response) => {
         const message = response.data.message;
+        console.log(response, "res");
+        console.log(message, "message");
         toast.success(message);
         const redirectUrl = response.data.redirect;
-        console.log(redirectUrl, "redirect");
+        // const paymentUrl = response.data.paymentUrl;
+        const paymentUrl = response.data.payment_url || redirectUrl;
+
+        console.log(paymentUrl, "url of payment", redirectUrl);
         navigateTo("/my-reservation");
-        if (redirectUrl) {
-          window.location.href = redirectUrl;
+        if (paymentUrl || redirectUrl) {
+          window.location.href = paymentUrl || redirectUrl;
         }
       })
       .catch((error) => {
