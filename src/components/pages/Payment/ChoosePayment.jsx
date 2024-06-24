@@ -18,13 +18,11 @@ export default function ChoosePayment({ handleBookingSubmit }) {
         <h5>Choose Payment Options</h5>
         <div className={styles.options}>
           <div className={styles["khalti-btn"]}>
-            {/* <button onClick={handleBookingSubmit}>Pay with Khalti</button> */}
             <button onClick={() => handlePayment("KHALTI")}>
               Pay with Khalti
             </button>
           </div>
           <div className={styles["stripe-btn"]}>
-            {/* <button onClick={handleBookingSubmit}>Pay with Stripe</button> */}
             <button onClick={() => handlePayment("STRIPE")}>
               Pay with Stripe
             </button>
