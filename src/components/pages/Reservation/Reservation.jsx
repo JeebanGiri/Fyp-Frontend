@@ -249,14 +249,9 @@ const Reservation = () => {
       // )
       .then((response) => {
         const message = response.data.message;
-        console.log(response, "res");
-        console.log(message, "message");
         toast.success(message);
         const redirectUrl = response.data.redirect;
-        // const paymentUrl = response.data.paymentUrl;
         const paymentUrl = response.data.payment_url || redirectUrl;
-
-        console.log(paymentUrl, "url of payment", redirectUrl);
         navigateTo("/my-reservation");
         if (paymentUrl || redirectUrl) {
           window.location.href = paymentUrl || redirectUrl;
