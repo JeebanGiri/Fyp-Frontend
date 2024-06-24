@@ -2,7 +2,6 @@ import styles from "./ChoosePayment.module.css";
 export default function ChoosePayment({ handleBookingSubmit }) {
   const handlePayment = (gateway) => {
     console.log(gateway, "gateway of payment");
-    // e.preventDefault();
     handleBookingSubmit(
       {
         preventDefault: () => {
