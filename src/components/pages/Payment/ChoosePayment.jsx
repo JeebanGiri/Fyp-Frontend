@@ -19,9 +19,6 @@ export default function ChoosePayment({ handleBookingSubmit }) {
         <div className={styles.options}>
           <div className={styles["khalti-btn"]}>
             {/* <button onClick={handleBookingSubmit}>Pay with Khalti</button> */}
-            {/* <button onClick={() => handlePayment("KHALTI")}>
-              Pay with Khalti
-            </button> */}
             <button onClick={() => handlePayment("KHALTI")}>
               Pay with Khalti
             </button>
