@@ -233,8 +233,8 @@ const Reservation = () => {
       checkOut_Date,
       ...bookData,
       paymentGateway: gateway,
-    }; // new code
-    reserveHotel(bookingDetails, token) // New code
+    }; // ------Combine Payment Gateway With Book Data---------
+    reserveHotel(bookingDetails, token)
       // reserveHotel(
       //   hotelId,
       //   roomId,
