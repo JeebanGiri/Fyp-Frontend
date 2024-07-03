@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 const ListPropertyPage = () => {
   const navigateTo = useNavigate();
 
-  const [listType, setListType] = useState(""); // Default value
+  const [listType, setListType] = useState("");
   const [animate, setAnimate] = useState(false); // State to trigger animation
 
   // Function to change the list type with animation
