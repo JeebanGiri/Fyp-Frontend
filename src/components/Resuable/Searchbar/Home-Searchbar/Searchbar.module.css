@@ -2,20 +2,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70%;
-  transform: translate(20%, 0%);
+  width: 50%;
+  transform: translate(50%, 0%);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 3px;
   border-radius: 16px;
   background-color: rgb(248, 247, 249);
 }
-.search-form{
+.search-form {
   display: grid;
   justify-content: center;
   align-items: center;
   place-items: center;
-  width: 100%;
 }
-.check-out-label .date-picker{
+.check-out-label .date-picker {
   z-index: 1000;
 }
 
@@ -81,7 +80,7 @@
   padding: 10px 10px;
   margin: 20px 0px 0px 5px;
 }
-.react-datepicker{
+.react-datepicker {
   z-index: 1500;
 }
 .check-in-dlabel {

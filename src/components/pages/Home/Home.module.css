@@ -48,7 +48,7 @@
 .titleBox {
   display: flex;
   flex-direction: row;
-  width: 45%;
+  width: 30%;
   background-color: #ffffff;
   height: 45px;
   border-radius: 10px;
