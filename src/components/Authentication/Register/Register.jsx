@@ -137,6 +137,12 @@ const Register = () => {
                 <p>
                   Already have an account? <NavLink to="/login">Log in</NavLink>
                 </p>
+                <p>
+                  Looking for Listing your hotels?{" "}
+                  <NavLink to="/list-property/register-hoteladmin">
+                    Register here
+                  </NavLink>
+                </p>
               </div>
             </div>
           </form>
