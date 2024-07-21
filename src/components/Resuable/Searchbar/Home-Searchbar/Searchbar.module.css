@@ -108,13 +108,13 @@
 .weekdays {
   position: absolute;
   top: 160px;
-  left: 100px;
+  left: 110px;
 }
 
 .weekday {
   position: absolute;
   top: 160px;
-  left: 340px;
+  left: 350px;
 }
 
 .places .icon,
@@ -191,7 +191,7 @@
 
 .selectoption {
   position: absolute;
-  right: 50px;
+  right: 70px;
   top: 150px;
 }
 .selectoption svg {
