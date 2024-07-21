@@ -53,11 +53,7 @@ const HotelAdminDashboard = () => {
     getAllCustomer(token)
   );
 
-  // const customer = customerInfo?.data;
-  console.log(customerInfo, "cus info");
-  console.log(totalBooking, "bbok");
-  console.log(totalIncome, "income");
-  console.log(totalRooms, "rooms");
+  // const customer = customerInfo?.data
 
   return (
     <>
